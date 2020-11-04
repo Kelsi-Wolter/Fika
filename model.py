@@ -42,7 +42,7 @@ class Roaster(db.Model):
     image = db.Column(db.String(200))
     website = db.Column(db.String(40))
     coffee_link = db.Column(db.String(40))
-    shipping_site = db.Column(db.String(40))
+    shipping_link = db.Column(db.String(40))
     avg_rating = db.Column(db.Float)
     
 
