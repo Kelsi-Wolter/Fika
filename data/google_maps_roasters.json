@@ -1,0 +1,67 @@
+{ "up_cafe": 
+
+    {
+        "html_attributions" : [],
+        "result" : {
+        "formatted_address" : "1901 Traffic St NE, Minneapolis, MN 55413, USA",
+        "international_phone_number" : "+1 612-326-9820",
+        "name" : "Up Cafe and Up Coffee Roasters",
+        "opening_hours" : {
+            "weekday_text" : [
+                "Monday: 7:00 AM – 5:00 PM",
+                "Tuesday: 7:00 AM – 5:00 PM",
+                "Wednesday: 7:00 AM – 5:00 PM",
+                "Thursday: 7:00 AM – 5:00 PM",
+                "Friday: 7:00 AM – 5:00 PM",
+                "Saturday: 8:00 AM – 5:00 PM",
+                "Sunday: 8:00 AM – 5:00 PM"
+            ]
+        },
+        "photos" : [
+            {
+                "height" : 930,
+                "html_attributions" : [
+                    "\u003ca href=\"https://maps.google.com/maps/contrib/103856250550267168391\"\u003eUp Cafe and Up Coffee Roasters\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAIbxLzsYXlfRvOQ2UIhTSF_HMl6SGb_TQwZdZwt3hWyQ4Q9pG2VOHbaJw78I7QLyXoKjZcH-3BPeT9Hle2piSd3IYXnQHCPf9pBim0XUJrI0WNTDSml0l82M67R7ZiatnEhCqTw8E2X5MGq8URUpW_Y3xGhQvXkHHziMFeUr3ilv6XD2BHM4Zow",
+                "width" : 1240
+            }],
+        "website" : "http://www.upcafe.com/"
+        },
+        "status" : "OK"
+    },
+
+"driven_coffee": 
+    {
+        "html_attributions" : [],
+        "result" : {
+        "formatted_address" : "313 Lake Hazeltine Dr, Chaska, MN 55318, USA",
+        "international_phone_number" : "+1 800-561-6827",
+        "name" : "Driven Coffee Roasters",
+        "opening_hours" : {
+            "weekday_text" : [
+                "Monday: 9:00 AM – 4:00 PM",
+                "Tuesday: 9:00 AM – 4:00 PM",
+                "Wednesday: 9:00 AM – 4:00 PM",
+                "Thursday: 9:00 AM – 4:00 PM",
+                "Friday: 9:00 AM – 4:00 PM",
+                "Saturday: Closed",
+                "Sunday: Closed"
+            ]
+        },
+        "photos" : [
+            {
+                "height" : 1365,
+                "html_attributions" : [
+                    "\u003ca href=\"https://maps.google.com/maps/contrib/105570766364089670143\"\u003eDriven Coffee Roasters\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAq4X6td-th0yc21L1tnWgChN7H7Nx3D1oInph3XlMVvNxkJcOHebPp_d8wlieJN6ymIYuU0TrnmMQjZhu5cRYJ12GpipH-OSi4xbN-XkNlGUw9DLQVixrBrt7zP7stST4EhAMHXilxZCv5GkT8T5v3Y4-GhRiIoOMJHdxPRtBx3vBnuClWjaLyQ",
+                "width" : 2048
+            }],
+        "website" : "https://www.drivencoffee.com/"
+        },
+        "status" : "OK"
+    }
+
+}
+

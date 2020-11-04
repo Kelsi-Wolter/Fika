@@ -26,6 +26,8 @@ class User(db.Model):
         return f'<User user_id={self.user_id} name={self.first_name} {self.last_name}>'
 
 
+    # backref='lists'
+
 class Roaster(db.Model):
     '''A Coffee Roaster'''
 
@@ -49,6 +51,8 @@ class Roaster(db.Model):
     def __repr__(self):
         return f'<Roaster roaster_ID={self.roaster_id} name={self.name}>'
 
+    # backref='entries'
+
 
 class List(db.Model):
     '''List built by user to keep track of roasters'''
@@ -63,7 +67,8 @@ class List(db.Model):
     list_name = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
-    user = db.relationship('User')    
+    user = db.relationship('User', backref='lists')
+    entries = db.relationship('Entry')    
  
 
     def __repr__(self):
@@ -85,7 +90,7 @@ class Entry(db.Model):
     note = db.Column(db.Text)
 
     entry_list = db.relationship('List')
-    roaster = db.relationship('Roaster')    
+    roaster = db.relationship('Roaster', backref='entries')    
  
 
     def __repr__(self):

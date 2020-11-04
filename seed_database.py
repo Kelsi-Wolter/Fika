@@ -77,3 +77,4 @@ for user in list_of_users:
 
         entry = crud.create_entry(entry_list=entry_list, roaster=roaster, score=score, note=note)
 
+# TODO: fix attributes for roasters (links, image, avg rating) and add additional lists for each user
