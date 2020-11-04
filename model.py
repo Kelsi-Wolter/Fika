@@ -38,7 +38,7 @@ class Roaster(db.Model):
     name = db.Column(db.String(30), nullable=False)
     address = db.Column(db.String(60), nullable=False)
     phone_number = db.Column(db.String(20))
-    hours = db.Column(db.String(100))
+    hours = db.Column(db.String(300))
     image = db.Column(db.String(200))
     website = db.Column(db.String(40))
     coffee_link = db.Column(db.String(40))
