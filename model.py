@@ -60,7 +60,7 @@ class List(db.Model):
                         autoincrement=True
                         )
     list_type = db.Column(db.String(20))
-    list_name = db.Column(db.String(20), nullable=False)
+    list_name = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
     user = db.relationship('User')    
