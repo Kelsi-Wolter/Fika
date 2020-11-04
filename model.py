@@ -59,7 +59,7 @@ class List(db.Model):
                         primary_key=True,
                         autoincrement=True
                         )
-    list_type = db.Column(db.String(20), nullable=False)
+    list_type = db.Column(db.String(20))
     list_name = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
