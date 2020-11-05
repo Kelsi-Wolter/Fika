@@ -19,6 +19,12 @@ def create_user(first_name, last_name, email, password):
 
     return user
 
+def get_user_by_email(email):
+    '''Query for user by email, return 'None' if no user with that email'''
+
+    return User.query.filter_by(email=email).first()
+    
+
 def create_roaster(name, address, phone_number, hours, image, website, coffee_link, shipping_link, avg_rating):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,

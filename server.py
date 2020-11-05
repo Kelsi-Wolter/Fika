@@ -32,11 +32,40 @@ def roaster_details_page(roaster_id):
 
     return render_template('roaster_details.html', roaster=roaster)
 
+@app.route('/login')
+def login_to_account():
+    '''Log in page for users'''
+
+    return render_template('login.html')
+
+@app.route('/create_account')
+def new_account_page():
+    '''Show form to enter details to create new account'''
+
+    return render_template('create_account.html')
+
+@app.route('/new_user', methods=['POST'])
+def register_user():
+    '''Take input from form and create new user login'''
+
+    fname = request.form.get('fname_create')
+    lname = request.form.get('lname_create')
+    email = request.form.get('email_create')
+    pw = request.form.get('pw_create')
+    
+    user = crud.get_user_by_email(email)
+
+    print(user, '**********************')
+
+    if user:
+        flash('Account already exists! Please login to continue.')
+    else:
+        crud.create_user(fname, lname, email, pw)
+        flash('Account created! Please log in.')
+
+    return redirect('/account')
 
 
-
-
-# @app.route('/login')
 
 # @app.route('/account_<user_id>')
 
