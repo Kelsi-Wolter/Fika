@@ -73,13 +73,12 @@ def user_login():
     pw = request.form.get('user_password_login')
 
     user = crud.get_user_by_email(email)
-    user_pw = crud.get_user_password(email)
-
+    user_pw, user_id = crud.get_user_info(email)
+    
     if user:
         if pw == user_pw:
             flash('Welcome Back!')
-
-            return redirect('/account')
+            return redirect(f'/account/{user_id}')
         else:
             flash('Incorrect password, please try again.')
             return redirect('/login')
@@ -87,12 +86,20 @@ def user_login():
         flash('Please create an account.')
         return redirect('/new_user')
 
-# @app.route('/account_<user_id>')
+@app.route('/account/<user_id>')
+def user_account_page(user_id):
+    '''Show user's account page'''
 
-@app.route('/account')
-def account_homepage():
+    user = crud.get_user_by_id(user_id)
 
-    return render_template('account.html')
+    return render_template('account.html', user=user)
+
+
+# Below route and function needs to be re-written to display user-specific page
+# @app.route('/account')
+# def account_homepage():
+
+#     return render_template('account.html')
 
 
 

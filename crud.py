@@ -24,13 +24,19 @@ def get_user_by_email(email):
 
     return User.query.filter_by(email=email).first()
 
-def get_user_password(email):
+def get_user_info(email):
     '''Query for user by email, return password associated with account'''
 
     user = User.query.filter_by(email=email).first()
     user_pw = user.password
+    user_id = user.user_id
 
-    return user_pw
+    return user_pw, user_id
+
+def get_user_by_id(user_id):
+    return User.query.get(user_id)
+
+
     
 
 def create_roaster(name, address, phone_number, hours, image, website, coffee_link, shipping_link, avg_rating):
