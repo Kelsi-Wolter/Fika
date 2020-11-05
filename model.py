@@ -97,22 +97,33 @@ class Entry(db.Model):
         return f'<Entry entry_id={self.entry_id} score={self.score} roaster={self.roaster.name} list={self.entry_list.list_name} author={self.entry_list.user_id}>'
 
 
-def calculate_avg_rating():
-    list_of_roasters = Roaster.query.all()
+# def calculate_avg_rating():
+#     ''' Calculate average score from all the scores entered for each individual roaster'''
 
-    for roaster in list_of_roasters:
-        roaster_id = roaster.roaster_id
+#     # Query for all roaster objects
+#     list_of_roasters = Roaster.query.all()
+    
+#     # Loop through the list of roaster objects and set roaster_id to each roaster's ID number
+#     for roaster in list_of_roasters:
+#         roaster_id = roaster.roaster_id
 
-        reviews = Entry.query.filter_by(roaster_id=roaster_id).all()
-        total_reviews = len(reviews)
+#         # Query for all entry objects associated with a roaster ID, and set to variable 'reviews'
+#         reviews = Entry.query.filter_by(roaster_id=roaster_id).all()
 
-        for review in reviews:
-            sum = 0
-            score = review.score
-            sum += score
-            roaster_avg = sum / total_reviews
+#         # Get total number of entries for each roaster
+#         total_reviews = len(reviews)
 
-    return f' {roaster} has average rating of {roaster_avg}'
+#         # Loop through the entry objects for each roaster and capture the score value, add up all scores
+#         # and then divide by the total number of entries to get average rating
+#         sum = 0
+#         for review in reviews:
+            
+#             score = review.score
+#             sum += score
+        
+#         roaster_avg = sum / total_reviews
+
+#         return f'{roaster.name} has average rating of {roaster_avg}'
 
 
 '''Copied from model.py in ratings app that connects to the database'''

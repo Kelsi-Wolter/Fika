@@ -27,6 +27,8 @@ for roaster in roaster_data:
                                                         roaster_results['international_phone_number'],
                                                         roaster_results['opening_hours']['weekday_text'],
                                                         roaster_results['website'])
+
+                                                      
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
                     image=None, website=website, coffee_link=None, shipping_link=None, avg_rating=None)
     
@@ -62,9 +64,9 @@ for user in list_of_users:
     #         list_name = 'Roasters I Have Already Tried'
 
     list_name = choice(['Favorites List', 'Places I Want to Try', 'Roasters I Have Already Tried'])
-    
+   
     db_list1 = crud.create_list(list_type=None, list_name=list_name, user=user)
-
+    
 
     # Create 4 entries for each list
     for n in range(4):
@@ -76,5 +78,8 @@ for user in list_of_users:
         'High caffeine content!', 'Great for pour-overs!', 'Great smell, better taste!'])
 
         entry = crud.create_entry(entry_list=entry_list, roaster=roaster, score=score, note=note)
+
+
+
 
 # TODO: fix attributes for roasters (links, image, avg rating) and add additional lists for each user
