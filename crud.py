@@ -23,6 +23,14 @@ def get_user_by_email(email):
     '''Query for user by email, return 'None' if no user with that email'''
 
     return User.query.filter_by(email=email).first()
+
+def get_user_password(email):
+    '''Query for user by email, return password associated with account'''
+
+    user = User.query.filter_by(email=email).first()
+    user_pw = user.password
+
+    return user_pw
     
 
 def create_roaster(name, address, phone_number, hours, image, website, coffee_link, shipping_link, avg_rating):

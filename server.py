@@ -55,7 +55,6 @@ def register_user():
     
     user = crud.get_user_by_email(email)
 
-    print(user, '**********************')
 
     if user:
         flash('Account already exists! Please login to continue.')
@@ -66,8 +65,34 @@ def register_user():
     return redirect('/account')
 
 
+@app.route('/user_logging_in', methods=["POST"])
+def user_login():
+    '''Check that user exists and redirect to account page if email and password matches'''
+
+    email = request.form.get('user_email_login')
+    pw = request.form.get('user_password_login')
+
+    user = crud.get_user_by_email(email)
+    user_pw = crud.get_user_password(email)
+
+    if user:
+        if pw == user_pw:
+            flash('Welcome Back!')
+
+            return redirect('/account')
+        else:
+            flash('Incorrect password, please try again.')
+            return redirect('/login')
+    else:
+        flash('Please create an account.')
+        return redirect('/new_user')
 
 # @app.route('/account_<user_id>')
+
+@app.route('/account')
+def account_homepage():
+
+    return render_template('account.html')
 
 
 
