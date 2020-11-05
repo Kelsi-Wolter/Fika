@@ -16,6 +16,21 @@ def homepage():
 
     return render_template('homepage.html')
 
+@app.route('/roaster_directory')
+def roaster_directory():
+    '''Display list of roasters'''
+
+    all_the_roasters = crud.return_all_roasters()
+
+    return render_template('roaster_directory.html', roasters=all_the_roasters)
+
+# @app.route('/roaster_directory/<roaster_id>')
+
+# @app.route('/login')
+
+# @app.route('/account_<user_id>')
+
+
 
 
 if __name__ == '__main__':

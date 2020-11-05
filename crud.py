@@ -30,6 +30,11 @@ def create_roaster(name, address, phone_number, hours, image, website, coffee_li
 
     return roaster
 
+def return_all_roasters():
+    '''Queries for all roaster instances'''
+
+    return Roaster.query.all()
+
 def create_list(list_type, list_name, user):
 
     new_list = List(list_type=list_type, list_name=list_name, user=user)
