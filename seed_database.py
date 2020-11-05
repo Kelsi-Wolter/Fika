@@ -66,7 +66,7 @@ for user in list_of_users:
     db_list1 = crud.create_list(list_type=None, list_name=list_name, user=user)
 
 
-    # Create 3 entries for each list
+    # Create 4 entries for each list
     for n in range(4):
         entry_list = db_list1
         roaster = choice(list_of_roasters)

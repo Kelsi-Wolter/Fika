@@ -1,4 +1,5 @@
-{ "up_cafe": 
+{ 
+"up_cafe": 
 
     {
         "html_attributions" : [],
@@ -17,15 +18,6 @@
                 "Sunday: 8:00 AM – 5:00 PM"
             ]
         },
-        "photos" : [
-            {
-                "height" : 930,
-                "html_attributions" : [
-                    "\u003ca href=\"https://maps.google.com/maps/contrib/103856250550267168391\"\u003eUp Cafe and Up Coffee Roasters\u003c/a\u003e"
-                ],
-                "photo_reference" : "CmRaAAAAIbxLzsYXlfRvOQ2UIhTSF_HMl6SGb_TQwZdZwt3hWyQ4Q9pG2VOHbaJw78I7QLyXoKjZcH-3BPeT9Hle2piSd3IYXnQHCPf9pBim0XUJrI0WNTDSml0l82M67R7ZiatnEhCqTw8E2X5MGq8URUpW_Y3xGhQvXkHHziMFeUr3ilv6XD2BHM4Zow",
-                "width" : 1240
-            }],
         "website" : "http://www.upcafe.com/"
         },
         "status" : "OK"
@@ -49,16 +41,30 @@
                 "Sunday: Closed"
             ]
         },
-        "photos" : [
-            {
-                "height" : 1365,
-                "html_attributions" : [
-                    "\u003ca href=\"https://maps.google.com/maps/contrib/105570766364089670143\"\u003eDriven Coffee Roasters\u003c/a\u003e"
-                ],
-                "photo_reference" : "CmRaAAAAq4X6td-th0yc21L1tnWgChN7H7Nx3D1oInph3XlMVvNxkJcOHebPp_d8wlieJN6ymIYuU0TrnmMQjZhu5cRYJ12GpipH-OSi4xbN-XkNlGUw9DLQVixrBrt7zP7stST4EhAMHXilxZCv5GkT8T5v3Y4-GhRiIoOMJHdxPRtBx3vBnuClWjaLyQ",
-                "width" : 2048
-            }],
         "website" : "https://www.drivencoffee.com/"
+        },
+        "status" : "OK"
+    },
+
+"folly":
+    {
+        "html_attributions" : [],
+        "result" : {
+        "formatted_address" : "4290 Park Glen Rd, St Louis Park, MN 55416, USA",
+        "international_phone_number" : "+1 612-297-7888",
+        "name" : "Folly Coffee Roasters",
+        "opening_hours" : {
+            "weekday_text" : [
+                "Monday: Closed",
+                "Tuesday: Closed",
+                "Wednesday: Closed",
+                "Thursday: Closed",
+                "Friday: Closed",
+                "Saturday: 8:00 AM – 12:30 PM",
+                "Sunday: 8:00 AM – 12:30 AM"
+            ]
+        },
+        "website" : "http://www.follycoffee.com/"
         },
         "status" : "OK"
     }

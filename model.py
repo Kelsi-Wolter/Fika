@@ -97,6 +97,23 @@ class Entry(db.Model):
         return f'<Entry entry_id={self.entry_id} score={self.score} roaster={self.roaster.name} list={self.entry_list.list_name} author={self.entry_list.user_id}>'
 
 
+def calculate_avg_rating():
+    list_of_roasters = Roaster.query.all()
+
+    for roaster in list_of_roasters:
+        roaster_id = roaster.roaster_id
+
+        reviews = Entry.query.filter_by(roaster_id=roaster_id).all()
+        total_reviews = len(reviews)
+
+        for review in reviews:
+            sum = 0
+            score = review.score
+            sum += score
+            roaster_avg = sum / total_reviews
+
+    return f' {roaster} has average rating of {roaster_avg}'
+
 
 '''Copied from model.py in ratings app that connects to the database'''
 
