@@ -24,7 +24,17 @@ def roaster_directory():
 
     return render_template('roaster_directory.html', roasters=all_the_roasters)
 
-# @app.route('/roaster_directory/<roaster_id>')
+@app.route('/roaster_directory/<roaster_id>')
+def roaster_details_page(roaster_id):
+    '''Show details of a particular roaster'''
+
+    roaster = crud.get_roaster_by_id(roaster_id)
+
+    return render_template('roaster_details.html', roaster=roaster)
+
+
+
+
 
 # @app.route('/login')
 

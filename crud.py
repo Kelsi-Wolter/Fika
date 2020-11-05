@@ -35,6 +35,12 @@ def return_all_roasters():
 
     return Roaster.query.all()
 
+def get_roaster_by_id(roaster_id):
+    '''Query for roaster by roaster ID number'''
+
+    return Roaster.query.get(roaster_id)
+
+
 def create_list(list_type, list_name, user):
 
     new_list = List(list_type=list_type, list_name=list_name, user=user)
