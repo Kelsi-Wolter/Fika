@@ -40,14 +40,15 @@ with open('data/new_data.json') as f:
 
 list_of_roasters = []
 for roaster in roaster_data:
-    name, address, hours, website = (roaster_data[roaster]['name'], 
+
+    name, address, phone_number, hours, website = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
-                                                        # roaster_data[roaster]['formatted_phone_number'],
+                                                        roaster_data[roaster]['formatted_phone_number'],
                                                         roaster_data[roaster]['opening_hours'],
                                                         roaster_data[roaster]['website'])
 
                                                       
-    db_roaster = crud.create_roaster(name=name, address=address, phone_number=None, hours=hours,
+    db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
                     image=None, website=website, coffee_link=None, shipping_link=None, avg_rating=None)
     
     list_of_roasters.append(db_roaster)
