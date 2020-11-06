@@ -25,16 +25,11 @@ def get_user_by_email(email):
     return User.query.filter_by(email=email).first()
 
 def get_user_info(email):
-    '''Query for user by email, return password associated with account'''
+    '''Query for user by email, return password and ID associated with account'''
 
     user = User.query.filter_by(email=email).first()
-
-    if user:
-        user_pw = user.password
-        user_id = user.user_id
-    else:
-        user_pw = None
-        user_id = None
+    user_pw = user.password
+    user_id = user.user_id
 
     return user_pw, user_id
 
