@@ -37,12 +37,12 @@ class Roaster(db.Model):
                         primary_key=True,
                         autoincrement=True
                         )
-    name = db.Column(db.String(30), nullable=False)
-    address = db.Column(db.String(60), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20))
     hours = db.Column(db.String(300))
     image = db.Column(db.String(200))
-    website = db.Column(db.String(40))
+    website = db.Column(db.String(100))
     coffee_link = db.Column(db.String(40))
     shipping_link = db.Column(db.String(40))
     avg_rating = db.Column(db.Float)
