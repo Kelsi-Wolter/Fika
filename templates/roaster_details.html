@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} {{roaster.name}} Details {% endblock %}
+
+{% block body %}
+  <h1> {{roaster.name }} </h1>
+
+  <p> {{ roaster.address }} </p>
+  <p> {{ roaster.phone_number }} </p>
+  <p> {{ roaster.hours }} </p>
+  <p> {{ roaster.website }} </p>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Roaster Directory{% endblock %}
+
+
+{% block head %}Nav Bar{% endblock %}
+
+{% block body %}
+<h1>Minnesota Roaster Directory</h1>
+
+<ul>
+    {% for roaster in roasters %}
+    <li>
+        <a href="/roaster_directory/{{ roaster.roaster_id }}">
+            {{ roaster.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+
+
+{% endblock body %}
