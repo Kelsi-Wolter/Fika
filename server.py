@@ -30,7 +30,11 @@ def roaster_details_page(roaster_id):
 
     roaster = crud.get_roaster_by_id(roaster_id)
 
-    return render_template('roaster_details.html', roaster=roaster)
+    schedule = roaster.hours
+
+    avg_rating = crud.calculate_avg_rating(roaster_id)
+
+    return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating)
 
 @app.route('/login')
 def login_to_account():
@@ -44,7 +48,7 @@ def new_account_page():
 
     return render_template('create_account.html')
 
-@app.route('/new_user', methods=['POST'])
+@app.route('/new_user', methods=['POST', 'GET'])
 def register_user():
     '''Take input from form and create new user login'''
 
@@ -78,21 +82,23 @@ def user_login():
     if user:
         if pw == user_pw:
             flash('Welcome Back!')
+            session['user'] = user
             return redirect(f'/account/{user_id}')
         else:
             flash('Incorrect password, please try again.')
             return redirect('/login')
     else:
         flash('Please create an account.')
-        return redirect('/new_user')
+        return redirect('/')
 
 @app.route('/account/<user_id>')
 def user_account_page(user_id):
     '''Show user's account page'''
 
     user = crud.get_user_by_id(user_id)
+    user_lists, user_list_entries = crud.get_lists_by_user_id(user_id)
 
-    return render_template('account.html', user=user)
+    return render_template('account.html', user=user, lists=user_lists, entries=user_list_entries)
 
 
 # Below route and function needs to be re-written to display user-specific page

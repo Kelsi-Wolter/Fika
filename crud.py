@@ -28,8 +28,13 @@ def get_user_info(email):
     '''Query for user by email, return password associated with account'''
 
     user = User.query.filter_by(email=email).first()
-    user_pw = user.password
-    user_id = user.user_id
+
+    if user:
+        user_pw = user.password
+        user_id = user.user_id
+    else:
+        user_pw = None
+        user_id = None
 
     return user_pw, user_id
 
@@ -60,6 +65,34 @@ def get_roaster_by_id(roaster_id):
 
     return Roaster.query.get(roaster_id)
 
+def calculate_avg_rating(roaster_id):
+    ''' Calculate average score from all the scores entered for each individual roaster'''
+
+    # # Query for all roaster objects
+    # list_of_roasters = Roaster.query.all()
+    
+    # # Loop through the list of roaster objects and set roaster_id to each roaster's ID number
+    # for roaster in list_of_roasters:
+    #     roaster_id = roaster.roaster_id
+
+    # Query for all entry objects associated with a roaster ID, and set to variable 'reviews'
+    reviews = Entry.query.filter_by(roaster_id=roaster_id).all()
+
+    # Get total number of entries for each roaster
+    total_reviews = len(reviews)
+
+    # Loop through the entry objects for each roaster and capture the score value, add up all scores
+    # and then divide by the total number of entries to get average rating
+    sum = 0
+    for review in reviews:
+        
+        score = review.score
+        sum += score
+    
+    roaster_avg = sum / total_reviews
+
+    return roaster_avg
+
 
 def create_list(list_type, list_name, user):
 
@@ -69,6 +102,14 @@ def create_list(list_type, list_name, user):
     db.session.commit()
 
     return new_list
+
+def get_lists_by_user_id(user_id):
+    lists = List.query.filter_by(user_id=user_id).all()
+    list_entries = []
+    for list in lists:
+        list_entries.append(list.entries)
+    
+    return lists, list_entries
 
 def create_entry(entry_list, roaster, score, note):
 

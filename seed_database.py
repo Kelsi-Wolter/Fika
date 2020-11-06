@@ -83,8 +83,10 @@ for user in list_of_users:
     #         list_name = 'Roasters I Have Already Tried'
 
     list_name = choice(['Favorites List', 'Places I Want to Try', 'Roasters I Have Already Tried'])
+    list_name2 = choice(['Favorites List', 'Places I Want to Try', 'Roasters I Have Already Tried'])
    
     db_list1 = crud.create_list(list_type=None, list_name=list_name, user=user)
+    db_list2 = crud.create_list(list_type=None, list_name=list_name2, user=user)
     
 
     # Create 4 entries for each list
