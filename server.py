@@ -57,18 +57,18 @@ def user_login():
     if user:
         user_pw, user_id = crud.get_user_info(email)
         if pw == user_pw:
-            flash('Welcome Back!')
-            session['user'] = user
+            
+            session['user'] = { user.user_id: {'first_name': user.first_name, 'last_name': user.last_name}}
             return redirect(f'/account/{user_id}')
     
         else:
-            flash('Incorrect password, please try again.')
+            
             return redirect('/login')
     
     # If user does not exist, redirect to create an account page
     else:
         flash('Please create an account.')
-        return redirect('/create_account.html')
+        return redirect('/create_account')
 
 @app.route('/account/<user_id>')
 def user_account_page(user_id):
@@ -100,12 +100,12 @@ def register_user():
 
     if user:
         flash('Account already exists! Please login to continue.')
-        redirect ('/login')
+        return redirect ('/login')
 
     else:
         crud.create_user(fname, lname, email, pw)
         flash('Account created! Please log in.')
-        redirect ('/login')
+        return redirect ('/login')
 
 
 
