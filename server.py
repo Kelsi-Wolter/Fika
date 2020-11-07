@@ -10,12 +10,15 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "kelsi's_project"
 
+
+# Home page
 @app.route('/')
 def homepage():
     '''View Homepage'''
 
     return render_template('homepage.html')
 
+# Roaster Routes
 @app.route('/roaster_directory')
 def roaster_directory():
     '''Display list of roasters'''
@@ -36,6 +39,7 @@ def roaster_details_page(roaster_id):
 
     return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating)
 
+# User login and account routes
 @app.route('/login')
 def login_to_account():
     '''Log in page for users'''
@@ -58,7 +62,7 @@ def user_login():
         user_pw, user_id = crud.get_user_info(email)
         if pw == user_pw:
             
-            session['user'] = { user.user_id: {'first_name': user.first_name, 'last_name': user.last_name}}
+            session['user_login'] = {'id': user.user_id, 'first_name': user.first_name, 'last_name': user.last_name}
             return redirect(f'/account/{user_id}')
     
         else:
@@ -80,6 +84,7 @@ def user_account_page(user_id):
 
     return render_template('account.html', user=user, lists=user_lists, entries=user_list_entries)
 
+# New user routes
 @app.route('/create_account')
 def new_account_page():
     '''Show form to enter details to create new account'''
@@ -104,12 +109,23 @@ def register_user():
 
     else:
         crud.create_user(fname, lname, email, pw)
+
         flash('Account created! Please log in.')
         return redirect ('/login')
 
+# User list routes
+@app.route('account/<user_id>/create_new_list')
+def create_new_list(user_id):
 
+    return render_template('new_list.html')
 
+@app.route('/add_new_list')
+def commit_new_list():
+    list_name = request.args.get('list_type')
+    user_id = session['user']['id']
 
+    crud.create_list(list_type=None, list_name=list_name, user=user_id)
+    return redirect('/account/<user_id>')
 
 if __name__ == '__main__':
     connect_to_db(app)
