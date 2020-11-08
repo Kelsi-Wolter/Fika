@@ -114,15 +114,25 @@ def register_user():
         return redirect ('/login')
 
 # User list routes
-@app.route('account/<user_id>/create_new_list')
+@app.route('/account/<user_id>/create_new_list')
 def create_new_list(user_id):
 
-    return render_template('new_list.html')
+    all_the_roasters = crud.return_all_roasters()
+
+    return render_template('new_list.html', roasters=all_the_roasters)
 
 @app.route('/add_new_list')
 def commit_new_list():
     list_name = request.args.get('list_type')
     user_id = session['user']['id']
+
+    # if roasters:
+    #     for entry in roasters:
+    #         roaster_id = request.args.get('roasters')
+
+    #         crud.create_entry(list_id, roaster_id, score)
+    # Need jQuery in here to display more info upon clicking a box for a roaster, so that
+    # user can input a score/note right on that same page
 
     crud.create_list(list_type=None, list_name=list_name, user=user_id)
     return redirect('/account/<user_id>')

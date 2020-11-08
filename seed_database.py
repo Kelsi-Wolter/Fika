@@ -14,26 +14,6 @@ os.system('createdb MNroasters')
 model.connect_to_db(server.app)
 model.db.create_all()
 
-# Create roasters
-
-# with open('data/google_maps_roasters.json') as f:
-#     roaster_data = json.loads(f.read())
-
-# list_of_roasters = []
-# for roaster in roaster_data:
-#     roaster_results = roaster_data[roaster]['result']
-#     name, address, phone_number, hours, website = (roaster_results['name'], 
-#                                                         roaster_results['formatted_address'],
-#                                                         roaster_results['international_phone_number'],
-#                                                         roaster_results['opening_hours']['weekday_text'],
-#                                                         roaster_results['website'])
-
-                                                      
-#     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-#                     image=None, website=website, coffee_link=None, shipping_link=None, avg_rating=None)
-    
-#     list_of_roasters.append(db_roaster)
-
 
 with open('data/new_data.json') as f:
     roaster_data = json.loads(f.read())
@@ -41,11 +21,31 @@ with open('data/new_data.json') as f:
 list_of_roasters = []
 for roaster in roaster_data:
 
-    name, address, phone_number, hours, website = (roaster_data[roaster]['name'], 
+    name, address, phone_number, website = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
                                                         roaster_data[roaster]['formatted_phone_number'],
-                                                        roaster_data[roaster]['opening_hours'],
                                                         roaster_data[roaster]['website'])
+                                                        
+
+    hours = roaster_data[roaster]['opening_hours']
+    # Remove '\\u2013 from hours'
+    if hours != 'Unavailable':
+        stripped_hours = []
+
+        # Loop through each string in 'hours' and split by space character, returns list of
+        # strings with day-name, time, and am/pm values, looks for \\u2013 and removes from list
+        for day in hours:
+            sections = (day.split(' '))
+            if "\\u2013" in sections:
+                sections.remove("\\u2013")
+
+            # Joins strings with day-name, times and am/pm back into one long string, adds to
+            # new list of weekday hours
+            stripped_day = ' '.join(sections)
+            stripped_hours.append(stripped_day)
+
+            hours = stripped_hours
+
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,

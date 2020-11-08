@@ -12,7 +12,9 @@ gmaps = googlemaps.Client(KEY)
 
 
 # List of coffee roaster place IDs
-place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s', 'ChIJWcfLCviI9YcR5jiT1hbJK3U', 'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
+place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s', 
+                'ChIJWcfLCviI9YcR5jiT1hbJK3U', 
+                'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
                 'ChIJAbkBsJkts1IRNj7L1NnbGUg',
                 'ChIJr2WxIeIzs1IRP_yfK1DjOoE',
                 'ChIJ0cRRS0kts1IRIPm_KaYaRSM',
@@ -71,10 +73,11 @@ def create_dict_of_place_details():
             place_details_dict[roaster]['opening_hours'] = 'Unavailable'
         else:
             hours = place_details_dict[roaster]['opening_hours']['weekday_text']
+
             place_details_dict[roaster]['opening_hours'] = hours
 
     return place_details_dict
 
 def create_json(dict):
-    return json.dumps(dict)
+    return json.dumps(dict, sort_keys=True, indent=4)
 
