@@ -8,6 +8,7 @@ if __name__ == '__main__':
     from server import app
     connect_to_db(app)
 
+
 #Functions
 
 def create_user(first_name, last_name, email, password):

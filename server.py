@@ -1,15 +1,23 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db, LoginForm, NewUserForm
+from model import connect_to_db, LoginForm, NewUserForm, User, db
 import crud
 
 from jinja2 import StrictUndefined
 
 from datetime import datetime
+# from flask_login import LoginManager
+
+
 
 app = Flask(__name__)
 app.secret_key = "kelsi's_project"
 
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return User.query.get(user_id)
 
 # Home page
 @app.route('/')
@@ -44,17 +52,19 @@ def roaster_details_page(roaster_id):
 @app.route('/login', methods=["GET", "POST"])
 def login_to_account():
     '''Log in page for users'''
+
     form = LoginForm()
 
     email = form.email.data
     pw = form.password.data
 
-    user = crud.get_user_by_email(email)
+    
     if form.validate_on_submit():
-        
+        user = crud.get_user_by_email(email)
         if user:
             user_pw, user_id = crud.get_user_info(email)
             if pw == user_pw:
+                session['user'] = user_id
                 return redirect(f'/account/{user_id}')
             else:
                 flash('Incorrect password! Please try again.')
@@ -155,11 +165,11 @@ def new_account_page():
 #         return redirect ('/login')
 
 # User list routes
-@app.route('/account/<user_id>/create_new_list')
-def create_new_list(user_id):
+@app.route('/create_new_list')
+def create_new_list():
 
     all_the_roasters = crud.return_all_roasters()
-    user = crud.get_user_by_id(user_id)
+    user = crud.get_user_by_id(session['user'])
 
     return render_template('new_list.html', roasters=all_the_roasters, user=user)
 
@@ -167,7 +177,6 @@ def create_new_list(user_id):
 def commit_new_list(user_id):
     list_name = request.args.get('list_type')
     user = crud.get_user_by_id(user_id)
-    print(user)
     
     # if roasters:
     #     for entry in roasters:

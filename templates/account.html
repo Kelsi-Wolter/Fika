@@ -5,6 +5,7 @@
   <h1>Welcome Back {{ user.first_name }} {{ user.last_name }}!</h1>
 
   <h2>Saved Lists:</h2>
+
   
   {% for list in lists: %}
     <p> {{ list.list_name }} </p>
@@ -19,4 +20,7 @@
   {% endfor %}
 
   <h2><button id="new-list-btn">Create New List</button></h2>
+
+
+
 {% endblock %}

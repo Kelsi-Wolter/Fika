@@ -4,6 +4,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
+from flask_login import LoginManager
 
 
 # app = Flask(__name__)
@@ -108,6 +109,8 @@ class NewUserForm(FlaskForm):
     lname = StringField('last')
     email = StringField('email')
     password = PasswordField('password')
+
+
 
 
 '''Copied from model.py in ratings app that connects to the database'''

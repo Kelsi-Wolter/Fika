@@ -5,4 +5,3 @@ Jinja
 Datetime
 json
 Flask-WTF
-Flask-login
