@@ -2,6 +2,8 @@
 
 # from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
 
 
 # app = Flask(__name__)
@@ -96,6 +98,10 @@ class Entry(db.Model):
     def __repr__(self):
         return f'<Entry entry_id={self.entry_id} score={self.score} roaster={self.roaster.name} list={self.entry_list.list_name} author={self.entry_list.user_id}>'
 
+
+class LoginForm(FlaskForm):
+    email = StringField('email')
+    password = PasswordField('password')
 
 
 

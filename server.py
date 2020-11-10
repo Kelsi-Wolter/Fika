@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db
+from model import connect_to_db, LoginForm
 import crud
 
 from jinja2 import StrictUndefined
@@ -41,39 +41,55 @@ def roaster_details_page(roaster_id):
     return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating)
 
 # User login and account routes
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login_to_account():
     '''Log in page for users'''
+    form = LoginForm()
 
-    return render_template('login.html')
+    email = form.email.data
+    pw = form.password.data
 
-@app.route('/user_logging_in', methods=["POST"])
-def user_login():
-    '''Check that user exists and redirect to account page if email and password matches'''
+    user = crud.get_user_by_email(email)
+    if form.validate_on_submit():
+        if user:
+            user_pw, user_id = crud.get_user_info(email)
+            if pw == user_pw:
+                return redirect(f'/account/{user.user_id}')
+            else:
+                flash('Incorrect password! Please try again.')
+        else:         
+            flash('Please create an account.')
+            return redirect('/create_account')
 
-    # Retrieve input from form
-    email = request.form.get('user_email_login')
-    pw = request.form.get('user_password_login')
+    return render_template('login.html', form=form)
 
-    # Check for email in DB to see if user exists
-    user = crud.get_user_by_email(email)     
+# @app.route('/user_logging_in', methods=["POST"])
+# def user_login():
+#     '''Check that user exists and redirect to account page if email and password matches'''
+
+#     # Retrieve input from form
+#     email = request.form.get('user_email_login')
+#     pw = request.form.get('user_password_login')
+
+#     # Check for email in DB to see if user exists
+#     user = crud.get_user_by_email(email)     
     
-    # If user exists, validate password and redirect to account page using user_id
-    if user:
-        user_pw, user_id = crud.get_user_info(email)
-        if pw == user_pw:
+#     # If user exists, validate password and redirect to account page using user_id
+#     if user:
+#         user_pw, user_id = crud.get_user_info(email)
+#         if pw == user_pw:
             
-            session['user_login'] = {'id': user.user_id, 'first_name': user.first_name, 'last_name': user.last_name}
-            return redirect(f'/account/{user_id}')
+#             session['user_login'] = {'id': user.user_id, 'first_name': user.first_name, 'last_name': user.last_name}
+#             return redirect(f'/account/{user_id}')
     
-        else:
+#         else:
             
-            return redirect('/login')
+#             return redirect('/login')
     
-    # If user does not exist, redirect to create an account page
-    else:
-        flash('Please create an account.')
-        return redirect('/create_account')
+#     # If user does not exist, redirect to create an account page
+#     else:
+#         flash('Please create an account.')
+#         return redirect('/create_account')
 
 @app.route('/account/<user_id>')
 def user_account_page(user_id):
@@ -119,14 +135,16 @@ def register_user():
 def create_new_list(user_id):
 
     all_the_roasters = crud.return_all_roasters()
+    user = crud.get_user_by_id(user_id)
 
-    return render_template('new_list.html', roasters=all_the_roasters)
+    return render_template('new_list.html', roasters=all_the_roasters, user=user)
 
-@app.route('/add_new_list')
-def commit_new_list():
+@app.route('/account/<user_id>/add_new_list')
+def commit_new_list(user_id):
     list_name = request.args.get('list_type')
-    user_id = session['user']['id']
-
+    user = crud.get_user_by_id(user_id)
+    print(user)
+    
     # if roasters:
     #     for entry in roasters:
     #         roaster_id = request.args.get('roasters')
@@ -135,8 +153,10 @@ def commit_new_list():
     # Need jQuery in here to display more info upon clicking a box for a roaster, so that
     # user can input a score/note right on that same page
 
-    crud.create_list(list_type=None, list_name=list_name, user=user_id)
-    return redirect('/account/<user_id>')
+    created_list = crud.create_list(list_type=None, list_name=list_name, user=user)
+
+
+    return redirect(f'/account/{user.user_id}')
 
 if __name__ == '__main__':
     connect_to_db(app)
