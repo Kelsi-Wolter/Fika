@@ -46,11 +46,10 @@ for roaster in roaster_data:
 
             hours = stripped_hours
 
-
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    image=None, website=website, coffee_link=None, shipping_link=None, avg_rating=None)
-    
+                    image=None, website=website, coffee_link=None, shipping_link=None)
+    print(hours)
     list_of_roasters.append(db_roaster)
 
 

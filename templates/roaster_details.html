@@ -6,9 +6,14 @@
 
   <p> {{ roaster.address }} </p>
   <p> {{ roaster.phone_number }} </p>
-  <p> {{ roaster.hours }} </p>
   <p> {{ roaster.website }} </p>
   <p> Average User Rating: {{ avg_rating }} </p>
+  <p>Daily Hours:</p>
+    {% for day in schedule %}
+    <p>{{ day }}</p>
+    {% endfor %}
+
+
 
 
 {% endblock %}

@@ -34,6 +34,7 @@ def roaster_details_page(roaster_id):
     roaster = crud.get_roaster_by_id(roaster_id)
 
     schedule = roaster.hours
+    schedule = schedule.strip('{}').replace('"','').split(",")
 
     avg_rating = crud.calculate_avg_rating(roaster_id)
 

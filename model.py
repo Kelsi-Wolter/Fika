@@ -45,7 +45,7 @@ class Roaster(db.Model):
     website = db.Column(db.String(100))
     coffee_link = db.Column(db.String(40))
     shipping_link = db.Column(db.String(40))
-    avg_rating = db.Column(db.Float)
+    
     
 
     def __repr__(self):
