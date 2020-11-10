@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db, LoginForm
+from model import connect_to_db, LoginForm, NewUserForm
 import crud
 
 from jinja2 import StrictUndefined
@@ -51,10 +51,11 @@ def login_to_account():
 
     user = crud.get_user_by_email(email)
     if form.validate_on_submit():
+        
         if user:
             user_pw, user_id = crud.get_user_info(email)
             if pw == user_pw:
-                return redirect(f'/account/{user.user_id}')
+                return redirect(f'/account/{user_id}')
             else:
                 flash('Incorrect password! Please try again.')
         else:         
@@ -102,33 +103,56 @@ def user_account_page(user_id):
     return render_template('account.html', user=user, lists=user_lists, entries=user_list_entries)
 
 # New user routes
-@app.route('/create_account')
+@app.route('/create_account', methods=["GET", "POST"])
 def new_account_page():
     '''Show form to enter details to create new account'''
 
-    return render_template('create_account.html')
+    new_user_form = NewUserForm()
 
-@app.route('/new_user', methods=['POST'])
-def register_user():
-    '''Take input from form and create new user login'''
+    fname = new_user_form.fname.data
+    lname = new_user_form.lname.data
+    email = new_user_form.email.data
+    pw = new_user_form.password.data
 
-    fname = request.form.get('fname_create')
-    lname = request.form.get('lname_create')
-    email = request.form.get('email_create')
-    pw = request.form.get('pw_create')
-    
     user = crud.get_user_by_email(email)
 
+    if new_user_form.validate_on_submit():
 
-    if user:
-        flash('Account already exists! Please login to continue.')
-        return redirect ('/login')
+        if user:
 
+            flash('Account already exists! Please login to continue.')
+            return redirect ('/login')
+
+        else:
+            crud.create_user(fname, lname, email, pw)
+
+            flash('Account created! Please log in.')
+            return redirect ('/login')
     else:
-        crud.create_user(fname, lname, email, pw)
 
-        flash('Account created! Please log in.')
-        return redirect ('/login')
+        return render_template('create_account.html', form=new_user_form)
+
+# @app.route('/new_user', methods=['POST'])
+# def register_user():
+#     '''Take input from form and create new user login'''
+
+#     fname = request.form.get('fname_create')
+#     lname = request.form.get('lname_create')
+#     email = request.form.get('email_create')
+#     pw = request.form.get('pw_create')
+    
+#     user = crud.get_user_by_email(email)
+
+
+#     if user:
+#         flash('Account already exists! Please login to continue.')
+#         return redirect ('/login')
+
+#     else:
+#         crud.create_user(fname, lname, email, pw)
+
+#         flash('Account created! Please log in.')
+#         return redirect ('/login')
 
 # User list routes
 @app.route('/account/<user_id>/create_new_list')

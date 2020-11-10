@@ -103,7 +103,11 @@ class LoginForm(FlaskForm):
     email = StringField('email')
     password = PasswordField('password')
 
-
+class NewUserForm(FlaskForm):
+    fname = StringField('first')
+    lname = StringField('last')
+    email = StringField('email')
+    password = PasswordField('password')
 
 
 '''Copied from model.py in ratings app that connects to the database'''
