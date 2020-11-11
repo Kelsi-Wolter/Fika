@@ -1,0 +1,41 @@
+{% block title %}New List{% endblock %}
+
+
+{% block head %}Create a New List{% endblock %}
+
+{% for msg in get_flashed_messages() %}
+
+  {{ msg }}
+
+{% endfor %}
+
+{% block body %}
+<h2>First, select the type of list you'd like to build:</h2>
+<form action="/account/{{ user.user_id }}/add_new_list">
+List Type:
+    <select name="list_type">
+        <option value="blank"></option>
+        <option value="favorites">Favorites</option>
+        <option value="tried">Places I've Already Tried</option>
+        <option value="want-to-try">Places I Want to Try</option>
+
+    </select>
+    <br>
+
+Do you want to add any roasters or reviews right now?
+<br>
+
+{% for roaster in roasters %}
+
+<input type="checkbox" name="roasters" value="{{ roaster.roaster_id }}"> {{ roaster.name }}
+<br>
+
+{% endfor %}
+
+<input type="submit">
+</form>
+
+
+{% endblock %}
+
+{% block after_body %}{% endblock %}
