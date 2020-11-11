@@ -49,7 +49,7 @@ for roaster in roaster_data:
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
                     image=None, website=website, coffee_link=None, shipping_link=None)
-    print(hours)
+
     list_of_roasters.append(db_roaster)
 
 
@@ -70,34 +70,35 @@ for n in range(10):
 #Create 1 (goal for 2-3) list for each user
 
 for user in list_of_users:
-    # Not sure if I need both list type and list name at this point, may need further down the road for
-    # functionality with moving data from one list (i.e. 'Want to try') to a different list (i.e. "Favorites")
-    # wrote code for only choosing list name right now
-    # list_type = choice(['Favorites', 'Want to Try', 'Already Visited'])
-    #     if list_type == 'Favorites':
-    #         list_name = 'Favorites List'
-    #     elif list_type == 'Want to Try':
-    #         list_name = 'Places I Want To Try'
-    #     elif list_type == 'Already Visited':
-    #         list_name = 'Roasters I Have Already Tried'
-
-    list_name = choice(['Favorites List', 'Places I Want to Try', 'Roasters I Have Already Tried'])
-    list_name2 = choice(['Favorites List', 'Places I Want to Try', 'Roasters I Have Already Tried'])
    
-    db_list1 = crud.create_list(list_type=None, list_name=list_name, user=user)
-    db_list2 = crud.create_list(list_type=None, list_name=list_name2, user=user)
+    db_list1 = crud.create_list(list_name='My Favorites', user=user)
+    db_list2 = crud.create_list(list_name='My Roasters', user=user)
     
-
-    # Create 4 entries for each list
+    rated_roasters = []
+    # Create 4 entries for 'My Roasters' list
     for n in range(4):
-        entry_list = db_list1
+        
         roaster = choice(list_of_roasters)
+        list_of_roasters.pop(list_of_roasters.index(roaster))
+        rated_roasters.append(roaster)
         score = randint(1,5)
         note = choice(['Great dark roast.', 'Cute packaging.', 'Sent friendly note with delivery.',
         'Too many options.', 'Very fruity taste.', 'Very chocolatey taste.', 'So smooth.',
         'High caffeine content!', 'Great for pour-overs!', 'Great smell, better taste!'])
 
-        entry = crud.create_entry(entry_list=entry_list, roaster=roaster, score=score, note=note)
+
+        entry = crud.create_entry(entry_list=db_list2, roaster=roaster, score=score, note=note)
+
+    # Create 1 entry for 'My Favorites' list
+    roaster_fav = choice(list_of_roasters)
+    note = choice(['Love this coffee!', "Best dark roast I've tasted!", "So many great options!"])    
+    entry_fav = crud.create_entry(entry_list=db_list1, roaster=roaster_fav, score=5, note=note)
+
+    for roaster in rated_roasters:
+        list_of_roasters.append(roaster)
+
+
+
 
 
 

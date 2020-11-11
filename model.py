@@ -7,6 +7,7 @@ from wtforms import StringField, PasswordField
 from flask_login import LoginManager
 
 
+
 # app = Flask(__name__)
 db = SQLAlchemy()
 
@@ -66,7 +67,6 @@ class List(db.Model):
                         primary_key=True,
                         autoincrement=True
                         )
-    list_type = db.Column(db.String(20))
     list_name = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
 
@@ -109,6 +109,12 @@ class NewUserForm(FlaskForm):
     lname = StringField('last')
     email = StringField('email')
     password = PasswordField('password')
+
+# class NewListForm(FlaskForm):
+#     list_name = RadioField(choices=[('fav', 'Favorites'), ('want', 'Want to Try'), ('tried', "Roasters I've Tried")])
+#     all_roasters = crud.return_all_roasters
+
+#     roasters = SelectMultipleField(choices=[])
 
 
 

@@ -108,9 +108,13 @@ def user_account_page(user_id):
 
     # Retrieve user from DB by ID, retrieve lists and list entries from user object
     user = crud.get_user_by_id(user_id)
-    user_lists, user_list_entries = crud.get_lists_by_user_id(user_id)
+    user_lists = crud.get_lists_by_user_id(user_id)
+    list1, list2 = user_lists[0], user_lists[1]
 
-    return render_template('account.html', user=user, lists=user_lists, entries=user_list_entries)
+    list1_entries = crud.get_entries_by_list_id(list1.list_id)
+    list2_entries = crud.get_entries_by_list_id(list2.list_id)
+
+    return render_template('account.html', user=user, list1=list1, list2=list2, list1_entries=list1_entries, list2_entries=list2_entries)
 
 # New user routes
 @app.route('/create_account', methods=["GET", "POST"])
@@ -178,9 +182,11 @@ def commit_new_list(user_id):
     list_name = request.args.get('list_type')
     user = crud.get_user_by_id(user_id)
     
-    # if roasters:
+    if roasters == True:
+
     #     for entry in roasters:
-    #         roaster_id = request.args.get('roasters')
+        roaster_id = request.args.get('roasters')
+        print(roaster_id)
 
     #         crud.create_entry(list_id, roaster_id, score)
     # Need jQuery in here to display more info upon clicking a box for a roaster, so that

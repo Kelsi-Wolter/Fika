@@ -61,7 +61,7 @@ def get_roaster_by_id(roaster_id):
     return Roaster.query.get(roaster_id)
 
 def calculate_avg_rating(roaster_id):
-    ''' Calculate average score from all the scores entered for each individual roaster'''
+    ''' Calculate average score from all the scores entered for an individual roaster'''
 
     # # Query for all roaster objects
     # list_of_roasters = Roaster.query.all()
@@ -93,9 +93,9 @@ def calculate_avg_rating(roaster_id):
         return round(roaster_avg, 2)
 
 
-def create_list(list_type, list_name, user):
+def create_list(list_name, user):
 
-    new_list = List(list_type=list_type, list_name=list_name, user=user)
+    new_list = List(list_name=list_name, user=user)
 
     db.session.add(new_list)
     db.session.commit()
@@ -104,11 +104,19 @@ def create_list(list_type, list_name, user):
 
 def get_lists_by_user_id(user_id):
     lists = List.query.filter_by(user_id=user_id).all()
-    list_entries = []
-    for list in lists:
-        list_entries.append(list.entries)
+    # list_entries = []
+    # for list in lists:
+    #     list_entries.append(list.entries)
     
-    return lists, list_entries
+    return lists
+    # ,list_entries
+
+def get_entries_by_list_id(list_id):
+    entries = Entry.query.filter_by(list_id=list_id).all()
+    if entries == []:
+        return f'This list is empty!'
+    else:
+        return entries
 
 def create_entry(entry_list, roaster, score, note):
 
