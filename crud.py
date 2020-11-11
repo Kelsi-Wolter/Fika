@@ -103,13 +103,9 @@ def create_list(list_name, user):
     return new_list
 
 def get_lists_by_user_id(user_id):
-    lists = List.query.filter_by(user_id=user_id).all()
-    # list_entries = []
-    # for list in lists:
-    #     list_entries.append(list.entries)
-    
-    return lists
-    # ,list_entries
+        
+    return List.query.filter_by(user_id=user_id).all()
+
 
 def get_entries_by_list_id(list_id):
     entries = Entry.query.filter_by(list_id=list_id).all()
@@ -117,6 +113,10 @@ def get_entries_by_list_id(list_id):
         return f'This list is empty!'
     else:
         return entries
+
+def get_list_by_name(user_id, name):
+    return List.query.filter_by(user_id=user_id, list_name=name).one()
+
 
 def create_entry(entry_list, roaster, score, note):
 

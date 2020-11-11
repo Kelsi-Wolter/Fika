@@ -67,17 +67,20 @@ for n in range(10):
 
     list_of_users.append(user)
 
-#Create 1 (goal for 2-3) list for each user
-
+#Create Favorites and Roasters list for each user
 for user in list_of_users:
    
     db_list1 = crud.create_list(list_name='My Favorites', user=user)
     db_list2 = crud.create_list(list_name='My Roasters', user=user)
     
     rated_roasters = []
+    
     # Create 4 entries for 'My Roasters' list
     for n in range(4):
         
+        # For each entry, make random choice from roasters list, remove that choice from the list but add to separate list (so can add
+        # those roasters back to master list later), generate score and make random choice for note, instantiate entry and loop through
+        # 4 times 
         roaster = choice(list_of_roasters)
         list_of_roasters.pop(list_of_roasters.index(roaster))
         rated_roasters.append(roaster)
@@ -90,10 +93,13 @@ for user in list_of_users:
         entry = crud.create_entry(entry_list=db_list2, roaster=roaster, score=score, note=note)
 
     # Create 1 entry for 'My Favorites' list
+    # Make random choice from limited list of roasters (has popped roasters from loop above removed), make random choice for note, instantiate
+    # entry for favorites list
     roaster_fav = choice(list_of_roasters)
     note = choice(['Love this coffee!', "Best dark roast I've tasted!", "So many great options!"])    
     entry_fav = crud.create_entry(entry_list=db_list1, roaster=roaster_fav, score=5, note=note)
 
+    # Loop through the removed roasters and add back to master list
     for roaster in rated_roasters:
         list_of_roasters.append(roaster)
 

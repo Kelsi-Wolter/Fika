@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   redirect, jsonify)
 from model import connect_to_db, LoginForm, NewUserForm, User, db
-import crud
+import crud, json
 
 from jinja2 import StrictUndefined
 
@@ -74,6 +74,7 @@ def login_to_account():
 
     return render_template('login.html', form=form)
 
+# ****Old route for logging in user*******
 # @app.route('/user_logging_in', methods=["POST"])
 # def user_login():
 #     '''Check that user exists and redirect to account page if email and password matches'''
@@ -119,7 +120,7 @@ def user_account_page(user_id):
 # New user routes
 @app.route('/create_account', methods=["GET", "POST"])
 def new_account_page():
-    '''Show form to enter details to create new account'''
+    '''Show form to enter details to create new account, create new user & auto-populate lists upon form submit'''
 
     new_user_form = NewUserForm()
 
@@ -138,7 +139,9 @@ def new_account_page():
             return redirect ('/login')
 
         else:
-            crud.create_user(fname, lname, email, pw)
+            new_user = crud.create_user(fname, lname, email, pw)
+            crud.create_list(list_name='My Favorites', user=new_user)
+            crud.create_list(list_name='My Roasters', user=new_user)
 
             flash('Account created! Please log in.')
             return redirect ('/login')
@@ -146,6 +149,20 @@ def new_account_page():
 
         return render_template('create_account.html', form=new_user_form)
 
+@app.route('/add_to_fav_list/')
+def add_entry_to_list():
+    roaster_id = request.args.get("roaster")
+
+    roaster = crud.get_roaster_by_id(roaster_id)
+
+    user_id = session['user']
+
+    fav_list = crud.get_list_by_name(user_id=user_id, name='My Favorites')
+
+    new_entry = crud.create_entry(entry_list=fav_list, roaster=roaster, score=None, note=None)
+    return f'{roaster.name} was added to your {fav_list.list_name} list!'
+
+# ****Old route for adding new user*******
 # @app.route('/new_user', methods=['POST'])
 # def register_user():
 #     '''Take input from form and create new user login'''
@@ -168,34 +185,35 @@ def new_account_page():
 #         flash('Account created! Please log in.')
 #         return redirect ('/login')
 
-# User list routes
-@app.route('/create_new_list')
-def create_new_list():
 
-    all_the_roasters = crud.return_all_roasters()
-    user = crud.get_user_by_id(session['user'])
+# ************Routes for list creation************
+# @app.route('/create_new_list')
+# def create_new_list():
 
-    return render_template('new_list.html', roasters=all_the_roasters, user=user)
+#     all_the_roasters = crud.return_all_roasters()
+#     user = crud.get_user_by_id(session['user'])
 
-@app.route('/account/<user_id>/add_new_list')
-def commit_new_list(user_id):
-    list_name = request.args.get('list_type')
-    user = crud.get_user_by_id(user_id)
+#     return render_template('new_list.html', roasters=all_the_roasters, user=user)
+
+# @app.route('/account/<user_id>/add_new_list')
+# def commit_new_list(user_id):
+#     list_name = request.args.get('list_type')
+#     user = crud.get_user_by_id(user_id)
     
-    if roasters == True:
+#     if roasters == True:
 
-    #     for entry in roasters:
-        roaster_id = request.args.get('roasters')
-        print(roaster_id)
+#     #     for entry in roasters:
+#         roaster_id = request.args.get('roasters')
+#         print(roaster_id)
 
-    #         crud.create_entry(list_id, roaster_id, score)
-    # Need jQuery in here to display more info upon clicking a box for a roaster, so that
-    # user can input a score/note right on that same page
+#     #         crud.create_entry(list_id, roaster_id, score)
+#     # Need jQuery in here to display more info upon clicking a box for a roaster, so that
+#     # user can input a score/note right on that same page
 
-    created_list = crud.create_list(list_type=None, list_name=list_name, user=user)
+#     created_list = crud.create_list(list_type=None, list_name=list_name, user=user)
 
 
-    return redirect(f'/account/{user.user_id}')
+#     return redirect(f'/account/{user.user_id}')
 
 if __name__ == '__main__':
     connect_to_db(app)

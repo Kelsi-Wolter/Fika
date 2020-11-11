@@ -89,7 +89,7 @@ class Entry(db.Model):
                         )
     list_id = db.Column(db.Integer, db.ForeignKey('lists.list_id'), nullable=False)
     roaster_id = db.Column(db.Integer, db.ForeignKey('roasters.roaster_id'), nullable=False)
-    score = db.Column(db.Float, nullable=False)
+    score = db.Column(db.Float)
     note = db.Column(db.Text)
 
     entry_list = db.relationship('List')
@@ -109,13 +109,6 @@ class NewUserForm(FlaskForm):
     lname = StringField('last')
     email = StringField('email')
     password = PasswordField('password')
-
-# class NewListForm(FlaskForm):
-#     list_name = RadioField(choices=[('fav', 'Favorites'), ('want', 'Want to Try'), ('tried', "Roasters I've Tried")])
-#     all_roasters = crud.return_all_roasters
-
-#     roasters = SelectMultipleField(choices=[])
-
 
 
 
