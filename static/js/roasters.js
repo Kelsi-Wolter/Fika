@@ -30,15 +30,11 @@ $('.add-roasters').on('click', (evt) =>{
     
 })
 
-$('.edit-fav').on('click', (evt) =>{
-    const list = $(evt.target);
-    const list_id = {list: list.attr('id')};
-
-    $.get('/edit_list', list_id, (res) => {
-        alert(res);
-    });
+$('.edit-fav').on('click', (evt) => {
+    evt.preventDefault();
+    $('.edit-fav-buttons').show();
     
-})
+});
 
 
 // document.getElementById("add-fav").onclick = function () {

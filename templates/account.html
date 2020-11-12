@@ -6,36 +6,52 @@
 
   <h2>My Lists</h2>
 
+  <div class="container">
+    <div class="row"> 
+      <div class="col">
+        <h3> {{ list1.list_name }}: </h3>
+      </div>
+      <div clas="col">
+        <h3> {{ list2.list_name }}: </h3>
+      </div>
+    </div>
+    <div class="row"> 
+      <div class="col">
+        {% if list1_entries != "This list is empty!" %}
+          {% for entry in list1_entries %}
+          <li> {{ entry.roaster.name }} - Rating: {{ entry.score }} Review: {{ entry.note }}</li>
+          <button class="edit-fav-buttons" style="display: none">Move</button>
+          <button class="edit-fav-buttons" style="display: none">Delete</button>
+            {% if entry.score == None %}
+            <button class="edit-fav-buttons" style="display: none">Add Score</button>
+            {% endif %}
+            {% if entry.note == None %}
+            <button class="edit-fav-buttons" style="display: none">Add Note</button>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if list1_entries == "This list is empty!" %}
+          <p>This list is empty!</p>
+        {% endif %}
 
-  <h3> {{ list1.list_name }}: </h3>
-  {% if list1_entries != "This list is empty!" %}
+        <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
+      </div>
 
-  {% for entry in list1_entries %}
-    <li> {{ entry.roaster.name }} - Rating: {{ entry.score }} Review: {{ entry.note }}</li>
-    {% endfor %}
-    {% endif %}
-  {% if list1_entries == "This list is empty!" %}
-  <p>This list is empty!</p>
-  {% endif %}
+      <div class="col">
+        {% if list2_entries != "This list is empty!" %}
 
-  <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
+        {% for entry in list2_entries %}
+        <li> {{ entry.roaster.name }}- Rating: {{ entry.score }} Review: {{ entry.note }}</li>
+        {% endfor %}
+        {% endif %}
 
-
- 
-  <h3> {{ list2.list_name }}: </h3>
-  {% if list2_entries != "This list is empty!" %}
-
-  {% for entry in list2_entries %}
-    <li> {{ entry.roaster.name }}- Rating: {{ entry.score }} Review: {{ entry.note }}</li>
-    {% endfor %}
-    {% endif %}
-
-    {% if list2_entries == "This list is empty!" %}
-    <p>This list is empty!</p>
-    {% endif %}
-
-  <button type="button" class="edit-roasters btn btn-primary" id="{{ list2.list_id }}">Edit List</button>
-
+        {% if list2_entries == "This list is empty!" %}
+        <p>This list is empty!</p>
+        {% endif %}
+        <button type="button" class="edit-roasters btn btn-primary" id="{{ list2.list_id }}">Edit List</button>
+      </div>
+    </div>
+  </div> 
   
   <!-- {% for list in lists: %}
     <p> {{ list.list_name }} </p>
