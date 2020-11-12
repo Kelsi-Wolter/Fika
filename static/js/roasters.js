@@ -69,10 +69,18 @@ $('.delete').on('click', (evt) => {
     });
 })
 
-// Update Score for entry
+// Show radio buttons with rating options when Add rating button is clicked
 $('.edit-rating').on('click', (evt) => {
     evt.preventDefault();
     const entry = $(evt.target);
     const entry_id = entry.attr('id');
     $('.' + entry_id).show();
+    $('.edit-rating').hide();
 });
+
+// Update entry with rating value
+$('.submit-rating').submit( (evt) => {
+    evt.preventDefault();
+    // const rating = $([name="new-rating"]).val();
+    alert('yes');
+})
