@@ -68,3 +68,11 @@ $('.delete').on('click', (evt) => {
         alert(res);
     });
 })
+
+// Update Score for entry
+$('.edit-rating').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = entry.attr('id');
+    $('.' + entry_id).show();
+});

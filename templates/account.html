@@ -23,7 +23,7 @@
           <button class="edit-fav-buttons move" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
           <button class="edit-fav-buttons delete" style="display: none" id="{{ entry.entry_id }}">Delete</button>
             {% if entry.score == None %}
-            <button class="edit-fav-buttons" style="display: none" id="{{ entry.entry_id }}">Add Score</button>
+            <button class="edit-fav-buttons edit-rating" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
             {% endif %}
             {% if entry.note == None %}
             <button class="edit-fav-buttons" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
@@ -45,7 +45,12 @@
           <button class="edit-roaster-buttons move" style="display: none" id="{{ entry.entry_id }}">Move to Favorites List</button>
           <button class="edit-roaster-buttons delete" style="display: none" id="{{ entry.entry_id }}">Delete</button>
             {% if entry.score == None %}
-              <button class="edit-roaster-buttons" style="display: none" id="{{ entry.entry_id }}">Add Score</button>
+              <button class="edit-roaster-buttons edit-rating" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+              <input type="radio" name="score-1" value="1" class="add-rating {{ entry.entry_id }}" style="display: none"> <label class="add-rating {{ entry.entry_id }}" style="display: none">1</label>
+              <input type="radio" name="score-2" value="2" class="add-rating {{ entry.entry_id }}" style="display: none"> <label class="add-rating {{ entry.entry_id }}" style="display: none">2</label>
+              <input type="radio" name="score-3" value="3" class="add-rating {{ entry.entry_id }}" style="display: none"> <label class="add-rating {{ entry.entry_id }}" style="display: none">3</label>
+              <input type="radio" name="score-4" value="4" class="add-rating {{ entry.entry_id }}" style="display: none"> <label class="add-rating {{ entry.entry_id }}" style="display: none">4</label>
+              <input type="radio" name="score-5" value="5" class="add-rating {{ entry.entry_id }}" style="display: none"> <label class="add-rating {{ entry.entry_id }}" style="display: none">5</label>
             {% endif %}
             {% if entry.note == None %}
               <button class="edit-roaster-buttons" style="display: none" id="{{ entry.entry_id }}">Add Note</button>

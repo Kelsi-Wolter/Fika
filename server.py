@@ -219,6 +219,17 @@ def delete_entry():
     return f'Your entry has been deleted!'
 
 
+# @app.route('/edit_score_entry', methods=["POST"])
+# def add_score_to_entry():
+#     '''Add score to entry in DB'''
+
+#     #use entry ID to call entry
+#     entry_id = request.form.get("entry")
+#     entry = crud.get_entry_by_entry_id(entry_id)
+
+    
+
+
 
 
 # ****Old route for adding new user*******
