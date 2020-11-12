@@ -1,6 +1,6 @@
 from flask import (Flask, render_template, request, flash, session,
                    redirect, jsonify)
-from model import connect_to_db, LoginForm, NewUserForm, User, db
+from model import connect_to_db, LoginForm, NewUserForm, User, db, List, Entry, Roaster
 import crud, json
 
 from jinja2 import StrictUndefined
@@ -180,15 +180,30 @@ def add_to_roaster_list():
     return f'{roaster.name} was added to your {roaster_list.list_name} list!'
 
 
-@app.route('/edit_list')
-def edit_list():
-    list_id = request.args.get("list")
+@app.route('/move_entry', methods=["POST"])
+def move_entry():
+    '''Move entry from one list to the other'''
 
-    list_to_edit = crud.get_list_by_list_id(list_id)
-    entries = crud.get_entries_by_list_id(list_id)
+    #use entry ID to call entry
+    entry_id = request.form.get("entry")
+    entry = crud.get_entry_by_entry_id(entry_id)
+
+    #find current list id for entry
+    current_list = entry.list_id
+
+    # Find list_id to change entry to (new_list)
+    lists = crud.get_lists_by_user_id(session['user'])
+
+    for li in lists:
+        list_id = li.list_id
+        if list_id != current_list:
+            new_list = list_id
+    
+    # Update entry in DB
+    updated_entry = crud.change_list_id(entry=entry, new_list=new_list)
 
 
-    # return render_template('edit_list.html', list=list_to_edit, entries=entries)
+    return f'{entry.roaster.name} was moved to your Roasters List!'
 
 # ****Old route for adding new user*******
 # @app.route('/new_user', methods=['POST'])

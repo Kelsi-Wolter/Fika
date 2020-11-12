@@ -129,3 +129,14 @@ def create_entry(entry_list, roaster, score, note):
     db.session.commit()
 
     return entry
+
+def get_entry_by_entry_id(entry_id):
+    return Entry.query.filter_by(entry_id=entry_id).one()
+
+def change_list_id(entry, new_list):
+    entry.list_id = new_list
+
+    db.session.add(entry)
+    db.session.commit()
+
+    return entry

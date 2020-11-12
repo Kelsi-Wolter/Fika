@@ -7,6 +7,7 @@
 //     // alert('Hey!');
 // };
 
+// Listen for click on "Add to favorites list" button on roaster details page --> creates new entry in list in DB for user
 $('.add-fav').on('click', (evt) =>{
     evt.preventDefault();
     const roaster = $(evt.target);
@@ -18,7 +19,7 @@ $('.add-fav').on('click', (evt) =>{
     
 })
 
-
+// Same function as above but for roasters list
 $('.add-roasters').on('click', (evt) =>{
     evt.preventDefault();
     const roaster = $(evt.target);
@@ -30,25 +31,29 @@ $('.add-roasters').on('click', (evt) =>{
     
 })
 
+
+// Shows editting buttons for favorites list entries when "edit list" button is clicked
 $('.edit-fav').on('click', (evt) => {
     evt.preventDefault();
     $('.edit-fav-buttons').show();
     
 });
 
+// Same function as above but for roasters list entries
 $('.edit-roasters').on('click', (evt) => {
     evt.preventDefault();
     $('.edit-roaster-buttons').show();
     
 });
 
-// document.getElementById("add-fav").onclick = function () {
-//     // create entry on favorites list with roaster and user
-//     // flash message to user that roaster was added to list
-//     // alert('Hey!');
-// };
 
-// document.getElementById("add-roast").onclick = function () {
-//     // location.href = '/create_new_list' 
-//     alert('Hey!');
-// };
+// Moves entry to other list when move button is clicked
+$('.move').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = {entry: entry.attr('id')};
+
+    $.post('/move_entry', entry_id, (res) => {
+        alert(res);
+    });
+})

@@ -20,7 +20,7 @@
         {% if list1_entries != "This list is empty!" %}
           {% for entry in list1_entries %}
           <li> {{ entry.roaster.name }} - Rating: {{ entry.score }} Review: {{ entry.note }}</li>
-          <button class="edit-fav-buttons" style="display: none">Move</button>
+          <button class="edit-fav-buttons move" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
           <button class="edit-fav-buttons" style="display: none">Delete</button>
             {% if entry.score == None %}
             <button class="edit-fav-buttons" style="display: none">Add Score</button>
@@ -42,7 +42,7 @@
 
         {% for entry in list2_entries %}
           <li> {{ entry.roaster.name }}- Rating: {{ entry.score }} Review: {{ entry.note }}</li>
-          <button class="edit-roaster-buttons" style="display: none">Move</button>
+          <button class="edit-roaster-buttons" style="display: none">Move to Favorites List</button>
           <button class="edit-roaster-buttons" style="display: none">Delete</button>
             {% if entry.score == None %}
               <button class="edit-roaster-buttons" style="display: none">Add Score</button>
