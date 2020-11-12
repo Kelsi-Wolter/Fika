@@ -57,3 +57,14 @@ $('.move').on('click', (evt) => {
         alert(res);
     });
 })
+
+// Deletes entry from DB when delete button is clicked
+$('.delete').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = {entry: entry.attr('id')};
+
+    $.post('/delete_entry', entry_id, (res) => {
+        alert(res);
+    });
+})

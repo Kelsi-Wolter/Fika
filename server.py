@@ -205,6 +205,22 @@ def move_entry():
 
     return f'{entry.roaster.name} was moved to your Roasters List!'
 
+@app.route('/delete_entry', methods=["POST"])
+def delete_entry():
+    '''Delete entry from DB list'''
+
+    #use entry ID to call entry
+    entry_id = request.form.get("entry")
+    entry = crud.get_entry_by_entry_id(entry_id)
+
+    db.session.delete(entry)
+    db.session.commit()
+
+    return f'Your entry has been deleted!'
+
+
+
+
 # ****Old route for adding new user*******
 # @app.route('/new_user', methods=['POST'])
 # def register_user():
