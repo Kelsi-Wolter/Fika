@@ -7,7 +7,7 @@
 //     // alert('Hey!');
 // };
 
-$('.add').on('click', (evt) =>{
+$('.add-fav').on('click', (evt) =>{
     evt.preventDefault();
     const roaster = $(evt.target);
     const roaster_id = {roaster: roaster.attr('id')};
@@ -17,6 +17,19 @@ $('.add').on('click', (evt) =>{
     });
     
 })
+
+
+$('.add-roasters').on('click', (evt) =>{
+    evt.preventDefault();
+    const roaster = $(evt.target);
+    const roaster_id = {roaster: roaster.attr('id')};
+    // console.log(roaster_id);
+    $.get('/add_to_roaster_list', roaster_id, (res) => {
+        alert(res);
+    });
+    
+})
+
 
 // document.getElementById("add-fav").onclick = function () {
 //     // create entry on favorites list with roaster and user

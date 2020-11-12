@@ -149,8 +149,10 @@ def new_account_page():
 
         return render_template('create_account.html', form=new_user_form)
 
-@app.route('/add_to_fav_list/')
-def add_entry_to_list():
+@app.route('/add_to_fav_list')
+def add_to_fav_list():
+    '''Add roaster as entry to user's favorite list'''
+
     roaster_id = request.args.get("roaster")
 
     roaster = crud.get_roaster_by_id(roaster_id)
@@ -161,6 +163,21 @@ def add_entry_to_list():
 
     new_entry = crud.create_entry(entry_list=fav_list, roaster=roaster, score=None, note=None)
     return f'{roaster.name} was added to your {fav_list.list_name} list!'
+
+@app.route('/add_to_roaster_list')
+def add_to_roaster_list():
+    '''Add roaster as entry to user's roaster list'''
+
+    roaster_id = request.args.get("roaster")
+
+    roaster = crud.get_roaster_by_id(roaster_id)
+
+    user_id = session['user']
+
+    roaster_list = crud.get_list_by_name(user_id=user_id, name='My Roasters')
+
+    new_entry = crud.create_entry(entry_list=roaster_list, roaster=roaster, score=None, note=None)
+    return f'{roaster.name} was added to your {roaster_list.list_name} list!'
 
 # ****Old route for adding new user*******
 # @app.route('/new_user', methods=['POST'])
