@@ -179,6 +179,17 @@ def add_to_roaster_list():
     new_entry = crud.create_entry(entry_list=roaster_list, roaster=roaster, score=None, note=None)
     return f'{roaster.name} was added to your {roaster_list.list_name} list!'
 
+
+@app.route('/edit_list')
+def edit_list():
+    list_id = request.args.get("list")
+
+    list_to_edit = crud.get_list_by_list_id(list_id)
+    entries = crud.get_entries_by_list_id(list_id)
+
+
+    # return render_template('edit_list.html', list=list_to_edit, entries=entries)
+
 # ****Old route for adding new user*******
 # @app.route('/new_user', methods=['POST'])
 # def register_user():

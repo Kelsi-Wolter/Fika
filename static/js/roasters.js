@@ -30,6 +30,16 @@ $('.add-roasters').on('click', (evt) =>{
     
 })
 
+$('.edit-fav').on('click', (evt) =>{
+    const list = $(evt.target);
+    const list_id = {list: list.attr('id')};
+
+    $.get('/edit_list', list_id, (res) => {
+        alert(res);
+    });
+    
+})
+
 
 // document.getElementById("add-fav").onclick = function () {
 //     // create entry on favorites list with roaster and user

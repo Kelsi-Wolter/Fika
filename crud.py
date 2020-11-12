@@ -117,6 +117,9 @@ def get_entries_by_list_id(list_id):
 def get_list_by_name(user_id, name):
     return List.query.filter_by(user_id=user_id, list_name=name).one()
 
+def get_list_by_list_id(list_id):
+    return List.query.filter_by(list_id=list_id).one()
+
 
 def create_entry(entry_list, roaster, score, note):
 

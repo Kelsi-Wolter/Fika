@@ -6,7 +6,8 @@
 
   <h2>My Lists</h2>
 
-  <p> {{ list1.list_name }}: </p>
+
+  <h3> {{ list1.list_name }}: </h3>
   {% if list1_entries != "This list is empty!" %}
 
   {% for entry in list1_entries %}
@@ -17,7 +18,11 @@
   <p>This list is empty!</p>
   {% endif %}
 
-  <p> {{ list2.list_name }}: </p>
+  <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
+
+
+ 
+  <h3> {{ list2.list_name }}: </h3>
   {% if list2_entries != "This list is empty!" %}
 
   {% for entry in list2_entries %}
@@ -28,6 +33,8 @@
     {% if list2_entries == "This list is empty!" %}
     <p>This list is empty!</p>
     {% endif %}
+
+  <button type="button" class="edit-roasters btn btn-primary" id="{{ list2.list_id }}">Edit List</button>
 
   
   <!-- {% for list in lists: %}
