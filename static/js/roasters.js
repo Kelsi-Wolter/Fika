@@ -36,6 +36,11 @@ $('.edit-fav').on('click', (evt) => {
     
 });
 
+$('.edit-roasters').on('click', (evt) => {
+    evt.preventDefault();
+    $('.edit-roaster-buttons').show();
+    
+});
 
 // document.getElementById("add-fav").onclick = function () {
 //     // create entry on favorites list with roaster and user

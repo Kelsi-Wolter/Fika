@@ -41,7 +41,16 @@
         {% if list2_entries != "This list is empty!" %}
 
         {% for entry in list2_entries %}
-        <li> {{ entry.roaster.name }}- Rating: {{ entry.score }} Review: {{ entry.note }}</li>
+          <li> {{ entry.roaster.name }}- Rating: {{ entry.score }} Review: {{ entry.note }}</li>
+          <button class="edit-roaster-buttons" style="display: none">Move</button>
+          <button class="edit-roaster-buttons" style="display: none">Delete</button>
+            {% if entry.score == None %}
+              <button class="edit-roaster-buttons" style="display: none">Add Score</button>
+            {% endif %}
+            {% if entry.note == None %}
+              <button class="edit-roaster-buttons" style="display: none">Add Note</button>
+            {% endif %}
+
         {% endfor %}
         {% endif %}
 
