@@ -1,11 +1,6 @@
 "use strict";
 
-// Add event listener to click on "create new list" button which redirects to /create_new_list
 
-// document.getElementById("new-list-btn").onclick = function () {
-//     location.href = '/create_new_list'  
-//     // alert('Hey!');
-// };
 
 // Listen for click on "Add to favorites list" button on roaster details page --> creates new entry in list in DB for user
 $('.add-fav').on('click', (evt) =>{
@@ -84,3 +79,15 @@ $('.submit-rating').submit( (evt) => {
     // const rating = $([name="new-rating"]).val();
     alert('yes');
 })
+
+
+
+
+
+
+// Add event listener to click on "create new list" button which redirects to /create_new_list
+
+// document.getElementById("new-list-btn").onclick = function () {
+//     location.href = '/create_new_list'  
+//     // alert('Hey!');
+// };
