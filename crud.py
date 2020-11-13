@@ -86,7 +86,8 @@ def calculate_avg_rating(roaster_id):
         for review in reviews:
             
             score = review.score
-            sum += score
+            if score != None:
+                sum += score
         
         roaster_avg = sum / total_reviews
 

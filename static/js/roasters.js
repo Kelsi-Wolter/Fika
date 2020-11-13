@@ -51,6 +51,7 @@ $('.move').on('click', (evt) => {
     $.post('/move_entry', entry_id, (res) => {
         alert(res);
     });
+    location.reload(true);
 })
 
 // Deletes entry from DB when delete button is clicked
@@ -62,6 +63,7 @@ $('.delete').on('click', (evt) => {
     $.post('/delete_entry', entry_id, (res) => {
         alert(res);
     });
+    location.reload(true);
 });
 
 // Show radio buttons with rating options when Add rating button is clicked
@@ -69,7 +71,7 @@ $('.edit-rating').on('click', (evt) => {
     evt.preventDefault();
     const entry = $(evt.target);
     const entry_id = entry.attr('id');
-    $('.' + entry_id).show();
+    $('.' + entry_id + '.rating').show();
     $('#' + entry_id + '.edit-rating').hide();
 });
 
@@ -79,17 +81,20 @@ $('.submit-rating').on('click', (evt) => {
     const radioValue = $("input:checked").val();
     const entry = $(evt.target);
     const formData = {entry: entry.attr('id'), input: radioValue};
+
     
     $.post('/add_entry_rating', formData, (res) => {
         alert(res);
 
     });
+    location.reload(true);
 });
 
 
 // Show textbox for adding note to entry
 $('.edit-note').on('click', (evt) => {
     evt.preventDefault();
+
     const entry = $(evt.target);
     const entry_id = entry.attr('id');
     $('.' + entry_id + '.note').show();
@@ -110,6 +115,8 @@ $('.submit-note').on('click', (evt) => {
         alert(res);
 
     });
+    location.reload(true);
+    
 });
 
 

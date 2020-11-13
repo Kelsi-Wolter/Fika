@@ -25,18 +25,19 @@
             {% if entry.score == None %}
             <button class="edit-fav-buttons edit-rating" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
             <form>
-            <input type="radio" name="new-rating" value="1" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">1</label>
-            <input type="radio" name="new-rating" value="2" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">2</label>
-            <input type="radio" name="new-rating" value="3" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">3</label>
-            <input type="radio" name="new-rating" value="4" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">4</label>
-            <input type="radio" name="new-rating" value="5" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">5</label>
-            <input type="submit" name="submit-new-rating" class="submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+            <input type="radio" name="new-rating" value="1" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">1</label>
+            <input type="radio" name="new-rating" value="2" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">2</label>
+            <input type="radio" name="new-rating" value="3" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">3</label>
+            <input type="radio" name="new-rating" value="4" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">4</label>
+            <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
+            <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
             </form>
             {% endif %}
             {% if entry.note == None %}
             <button class="edit-fav-buttons edit-note" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
               <form>
-                <textarea name="entry-note" class="{{ entry.entry_id }} note" style="display: none"> Please share your thoughts here
+                <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
+                <textarea name="entry-note" class="{{ entry.entry_id }} note" style="display: none">
                 </textarea>
                 <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
               </form>
@@ -60,17 +61,23 @@
             {% if entry.score == None %}
             <form>
               <button class="edit-roaster-buttons edit-rating" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
-              <input type="radio" name="new-rating" value="1" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">1</label>
-              <input type="radio" name="new-rating" value="2" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">2</label>
-              <input type="radio" name="new-rating" value="3" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">3</label>
-              <input type="radio" name="new-rating" value="4" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">4</label>
-              <input type="radio" name="new-rating" value="5" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">5</label>
-              <input type="submit" name="submit-new-rating" class="submit-rating {{ entry.entry_id }}" style="display: none"> 
+              <input type="radio" name="new-rating" value="1" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">1</label>
+              <input type="radio" name="new-rating" value="2" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">2</label>
+              <input type="radio" name="new-rating" value="3" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">3</label>
+              <input type="radio" name="new-rating" value="4" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">4</label>
+              <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
+              <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
             </form>
               {% endif %}
             
             {% if entry.note == None %}
-              <button class="edit-roaster-buttons" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+              <button class="edit-roaster-buttons edit-note" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+              <form>
+                <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
+                <textarea name="entry-note" class="{{ entry.entry_id }} note" style="display: none"> 
+                </textarea>
+                <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+              </form>
             {% endif %}
 
         {% endfor %}
