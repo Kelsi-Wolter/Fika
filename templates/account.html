@@ -43,12 +43,13 @@
               </form>
             {% endif %}
           {% endfor %}
+          <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
         {% endif %}
+
         {% if list1_entries == "This list is empty!" %}
           <p>This list is empty!</p>
         {% endif %}
-
-        <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
+        
       </div>
 
       <div class="col">
@@ -81,12 +82,16 @@
             {% endif %}
 
         {% endfor %}
+        <button type="button" class="edit-roasters btn btn-primary" id="{{ list2.list_id }}">Edit List</button>
         {% endif %}
 
         {% if list2_entries == "This list is empty!" %}
         <p>This list is empty!</p>
+        <button type="button" class="btn btn-light"><a href="/roaster_directory">
+          Start Exploring Minnesota Roasters
+      </a></button>
         {% endif %}
-        <button type="button" class="edit-roasters btn btn-primary" id="{{ list2.list_id }}">Edit List</button>
+
       </div>
     </div>
   </div> 

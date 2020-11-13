@@ -30,7 +30,17 @@ $('.add-roasters').on('click', (evt) =>{
 // Shows editting buttons for favorites list entries when "edit list" button is clicked
 $('.edit-fav').on('click', (evt) => {
     evt.preventDefault();
-    $('.edit-fav-buttons').show();
+    
+    const editBtn = evt.target;
+
+    if (editBtn.innerHTML === 'Edit List') {
+        editBtn.innerHTML = 'Done';
+        $('.edit-fav-buttons').show();
+      }
+      else {
+        editBtn.innerHTML = 'Edit List';
+        $('.edit-fav-buttons').hide();
+      };
     
 });
 

@@ -13,8 +13,9 @@
     <p>{{ day }}</p>
     {% endfor %}
 
+    {% if session['user'] %}
 <button class="add-fav" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
 <button class="add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
-
+    {% endif %}
 
 {% endblock %}

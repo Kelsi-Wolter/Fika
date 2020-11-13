@@ -74,6 +74,12 @@ def login_to_account():
 
     return render_template('login.html', form=form)
 
+
+@app.route('/log_out')
+def log_user_out():
+    del session['user']
+
+    return redirect('/')
 # ****Old route for logging in user*******
 # @app.route('/user_logging_in', methods=["POST"])
 # def user_login():
