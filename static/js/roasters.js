@@ -47,7 +47,16 @@ $('.edit-fav').on('click', (evt) => {
 // Same function as above but for roasters list entries
 $('.edit-roasters').on('click', (evt) => {
     evt.preventDefault();
+
+    const editBtn = evt.target;
+    if(editBtn.innerHTML === 'Edit List') {
+        editBtn.innerHTML = 'Done';
     $('.edit-roaster-buttons').show();
+    }
+    else {
+        editBtn.innerHTML = 'Edit List';
+        $('.edit-roaster-buttons').hide();
+      };
     
 });
 
@@ -85,6 +94,15 @@ $('.edit-rating').on('click', (evt) => {
     $('#' + entry_id + '.edit-rating').hide();
 });
 
+// Cancel updating rating and hide buttons without sending data
+$('.cancel-rating').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = entry.attr('id');
+    $('.' + entry_id + '.rating').hide();
+    $('#' + entry_id + '.edit-rating').show();
+});
+
 // Update entry with rating value
 $('.submit-rating').on('click', (evt) => {
     evt.preventDefault();
@@ -110,6 +128,16 @@ $('.edit-note').on('click', (evt) => {
     $('.' + entry_id + '.note').show();
     $('#' + entry_id + '.edit-note').hide();
 
+});
+
+
+// Cancel updating note and hide textbox without sending data
+$('.cancel-note').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = entry.attr('id');
+    $('.' + entry_id + '.note').hide();
+    $('#' + entry_id + '.edit-note').show();
 });
 
 // Update entry with note value

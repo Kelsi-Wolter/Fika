@@ -32,6 +32,7 @@
             <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
             <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
             </form>
+            <button type="button" class="rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
             {% endif %}
             {% if entry.note == None %}
             <button class="edit-fav-buttons edit-note" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
@@ -41,6 +42,7 @@
                 </textarea>
                 <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
               </form>
+              <button class="{{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
             {% endif %}
           {% endfor %}
           <button type="button" class="edit-fav btn btn-primary" id="{{ list1.list_id }}" >Edit List</button>
@@ -69,6 +71,7 @@
               <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
               <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
             </form>
+            <button type="button" class="rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
               {% endif %}
             
             {% if entry.note == None %}
@@ -79,6 +82,7 @@
                 </textarea>
                 <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
               </form>
+              <button class="{{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
             {% endif %}
 
         {% endfor %}
