@@ -219,6 +219,33 @@ def delete_entry():
     return f'Your entry has been deleted!'
 
 
+@app.route('/add_entry_rating', methods=["POST"])
+def enter_rating_for_entry():
+    '''User adding rating to entry for roaster'''
+
+    entry_id = request.form.get("entry")
+    rating = request.form.get("input")
+
+    entry = crud.get_entry_by_entry_id(entry_id)
+
+    updated_entry = crud.add_rating_to_entry(entry=entry, rating=rating)
+
+    return f'Your entry for {entry.roaster.name} has been updated!'
+
+@app.route('/add_entry_note', methods=["POST"])
+def enter_entry_note():
+    '''User adding note to entry for roaster'''
+
+    entry_id = request.form.get("entry")
+    note = request.form.get("input")
+
+    entry = crud.get_entry_by_entry_id(entry_id)
+
+    updated_entry = crud.add_note_to_entry(entry=entry, note=note)
+
+    return f'Your entry for {entry.roaster.name} has been updated!'
+
+
 # @app.route('/edit_score_entry', methods=["POST"])
 # def add_score_to_entry():
 #     '''Add score to entry in DB'''

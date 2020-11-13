@@ -30,11 +30,16 @@
             <input type="radio" name="new-rating" value="3" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">3</label>
             <input type="radio" name="new-rating" value="4" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">4</label>
             <input type="radio" name="new-rating" value="5" class="{{ entry.entry_id }}" style="display: none"> <label class="{{ entry.entry_id }}" style="display: none">5</label>
-            <input type="submit" name="submit-new-rating" class="submit-rating {{ entry.entry_id }}" style="display: none"> 
+            <input type="submit" name="submit-new-rating" class="submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
             </form>
             {% endif %}
             {% if entry.note == None %}
-            <button class="edit-fav-buttons" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+            <button class="edit-fav-buttons edit-note" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+              <form>
+                <textarea name="entry-note" class="{{ entry.entry_id }} note" style="display: none"> Please share your thoughts here
+                </textarea>
+                <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+              </form>
             {% endif %}
           {% endfor %}
         {% endif %}

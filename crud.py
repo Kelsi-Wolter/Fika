@@ -135,8 +135,18 @@ def get_entry_by_entry_id(entry_id):
 
 def change_list_id(entry, new_list):
     entry.list_id = new_list
+    db.session.commit()
 
-    db.session.add(entry)
+    return entry
+
+def add_rating_to_entry(entry, rating):
+    entry.score = rating
+    db.session.commit()
+
+    return entry
+
+def add_note_to_entry(entry, note):
+    entry.note = note
     db.session.commit()
 
     return entry

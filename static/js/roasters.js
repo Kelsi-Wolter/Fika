@@ -62,7 +62,7 @@ $('.delete').on('click', (evt) => {
     $.post('/delete_entry', entry_id, (res) => {
         alert(res);
     });
-})
+});
 
 // Show radio buttons with rating options when Add rating button is clicked
 $('.edit-rating').on('click', (evt) => {
@@ -70,15 +70,48 @@ $('.edit-rating').on('click', (evt) => {
     const entry = $(evt.target);
     const entry_id = entry.attr('id');
     $('.' + entry_id).show();
-    $('.edit-rating').hide();
+    $('#' + entry_id + '.edit-rating').hide();
 });
 
 // Update entry with rating value
-$('.submit-rating').submit( (evt) => {
+$('.submit-rating').on('click', (evt) => {
     evt.preventDefault();
-    // const rating = $([name="new-rating"]).val();
-    alert('yes');
-})
+    const radioValue = $("input:checked").val();
+    const entry = $(evt.target);
+    const formData = {entry: entry.attr('id'), input: radioValue};
+    
+    $.post('/add_entry_rating', formData, (res) => {
+        alert(res);
+
+    });
+});
+
+
+// Show textbox for adding note to entry
+$('.edit-note').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = entry.attr('id');
+    $('.' + entry_id + '.note').show();
+    $('#' + entry_id + '.edit-note').hide();
+
+});
+
+// Update entry with note value
+$('.submit-note').on('click', (evt) => {
+    evt.preventDefault();
+    const entry = $(evt.target);
+    const entry_id = entry.attr('id')
+    const inputText = $(".note" + '.' + entry_id).val();
+ 
+    const formData = {entry: entry_id, input: inputText};
+    
+    $.post('/add_entry_note', formData, (res) => {
+        alert(res);
+
+    });
+});
+
 
 
 
