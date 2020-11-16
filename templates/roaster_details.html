@@ -6,7 +6,7 @@
 
   <p> {{ roaster.address }} </p>
   <p> {{ roaster.phone_number }} </p>
-  <p> {{ roaster.website }} </p>
+  <p><a href="{{ roaster.website }}">{{ roaster.website }} </a> </p>
   <p> Average User Rating: {{ avg_rating }} </p>
   <p>Daily Hours:</p>
     {% for day in schedule %}
@@ -17,5 +17,29 @@
 <button class="add-fav" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
 <button class="add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
     {% endif %}
+
+    <!-- photos -->
+    <div>
+      {% for image in photos %}
+      <div class="container">
+
+      <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=600&photoreference={{ image }}" id="roaster-imgs"></img>
+      </div>
+      {% endfor %}
+    </div>
+
+
+        <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            {% for image in photos %}
+            <div class="carousel-item active">
+                <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=400&photoreference={{ image }}" class="d-block w-100" alt="...">
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>    -->
+
+    
 
 {% endblock %}

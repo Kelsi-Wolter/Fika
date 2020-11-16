@@ -8,11 +8,11 @@ import os
 
 # Create instance of Google maps request using API key
 # Can take key out after seeding database
-gmaps = googlemaps.Client(KEY)
+gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
 
 
 # List of coffee roaster place IDs
-place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s', 
+place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s',
                 'ChIJWcfLCviI9YcR5jiT1hbJK3U', 
                 'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
                 'ChIJAbkBsJkts1IRNj7L1NnbGUg',
@@ -80,4 +80,8 @@ def create_dict_of_place_details():
 
 def create_json(dict):
     return json.dumps(dict, sort_keys=True, indent=4)
+
+
+
+
 

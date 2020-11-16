@@ -1,5 +1,6 @@
 '''CRUD operations'''
 
+import googlemaps
 from model import db, User, List, Roaster, Entry, connect_to_db
 
 
@@ -40,10 +41,10 @@ def get_user_by_id(user_id):
 
     
 
-def create_roaster(name, address, phone_number, hours, image, website, coffee_link, shipping_link):
+def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-    image=image, website=website, coffee_link=coffee_link, shipping_link=shipping_link)
+    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link)
 
     db.session.add(roaster)
     db.session.commit()
@@ -92,6 +93,25 @@ def calculate_avg_rating(roaster_id):
         roaster_avg = sum / total_reviews
 
         return round(roaster_avg, 2)
+
+# photos_dict = {}
+def create_photos(roaster_place_ID):
+    gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
+    roaster_photos = []
+    # for roaster in place_ids:
+        # Sends request to API for specified fields on each roaster ID
+    response = gmaps.place(roaster_place_ID, fields=['photo'])
+    # Keys into response "result" key to use as values for each roaster ID key
+    if response['result'].get('photos') is None:
+        roaster_photos = 'Unavailable'
+    else:
+        photos = response['result']['photos']
+        # photos_dict[roaster] = []
+
+        for photo in photos:
+            roaster_photos.append(photo['photo_reference'])
+    
+    return roaster_photos
 
 
 def create_list(list_name, user):

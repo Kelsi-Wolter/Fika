@@ -46,7 +46,9 @@ def roaster_details_page(roaster_id):
 
     avg_rating = crud.calculate_avg_rating(roaster_id)
 
-    return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating)
+    photos = crud.create_photos(roaster.place_id)
+
+    return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating, photos=photos)
 
 # User login and account routes
 @app.route('/login', methods=["GET", "POST"])

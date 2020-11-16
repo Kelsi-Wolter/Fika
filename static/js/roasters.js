@@ -157,15 +157,7 @@ $('.submit-note').on('click', (evt) => {
     
 });
 
+$('.carousel').carousel({
+    interval: 2000
+  })
 
-
-
-
-
-
-// Add event listener to click on "create new list" button which redirects to /create_new_list
-
-// document.getElementById("new-list-btn").onclick = function () {
-//     location.href = '/create_new_list'  
-//     // alert('Hey!');
-// };

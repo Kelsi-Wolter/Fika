@@ -18,13 +18,15 @@ model.db.create_all()
 with open('data/new_data.json') as f:
     roaster_data = json.loads(f.read())
 
+
 list_of_roasters = []
 for roaster in roaster_data:
 
-    name, address, phone_number, website = (roaster_data[roaster]['name'], 
+    name, address, phone_number, website, place_id = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
                                                         roaster_data[roaster]['formatted_phone_number'],
-                                                        roaster_data[roaster]['website'])
+                                                        roaster_data[roaster]['website'],
+                                                        roaster)
                                                         
 
     hours = roaster_data[roaster]['opening_hours']
@@ -48,7 +50,7 @@ for roaster in roaster_data:
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    image=None, website=website, coffee_link=None, shipping_link=None)
+                    website=website, place_id=place_id, coffee_link=None, shipping_link=None)
 
     list_of_roasters.append(db_roaster)
 
