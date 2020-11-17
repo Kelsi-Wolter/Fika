@@ -32,16 +32,17 @@
         <div class="navbar-nav ml-auto">
   
             <a class="nav-link" href="/roaster_directory"> Roasters </a>
-
+            <a class="nav-link" href="">Blog</a>
+            <a class="nav-link" href=""> Coffee Subscription </a>
+            <a class="nav-link" href="">Shop</a>
             {% if session['user'] %}
               <a class="nav-link" id="account-link" href="/account/{{ session['user'] }}">My Account</a></li>
               <a class="nav-link ml-auto" href="/log_out"> Log Out </a>
-              <a class="nav-link" href=""> Subscription Queue</a>
             {% endif %}
             {% if session.get('user') == None %}
               <a class="nav-link" id="account-link" href="/login">Login</a>
             {% endif %}
-            <a class="nav-link" href="">Blog</a>
+
           </div>
       </div>
     </nav>
