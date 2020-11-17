@@ -94,9 +94,9 @@ def calculate_avg_rating(roaster_id):
 
         return round(roaster_avg, 2)
 
-# photos_dict = {}
+
 def create_photos(roaster_place_ID):
-    gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
+    gmaps = googlemaps.Client(KEY)
     roaster_photos = []
     # for roaster in place_ids:
         # Sends request to API for specified fields on each roaster ID
