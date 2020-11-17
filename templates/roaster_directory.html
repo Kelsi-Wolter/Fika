@@ -8,15 +8,21 @@
 {% block body %}
 <h1>Minnesota Roaster Directory</h1>
 
-<ul>
-    {% for roaster in roasters %}
-    <li>
-        <a href="/roaster_directory/{{ roaster.roaster_id }}">
-            {{ roaster.name }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    
+{% for roaster in roasters %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ roaster.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="/roaster_directory/{{ roaster.roaster_id }}" class="card-link">Details</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+{% endfor %}
+</div>
 
 
 

@@ -2,13 +2,25 @@
 {% block title %}Minnesota Roasted{% endblock %}
 
 {% block body %}
-  <div class="container">
-    <h1>Welcome!</h1>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12 m-2">
+        <h1>Welcome!</h1>
+      </div>
+    </div>
 
-      <p><a href="/roaster_directory">View Minneapolis Coffee Roasters</a></p>
-      <p><a href="/login">Login To Your Minnesota Roasted Account</a></p>
-      <p><a href="/create_account">Create An Account With Us!</a></p>
 
+    <div class="row m-2">
+      <div class="col-4">
+        <p><a href="/roaster_directory">View Minneapolis Coffee Roasters</a></p>
+      </div>
+      <div class="col-4">
+        <p><a href="/login">Login To Your Minnesota Roasted Account</a></p>
+      </div>
+      <div class="col-4">
+        <p><a href="/create_account">Create An Account With Us!</a></p>
+      </div>
+    </div>
   </div>
 
 {% endblock %}
