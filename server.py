@@ -32,6 +32,10 @@ def roaster_directory():
     '''Display list of roasters'''
 
     all_the_roasters = crud.return_all_roasters()
+    for roaster in all_the_roasters:
+        photos = crud.create_photos(roaster.place_id)
+        title_photo = photos[0]
+        setattr(roaster, 'image', title_photo)
 
     return render_template('roaster_directory.html', roasters=all_the_roasters)
 

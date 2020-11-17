@@ -29,17 +29,19 @@
         <span class="navbar-toggler-icon"></span>
     </button>
       <div class="collapse navbar-collapse" id="navbarbtns">
-        <div class="navbar-nav">
+        <div class="navbar-nav ml-auto">
   
             <a class="nav-link" href="/roaster_directory"> Roasters </a>
 
             {% if session['user'] %}
               <a class="nav-link" id="account-link" href="/account/{{ session['user'] }}">My Account</a></li>
-              <a class="nav-link" href="/log_out"> Log Out </a>
+              <a class="nav-link ml-auto" href="/log_out"> Log Out </a>
+              <a class="nav-link" href=""> Subscription Queue</a>
             {% endif %}
             {% if session.get('user') == None %}
               <a class="nav-link" id="account-link" href="/login">Login</a>
             {% endif %}
+            <a class="nav-link" href="">Blog</a>
           </div>
       </div>
     </nav>

@@ -3,21 +3,24 @@
 
 {% block head %}
 <style>
-  .carousel-item {
-    width: 200px;
-    height:200px;
+  /* .carousel-item {
+    width: auto;
+    height:400px;
     overflow:hidden;
   }
   .carousel-item img{
     width: 100%;
     height:100%;
     object-fit: cover;
-  }
+  } */
 </style>
 
 {% endblock %}
 
 {% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-6">
   <h1> {{roaster.name }} </h1>
 
   <p> {{ roaster.address }} </p>
@@ -30,9 +33,10 @@
     {% endfor %}
 
     {% if session['user'] %}
-<button class="add-fav" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
-<button class="add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
+<button class="btn add-fav btn-dark" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
+<button class="btn btn-dark add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
     {% endif %}
+  </div>
 
     <!-- photos -->
     <!-- <div>
@@ -44,8 +48,8 @@
       {% endfor %}
     </div> -->
 
-
-        <div id="roaster-photos" class="carousel slide carousel-fade m-5" data-ride="carousel" data-pause="hover">
+    <div class="col-6">
+        <div id="roaster-photos" class="carousel slide m-5" data-ride="carousel" data-pause="hover">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="https://www.roosterbrother.com/wp-content/uploads/2017/06/coffee-product-photo.jpg" class="d-block w-100" alt="...">
@@ -67,7 +71,8 @@
           </a>
 
         </div>   
-
-    
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
