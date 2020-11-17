@@ -41,10 +41,10 @@ def get_user_by_id(user_id):
 
     
 
-def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link):
+def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link, images):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link)
+    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link, images=images)
 
     db.session.add(roaster)
     db.session.commit()

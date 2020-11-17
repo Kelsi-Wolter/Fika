@@ -47,10 +47,11 @@ class Roaster(db.Model):
     hours = db.Column(db.String(300))
     website = db.Column(db.String(100))
     place_id = db.Column(db.String(50))
+    images = db.Column(db.String(50))
     coffee_link = db.Column(db.String(40))
     shipping_link = db.Column(db.String(40))
     
-    
+    # ARRAY('String')
 
     def __repr__(self):
         return f'<Roaster roaster_ID={self.roaster_id} name={self.name}>'

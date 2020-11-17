@@ -157,7 +157,4 @@ $('.submit-note').on('click', (evt) => {
     
 });
 
-$('.carousel').carousel({
-    interval: 2000
-  })
 

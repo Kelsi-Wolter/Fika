@@ -47,10 +47,12 @@ for roaster in roaster_data:
             stripped_hours.append(stripped_day)
 
             hours = stripped_hours
+    
+    # images = crud.create_photos(place_id)
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    website=website, place_id=place_id, coffee_link=None, shipping_link=None)
+                    website=website, place_id=place_id, coffee_link=None, shipping_link=None, images=None)
 
     list_of_roasters.append(db_roaster)
 
