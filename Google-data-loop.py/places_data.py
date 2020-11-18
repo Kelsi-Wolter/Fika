@@ -28,7 +28,31 @@ place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s',
                 'ChIJIbgloXbU94cRux5kDChUAgI',
                 'ChIJY8w2QUUm9ocR8ppRfDgUX_0',
                 'ChIJ_4onGLgss1IRwrDvJj4dpCg',
-                'ChIJ8SdsjT4r9ocRe-oreXwEBEU']
+                'ChIJ8SdsjT4r9ocRe-oreXwEBEU',
+    
+                'ChIJAQDAwtZSrlIRBDSDAdzoufI',
+                'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
+                'ChIJ0bMRkRvCtlIRmD_SooEJq4c',
+                'ChIJIZxb3iZTrlIRzybp2o8Q3pI',
+                'ChIJoY8dD3Vf94cRMo1AFxzMuhM',
+                'ChIJ6yZ38_07sVIR9jB4sdR80B8',
+                'ChIJl-9eENstuFIRMEU1LLE6Upc',
+                'ChIJ686CRCktuFIRH87e8Ki0kYo',
+                'ChIJV7ZjmE0OuFIRKQognbDKbkI',
+                'ChIJIedYFk89tlIRZs5lpVFENnM',
+                'ChIJ-_TuMC90yVIRVMUotEblBnw',
+                'ChIJ7WFSiIo9v1IRskGfX8wA7Ms',
+                'ChIJbWxLtCYzplIR4Kz0pCH_f1k',
+                'ChIJHQ64IjIltFIRkBR2VWpLu4o',
+                'ChIJa44iG8FT9ocRraV6DN3avYA',
+                'ChIJze6FQkBB94cRIYDIRIp4Yy8',
+                'ChIJ8x5O0gdt-YcR9ghTbtkhVkI',
+                'ChIJVYUOBnPf-4cRFWtVxT1CkqcPf',
+                'ChIJ4cbScHl_9ocRQnga1z8gRr8',
+                'ChIJC19CVHJ_84cRCR05pa3bC1E',
+                'ChIJMVt08CBe94cRTfmaGme8sHw',
+                'ChIJU5IDRlahtFIRT3e9Y1zWgiQ',
+                'ChIJhxR7xdZSrlIRrqiRSNu1RFc']
 
 place_details_dict = {}
 
