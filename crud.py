@@ -73,6 +73,7 @@ def calculate_avg_rating(roaster_id):
 
     # Query for all entry objects associated with a roaster ID, and set to variable 'reviews'
     reviews = Entry.query.filter_by(roaster_id=roaster_id).all()
+    roaster = Roaster.query.filter_by(roaster_id=roaster_id).one()
 
     # Get total number of entries for each roaster
     total_reviews = len(reviews)
@@ -90,9 +91,14 @@ def calculate_avg_rating(roaster_id):
             if score != None:
                 sum += score
         
-        roaster_avg = sum / total_reviews
+        roaster_avg = round( (sum / total_reviews), 2)
 
-        return round(roaster_avg, 2)
+        return roaster_avg
+
+
+def get_roasters_by_rating(rating):
+    roasters = Roaster.query.filter_by(avg_rating>=rating).all()
+    return roasters
 
 
 def create_photos(roaster_place_ID):

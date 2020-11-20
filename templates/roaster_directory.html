@@ -9,6 +9,21 @@
 <h1>Minnesota Roasters Directory</h1>
 
 <div class="container">
+
+  <div class="row m-5">
+    <button class="btn btn-primary" id="filter-button">Filter</button>
+    <form action="/roaster_directory">
+      <input type="radio" name="rating-filter" value="3" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">3+</label>
+      <input type="radio" name="rating-filter" value="4" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">4+</label>
+      <input type="radio" name="rating-filter" value="5" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">5+</label>
+      <input type="submit" name="submit-rating-filter" class="rating-filter rating-filter-submit" id="" style="display: none" value="Apply">
+    </form>
+  </div>
+
+
+
+</div>
+
   <div class="row">
 
     {% for roaster in roasters %}
@@ -24,9 +39,6 @@
 
     {% endfor %}
   </div>
-</div>
-
-
 
 
 

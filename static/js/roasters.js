@@ -157,7 +157,33 @@ $('.submit-note').on('click', (evt) => {
     
 });
 
+// On click of filter button, show filter options
+$('#filter-button').on('click', (evt) => {
+    evt.preventDefault();
+    $('.rating-filter').show();
+    
+});
 
+// On submit of filter for rating, send input to server and adjust roasters in list to be displayed
+$('.rating-filter-submit').on('click', (evt) => {
+    evt.preventDefault();
+    const input = $('input:checked').val();
+    console.log(input);
+    const data = {rating: input};
+    console.log(data)
+    $.get('/roaster_directory', data, (res) => {
 
+    });
+});
 
+// Trying to call photos through AJAX + jQuery - get CORS policy error
+// $('.test').on('click', (evt) => {
+//     evt.preventDefault();
+
+//     const photo = $(evt.target).attr('id');
+    
+//     $.get('https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference=' + photo, (res) => {
+//         $().html(res);
+//     });
+// })
 

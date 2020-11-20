@@ -31,7 +31,18 @@ def homepage():
 def roaster_directory():
     '''Display list of roasters'''
 
+    input = request.args.get("rating")
+    
+    # if input == 3:
+    #     all_the_roasters = crud.get_roasters_by_rating
+    # if input == 4:
+    # if input == 5:
+    # else:
     all_the_roasters = crud.return_all_roasters()
+    
+    
+    
+    
     for roaster in all_the_roasters:
         photos = crud.create_photos(roaster.place_id)
         title_photo = photos[0]
@@ -257,6 +268,19 @@ def enter_entry_note():
 
     return f'Your entry for {entry.roaster.name} has been updated!'
 
+
+# @app.route('/test', methods=["POST", "GET"])
+# def testing():
+
+#     roaster = crud.get_roaster_by_id(1)
+#     photos = crud.create_photos(roaster.place_id)
+#     title_photo = photos[0]
+
+#     img = https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference=
+
+#     setattr(roaster, 'image', title_photo)
+
+#     return render_template('test.html', roaster=roaster)
 
 # @app.route('/edit_score_entry', methods=["POST"])
 # def add_score_to_entry():

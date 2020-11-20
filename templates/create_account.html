@@ -8,10 +8,10 @@
 
   <form action="/create_account" method="POST">
     {{ form.csrf_token }}
-    {{ form.fname }}
-    {{ form.lname }}
-    {{ form.email }}
-    {{ form.password }}
+    {{ form.fname(placeholder="First name") }}
+    {{ form.lname(placeholder="Last name") }}
+    {{ form.email(placeholder="Email") }}
+    {{ form.password(placeholder="Password") }}
     <!-- <p>First name:
         <input type="text" name="fname_create">
     </p>

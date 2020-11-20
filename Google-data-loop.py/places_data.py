@@ -8,7 +8,7 @@ import os
 
 # Create instance of Google maps request using API key
 # Can take key out after seeding database
-gmaps = googlemaps.Client(KEY)
+gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
 
 
 # List of coffee roaster place IDs
@@ -28,31 +28,31 @@ place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s',
                 'ChIJIbgloXbU94cRux5kDChUAgI',
                 'ChIJY8w2QUUm9ocR8ppRfDgUX_0',
                 'ChIJ_4onGLgss1IRwrDvJj4dpCg',
-                'ChIJ8SdsjT4r9ocRe-oreXwEBEU',
+                'ChIJ8SdsjT4r9ocRe-oreXwEBEU']
     
-                'ChIJAQDAwtZSrlIRBDSDAdzoufI',
-                'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
-                'ChIJ0bMRkRvCtlIRmD_SooEJq4c',
-                'ChIJIZxb3iZTrlIRzybp2o8Q3pI',
-                'ChIJoY8dD3Vf94cRMo1AFxzMuhM',
-                'ChIJ6yZ38_07sVIR9jB4sdR80B8',
-                'ChIJl-9eENstuFIRMEU1LLE6Upc',
-                'ChIJ686CRCktuFIRH87e8Ki0kYo',
-                'ChIJV7ZjmE0OuFIRKQognbDKbkI',
-                'ChIJIedYFk89tlIRZs5lpVFENnM',
-                'ChIJ-_TuMC90yVIRVMUotEblBnw',
-                'ChIJ7WFSiIo9v1IRskGfX8wA7Ms',
-                'ChIJbWxLtCYzplIR4Kz0pCH_f1k',
-                'ChIJHQ64IjIltFIRkBR2VWpLu4o',
-                'ChIJa44iG8FT9ocRraV6DN3avYA',
-                'ChIJze6FQkBB94cRIYDIRIp4Yy8',
-                'ChIJ8x5O0gdt-YcR9ghTbtkhVkI',
-                'ChIJVYUOBnPf-4cRFWtVxT1CkqcPf',
-                'ChIJ4cbScHl_9ocRQnga1z8gRr8',
-                'ChIJC19CVHJ_84cRCR05pa3bC1E',
-                'ChIJMVt08CBe94cRTfmaGme8sHw',
-                'ChIJU5IDRlahtFIRT3e9Y1zWgiQ',
-                'ChIJhxR7xdZSrlIRrqiRSNu1RFc']
+                # 'ChIJAQDAwtZSrlIRBDSDAdzoufI',
+                # 'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
+                # 'ChIJ0bMRkRvCtlIRmD_SooEJq4c',
+                # 'ChIJIZxb3iZTrlIRzybp2o8Q3pI',
+                # 'ChIJoY8dD3Vf94cRMo1AFxzMuhM',
+                # 'ChIJ6yZ38_07sVIR9jB4sdR80B8',
+                # 'ChIJl-9eENstuFIRMEU1LLE6Upc',
+                # 'ChIJ686CRCktuFIRH87e8Ki0kYo',
+                # 'ChIJV7ZjmE0OuFIRKQognbDKbkI',
+                # 'ChIJIedYFk89tlIRZs5lpVFENnM',
+                # 'ChIJ-_TuMC90yVIRVMUotEblBnw',
+                # 'ChIJ7WFSiIo9v1IRskGfX8wA7Ms',
+                # 'ChIJbWxLtCYzplIR4Kz0pCH_f1k',
+                # 'ChIJHQ64IjIltFIRkBR2VWpLu4o',
+                # 'ChIJa44iG8FT9ocRraV6DN3avYA',
+                # 'ChIJze6FQkBB94cRIYDIRIp4Yy8',
+                # 'ChIJ8x5O0gdt-YcR9ghTbtkhVkI',
+                # 'ChIJVYUOBnPf-4cRFWtVxT1CkqcPf',
+                # 'ChIJ4cbScHl_9ocRQnga1z8gRr8',
+                # 'ChIJC19CVHJ_84cRCR05pa3bC1E',
+                # 'ChIJMVt08CBe94cRTfmaGme8sHw',
+                # 'ChIJU5IDRlahtFIRT3e9Y1zWgiQ',
+                # 'ChIJhxR7xdZSrlIRrqiRSNu1RFc']
 
 place_details_dict = {}
 
@@ -67,8 +67,9 @@ def create_dict_of_place_details():
     for roaster in place_ids:
     
         # Sends request to API for specified fields on each roaster ID
-        response = gmaps.place(roaster, fields=['name', 'website', 'formatted_address',
-                                                                'formatted_phone_number', 'opening_hours'])
+        response = gmaps.place(roaster, fields=['name', 'website', 'formatted_address', 'formatted_phone_number', 'opening_hours'])
+
+                                                                
         # Keys into response "result" key to use as values for each roaster ID key
         details = response['result']
 
@@ -106,6 +107,18 @@ def create_json(dict):
     return json.dumps(dict, sort_keys=True, indent=4)
 
 
+def store_photo():
+    response = gmaps.places_photo('CmRaAAAA3sKX4pOBqma6RFcnudam58AVR-TEa-P_7IvoYK29cwJIhWqFWk6TGgX9T2NHb5vRHMNFjm2CeUxmTuxqULEIBPkwy5uqXSkMc6RVQk4kOh4rOMgi_lHbQiO7yRpoTYbEEhCTo595pZEE0NKcE7bhZTV7GhTl5p67J7ji_Aa-Lfh6n0NQ9y2F5A',
+    600, 400)
+
+
+    f = open('my_image.jpg', 'wb')
+    for chunk in response:
+        if chunk:
+            f.write(chunk)
+    f.close()
+
+    return True
 
 
 
