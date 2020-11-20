@@ -41,10 +41,10 @@ def get_user_by_id(user_id):
 
     
 
-def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link, images):
+def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link, images, avg_user_rating):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link, images=images)
+    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link, images=images, avg_user_rating=avg_user_rating)
 
     db.session.add(roaster)
     db.session.commit()
@@ -92,6 +92,8 @@ def calculate_avg_rating(roaster_id):
                 sum += score
         
         roaster_avg = round( (sum / total_reviews), 2)
+
+        db.session.commit()
 
         return roaster_avg
 

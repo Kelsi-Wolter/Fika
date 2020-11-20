@@ -13,11 +13,6 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "kelsi's_project"
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(user_id)
 
 # Home page
 @app.route('/')
@@ -97,34 +92,7 @@ def log_user_out():
     del session['user']
 
     return redirect('/')
-# ****Old route for logging in user*******
-# @app.route('/user_logging_in', methods=["POST"])
-# def user_login():
-#     '''Check that user exists and redirect to account page if email and password matches'''
 
-#     # Retrieve input from form
-#     email = request.form.get('user_email_login')
-#     pw = request.form.get('user_password_login')
-
-#     # Check for email in DB to see if user exists
-#     user = crud.get_user_by_email(email)     
-    
-#     # If user exists, validate password and redirect to account page using user_id
-#     if user:
-#         user_pw, user_id = crud.get_user_info(email)
-#         if pw == user_pw:
-            
-#             session['user_login'] = {'id': user.user_id, 'first_name': user.first_name, 'last_name': user.last_name}
-#             return redirect(f'/account/{user_id}')
-    
-#         else:
-            
-#             return redirect('/login')
-    
-#     # If user does not exist, redirect to create an account page
-#     else:
-#         flash('Please create an account.')
-#         return redirect('/create_account')
 
 @app.route('/account/<user_id>')
 def user_account_page(user_id):
@@ -253,6 +221,8 @@ def enter_rating_for_entry():
 
     updated_entry = crud.add_rating_to_entry(entry=entry, rating=rating)
 
+    crud.calculate_avg_rating(entry.roaster_id)
+
     return f'Your entry for {entry.roaster.name} has been updated!'
 
 @app.route('/add_entry_note', methods=["POST"])
@@ -267,6 +237,12 @@ def enter_entry_note():
     updated_entry = crud.add_note_to_entry(entry=entry, note=note)
 
     return f'Your entry for {entry.roaster.name} has been updated!'
+
+
+
+if __name__ == '__main__':
+    connect_to_db(app)
+    app.run(host='0.0.0.0', debug=True)
 
 
 # @app.route('/test', methods=["POST", "GET"])
@@ -291,7 +267,34 @@ def enter_entry_note():
 #     entry = crud.get_entry_by_entry_id(entry_id)
 
     
+# ****Old route for logging in user*******
+# @app.route('/user_logging_in', methods=["POST"])
+# def user_login():
+#     '''Check that user exists and redirect to account page if email and password matches'''
 
+#     # Retrieve input from form
+#     email = request.form.get('user_email_login')
+#     pw = request.form.get('user_password_login')
+
+#     # Check for email in DB to see if user exists
+#     user = crud.get_user_by_email(email)     
+    
+#     # If user exists, validate password and redirect to account page using user_id
+#     if user:
+#         user_pw, user_id = crud.get_user_info(email)
+#         if pw == user_pw:
+            
+#             session['user_login'] = {'id': user.user_id, 'first_name': user.first_name, 'last_name': user.last_name}
+#             return redirect(f'/account/{user_id}')
+    
+#         else:
+            
+#             return redirect('/login')
+    
+#     # If user does not exist, redirect to create an account page
+#     else:
+#         flash('Please create an account.')
+#         return redirect('/create_account')
 
 
 
@@ -348,6 +351,3 @@ def enter_entry_note():
 
 #     return redirect(f'/account/{user.user_id}')
 
-if __name__ == '__main__':
-    connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)

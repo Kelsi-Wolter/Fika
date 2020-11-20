@@ -52,7 +52,7 @@ for roaster in roaster_data:
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    website=website, place_id=place_id, coffee_link=None, shipping_link=None, images=None)
+                    website=website, place_id=place_id, coffee_link=None, shipping_link=None, images=None, avg_user_rating=None)
 
     list_of_roasters.append(db_roaster)
 
@@ -106,6 +106,12 @@ for user in list_of_users:
     # Loop through the removed roasters and add back to master list
     for roaster in rated_roasters:
         list_of_roasters.append(roaster)
+
+for roaster in list_of_roasters:
+    roaster_id = roaster.roaster_id
+    avg_rating = crud.calculate_avg_rating(roaster_id)
+    roaster.avg_user_rating = avg_rating
+    
 
 
 
