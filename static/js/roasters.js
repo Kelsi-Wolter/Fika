@@ -168,13 +168,19 @@ $('#filter-button').on('click', (evt) => {
 $('.rating-filter-submit').on('click', (evt) => {
     evt.preventDefault();
     const input = $('input:checked').val();
-    console.log(input);
+
     const data = {rating: input};
-    console.log(data)
-    $.get('/roaster_directory', data, (res) => {
+
+    $.get('/filter', data, (res) => {
+        $('.direct').html(res);
 
     });
 });
+
+// $('.rating-filter-submit').on('click', (evt) => {
+//     evt.preventDefault();
+//     const input = $('input:checked').val();
+//     $('.direct').load('/roaster_directory', data);})
 
 // Trying to call photos through AJAX + jQuery - get CORS policy error
 // $('.test').on('click', (evt) => {

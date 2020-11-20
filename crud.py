@@ -99,7 +99,7 @@ def calculate_avg_rating(roaster_id):
 
 
 def get_roasters_by_rating(rating):
-    roasters = Roaster.query.filter_by(avg_rating>=rating).all()
+    roasters = Roaster.query.filter(Roaster.avg_user_rating>=rating).all()
     return roasters
 
 

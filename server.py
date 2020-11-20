@@ -26,17 +26,13 @@ def homepage():
 def roaster_directory():
     '''Display list of roasters'''
 
-    input = request.args.get("rating")
-    
-    # if input == 3:
-    #     all_the_roasters = crud.get_roasters_by_rating
-    # if input == 4:
-    # if input == 5:
+    # input = request.args.get("rating")
+
+    # if input != None:
+    #     input = int(input)
+    #     all_the_roasters = crud.get_roasters_by_rating(rating=input)
     # else:
-    all_the_roasters = crud.return_all_roasters()
-    
-    
-    
+    all_the_roasters = crud.return_all_roasters()  
     
     for roaster in all_the_roasters:
         photos = crud.create_photos(roaster.place_id)
@@ -44,6 +40,22 @@ def roaster_directory():
         setattr(roaster, 'image', title_photo)
 
     return render_template('roaster_directory.html', roasters=all_the_roasters)
+
+@app.route('/filter')
+def filter_roasters():
+    '''Show roasters that meet the criteria of the user input for filter'''
+
+    input = request.args.get("rating")
+    input = int(input)
+    all_the_roasters = crud.get_roasters_by_rating(rating=input)
+
+    for roaster in all_the_roasters:
+        photos = crud.create_photos(roaster.place_id)
+        title_photo = photos[0]
+        setattr(roaster, 'image', title_photo)
+
+    return render_template('filtered_roasters.html', roasters=all_the_roasters)
+
 
 @app.route('/roaster_directory/<roaster_id>')
 def roaster_details_page(roaster_id):
