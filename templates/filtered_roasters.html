@@ -1,0 +1,13 @@
+
+    {% for roaster in roasters %}
+
+      <div class="card m-2 text-center border-dark" style="width: 18rem;">
+        <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ roaster.image }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ roaster.name }}</h5>
+          <p> {{roaster.address }} </p>
+          <a class="btn btn-dark" href="/roaster_directory/{{ roaster.roaster_id }}" class="card-link">Details</a>
+        </div>
+      </div>
+
+    {% endfor %}
