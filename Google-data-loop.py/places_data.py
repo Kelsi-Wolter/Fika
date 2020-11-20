@@ -8,7 +8,7 @@ import os
 
 # Create instance of Google maps request using API key
 # Can take key out after seeding database
-gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
+gmaps = googlemaps.Client(KEY)
 
 
 # List of coffee roaster place IDs
