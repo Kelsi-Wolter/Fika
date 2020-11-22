@@ -145,10 +145,9 @@ $('.submit-note').on('click', (evt) => {
     evt.preventDefault();
     const entry = $(evt.target);
     const entry_id = entry.attr('id')
-    const inputText = $(".note" + '.' + entry_id).val();
- 
+    const inputText = $('.note' + '.' + entry_id + '.text').val();
     const formData = {entry: entry_id, input: inputText};
-    
+
     $.post('/add_entry_note', formData, (res) => {
         alert(res);
 
@@ -177,10 +176,6 @@ $('.rating-filter-submit').on('click', (evt) => {
     });
 });
 
-// $('.rating-filter-submit').on('click', (evt) => {
-//     evt.preventDefault();
-//     const input = $('input:checked').val();
-//     $('.direct').load('/roaster_directory', data);})
 
 // Trying to call photos through AJAX + jQuery - get CORS policy error
 // $('.test').on('click', (evt) => {

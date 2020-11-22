@@ -244,6 +244,7 @@ def enter_entry_note():
     entry_id = request.form.get("entry")
     note = request.form.get("input")
 
+
     entry = crud.get_entry_by_entry_id(entry_id)
 
     updated_entry = crud.add_note_to_entry(entry=entry, note=note)
