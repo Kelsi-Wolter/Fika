@@ -12,7 +12,8 @@ gmaps = googlemaps.Client(KEY)
 
 
 # List of coffee roaster place IDs
-place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s',
+place_ids = [
+                'ChIJx0Pj78UE9ocR0RGv_kVzK0s',
                 'ChIJWcfLCviI9YcR5jiT1hbJK3U', 
                 'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
                 'ChIJAbkBsJkts1IRNj7L1NnbGUg',
@@ -27,8 +28,9 @@ place_ids = ['ChIJx0Pj78UE9ocR0RGv_kVzK0s',
                 'ChIJG7xp558ts1IRLe7pAThX3ug',
                 'ChIJIbgloXbU94cRux5kDChUAgI',
                 'ChIJY8w2QUUm9ocR8ppRfDgUX_0',
-                'ChIJ_4onGLgss1IRwrDvJj4dpCg',
-                'ChIJ8SdsjT4r9ocRe-oreXwEBEU']
+                'ChIJ_4onGLgss1IRwrDvJj4dpCg'
+                'ChIJ8SdsjT4r9ocRe-oreXwEBEU'
+                ]
     
                 # 'ChIJAQDAwtZSrlIRBDSDAdzoufI',
                 # 'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
@@ -107,12 +109,14 @@ def create_json(dict):
     return json.dumps(dict, sort_keys=True, indent=4)
 
 
-def store_photo():
-    response = gmaps.places_photo('CmRaAAAA3sKX4pOBqma6RFcnudam58AVR-TEa-P_7IvoYK29cwJIhWqFWk6TGgX9T2NHb5vRHMNFjm2CeUxmTuxqULEIBPkwy5uqXSkMc6RVQk4kOh4rOMgi_lHbQiO7yRpoTYbEEhCTo595pZEE0NKcE7bhZTV7GhTl5p67J7ji_Aa-Lfh6n0NQ9y2F5A',
-    600, 400)
 
+def store_photo(photo, n):
+    '''Gets photo response using photo_reference and writes as jpg file'''
 
-    f = open('my_image.jpg', 'wb')
+    response = gmaps.places_photo(photo, 600, 400)
+
+    n = str(n)
+    f = open(n + '_title_photo' + '.jpg', 'wb')
     for chunk in response:
         if chunk:
             f.write(chunk)
@@ -120,5 +124,29 @@ def store_photo():
 
     return True
 
+def create_photo_dir(roaster_place_ID):
+    '''Gets photo reference for photo in place_details response, which provides 10 photo references
+    
+    
+    Uses store_photo function and increments number for file name'''
 
+    response = gmaps.place(roaster_place_ID, fields=['photo'])
+    photos = response['result']['photos']
+    n = 0
+    for photo in photos:
+        photo = photo['photo_reference']
+        store_photo(photo, n)
+        # print(photo, n)
+        n += 1
+
+def create_title_photo(roaster_place_ID):
+    '''Takes place details response and indexes in to one of the photos to store, uses place ID in file name'''
+
+    response = gmaps.place(roaster_place_ID, fields=['photo'])
+    photos = response['result']['photos']
+    n = roaster_place_ID
+    photo = photos[1]['photo_reference']
+    store_photo(photo, n)
+
+    
 
