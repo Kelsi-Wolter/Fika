@@ -47,9 +47,6 @@ class Roaster(db.Model):
     hours = db.Column(db.String(300))
     website = db.Column(db.String(100))
     place_id = db.Column(db.String(50))
-    images = db.Column(db.String(50))
-    coffee_link = db.Column(db.String(40))
-    shipping_link = db.Column(db.String(40))
     avg_user_rating = db.Column(db.Float)
     
     # ARRAY('String')

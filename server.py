@@ -68,7 +68,11 @@ def roaster_details_page(roaster_id):
     schedule = roaster.hours
     schedule = schedule.strip('{}').replace('"','').split(",")
 
-    avg_rating = crud.calculate_avg_rating(roaster_id)
+    avg_rating = roaster.avg_user_rating
+    if avg_rating == 0:
+        avg_rating = 'No reviews yet!'
+
+    # avg_rating = crud.calculate_avg_rating(roaster_id)
 
     photos = crud.create_photos(roaster.place_id)
     # photos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

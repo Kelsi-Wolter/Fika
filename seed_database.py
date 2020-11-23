@@ -7,6 +7,7 @@ from random import choice, randint
 import crud
 import model
 import server
+import places_data
 
 os.system('dropdb MNroasters')
 os.system('createdb MNroasters')
@@ -14,45 +15,52 @@ os.system('createdb MNroasters')
 model.connect_to_db(server.app)
 model.db.create_all()
 
+# Uses places_data to create json file and then reads the json file to create roaster_data - inefficient 
+# with open('data/newer_data.txt') as f:
+#     roaster_data = f.read()
 
-with open('data/new_data.json') as f:
-    roaster_data = json.loads(f.read())
+    # roaster_data = json.loads(f.read())
 
+
+# Uses places_data module to seed database instead of a json file
+roaster_data = places_data.create_details_dict()
 
 list_of_roasters = []
 for roaster in roaster_data:
 
-    name, address, phone_number, website, place_id = (roaster_data[roaster]['name'], 
+
+    name, address, phone_number, website, place_id, hours = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
                                                         roaster_data[roaster]['formatted_phone_number'],
                                                         roaster_data[roaster]['website'],
-                                                        roaster)
+                                                        roaster,
+                                                        roaster_data[roaster]['opening_hours'])
                                                         
-
-    hours = roaster_data[roaster]['opening_hours']
+    # Old code for formatting the opening hours 
+    # hours = roaster_data[roaster]['opening_hours']
     # Remove '\\u2013 from hours'
-    if hours != 'Unavailable':
-        stripped_hours = []
+    # if hours != 'Unavailable':
+    #     stripped_hours = []
 
-        # Loop through each string in 'hours' and split by space character, returns list of
-        # strings with day-name, time, and am/pm values, looks for \\u2013 and removes from list
-        for day in hours:
-            sections = (day.split(' '))
-            if "\\u2013" in sections:
-                sections.remove("\\u2013")
+    #     # Loop through each string in 'hours' and split by space character, returns list of
+    #     # strings with day-name, time, and am/pm values, looks for \\u2013 and removes from list
+    #     for day in hours:
+    #         sections = (day.split(' '))
+    #         if "\\u2013" in sections:
+    #             sections.remove("\\u2013")
 
-            # Joins strings with day-name, times and am/pm back into one long string, adds to
-            # new list of weekday hours
-            stripped_day = ' '.join(sections)
-            stripped_hours.append(stripped_day)
+    #         # Joins strings with day-name, times and am/pm back into one long string, adds to
+    #         # new list of weekday hours
+    #         stripped_day = ' '.join(sections)
+    #         stripped_hours.append(stripped_day)
 
-            hours = stripped_hours
+    #         hours = stripped_hours
     
     # images = crud.create_photos(place_id)
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    website=website, place_id=place_id, coffee_link=None, shipping_link=None, images=None, avg_user_rating=None)
+                    website=website, place_id=place_id, avg_user_rating=None)
 
     list_of_roasters.append(db_roaster)
 

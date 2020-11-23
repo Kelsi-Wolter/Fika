@@ -41,10 +41,10 @@ def get_user_by_id(user_id):
 
     
 
-def create_roaster(name, address, phone_number, hours, place_id, website, coffee_link, shipping_link, images, avg_user_rating):
+def create_roaster(name, address, phone_number, hours, place_id, website, avg_user_rating):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-    place_id=place_id, website=website, coffee_link=coffee_link, shipping_link=shipping_link, images=images, avg_user_rating=avg_user_rating)
+    place_id=place_id, website=website, avg_user_rating=avg_user_rating)
 
     db.session.add(roaster)
     db.session.commit()
@@ -79,7 +79,8 @@ def calculate_avg_rating(roaster_id):
     total_reviews = len(reviews)
     # If no reviews for roaster yet, return message
     if total_reviews == 0:
-        return f'No user reviews yet!'
+        roaster_avg = 0
+        # return f'No user reviews yet!'
 
     # Loop through the entry objects for each roaster and capture the score value, add up all scores
     # and then divide by the total number of entries to get average rating
