@@ -104,7 +104,7 @@ def get_roasters_by_rating(rating):
 
 
 def create_photos(roaster_place_ID):
-    gmaps = googlemaps.Client(KEY)
+    gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
     roaster_photos = []
     # for roaster in place_ids:
         # Sends request to API for specified fields on each roaster ID

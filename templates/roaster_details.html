@@ -23,10 +23,11 @@
     <div class="col-6">
   <h1> {{roaster.name }} </h1>
 
+  <p> Average User Rating: {{ avg_rating }} </p>
+
   <p> {{ roaster.address }} </p>
   <p> Phone: {{ roaster.phone_number }} </p>
   <p><a href="{{ roaster.website }}">{{ roaster.website }} </a> </p>
-  <p> Average User Rating: {{ avg_rating }} </p>
   <p>Daily Hours:</p>
     {% for day in schedule %}
     <p>{{ day }}</p>
@@ -54,9 +55,9 @@
             <div class="carousel-item active">
               <img src="../static/img/Fika-Logo.jpg" class="d-block w-100" alt="...">
             </div>
-            {% for num in photos %}
+            {% for image in photos %}
             <div class="carousel-item" data-interval="4000">
-                <img src="../static/img/roaster_id=1/photo_{{ num }}.jpg" class="d-block w-100" alt="...">
+                <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
             </div>
             {% endfor %}
 
@@ -79,8 +80,14 @@
 
 
 
-<!-- {% for image in photos %}
-<div class="carousel-item" data-interval="4000">
-    <img src="https://maps.googleapis.com/maps/api/place/photo?key=API_KEY&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
-</div>
-{% endfor %} -->
+
+
+  <!-- Loops through photos in file, if I was storing photos for each roaster, 
+  could make roaster_id number a variable and match the current roaster ID for the page, currently
+  defaulted to roaster ID #1 -->
+  
+  <!-- {% for num in photos %}
+  <div class="carousel-item" data-interval="4000">
+      <img src="../static/img/roaster_id=1/photo_{{ num }}.jpg" class="d-block w-100" alt="...">
+  </div>
+  {% endfor %} -->

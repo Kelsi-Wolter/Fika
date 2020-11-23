@@ -70,8 +70,8 @@ def roaster_details_page(roaster_id):
 
     avg_rating = crud.calculate_avg_rating(roaster_id)
 
-    # photos = crud.create_photos(roaster.place_id)
-    photos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    photos = crud.create_photos(roaster.place_id)
+    # photos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating, photos=photos)
 
