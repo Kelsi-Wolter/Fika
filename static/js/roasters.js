@@ -183,7 +183,7 @@ $('.rating-filter-submit').on('click', (evt) => {
 
 //     const photo = $(evt.target).attr('id');
     
-//     $.get('https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference=' + photo, (res) => {
+//     $.get('https://maps.googleapis.com/maps/api/place/photo?key=API_KEY&maxwidth=800&photoreference=' + photo, (res) => {
 //         $().html(res);
 //     });
 // })

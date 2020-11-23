@@ -29,7 +29,7 @@
     {% for roaster in roasters %}
 
       <div class="card m-2 text-center border-dark" style="width: 18rem;">
-        <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ roaster.image }}" class="card-img-top" alt="...">
+        <img src="../static/img/Title_photos/{{ roaster.place_id }}_title_photo.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ roaster.name }}</h5>
           <p> {{roaster.address }} </p>

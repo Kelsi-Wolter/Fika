@@ -52,11 +52,11 @@
         <div id="roaster-photos" class="carousel slide m-5" data-ride="carousel" data-pause="hover">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://www.roosterbrother.com/wp-content/uploads/2017/06/coffee-product-photo.jpg" class="d-block w-100" alt="...">
+              <img src="../static/img/Fika-Logo.jpg" class="d-block w-100" alt="...">
             </div>
-            {% for image in photos %}
+            {% for num in photos %}
             <div class="carousel-item" data-interval="4000">
-                <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
+                <img src="../static/img/roaster_id=1/photo_{{ num }}.jpg" class="d-block w-100" alt="...">
             </div>
             {% endfor %}
 
@@ -76,3 +76,11 @@
   </div>
 
 {% endblock %}
+
+
+
+<!-- {% for image in photos %}
+<div class="carousel-item" data-interval="4000">
+    <img src="https://maps.googleapis.com/maps/api/place/photo?key=API_KEY&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
+</div>
+{% endfor %} -->

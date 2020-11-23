@@ -34,10 +34,11 @@ def roaster_directory():
     # else:
     all_the_roasters = crud.return_all_roasters()  
     
-    for roaster in all_the_roasters:
-        photos = crud.create_photos(roaster.place_id)
-        title_photo = photos[0]
-        setattr(roaster, 'image', title_photo)
+    # Gets title photo using API call in front end, no longer using
+    # for roaster in all_the_roasters:
+    #     photos = crud.create_photos(roaster.place_id)
+    #     title_photo = photos[0]
+    #     setattr(roaster, 'image', title_photo)
 
     return render_template('roaster_directory.html', roasters=all_the_roasters)
 
@@ -49,10 +50,11 @@ def filter_roasters():
     input = int(input)
     all_the_roasters = crud.get_roasters_by_rating(rating=input)
 
-    for roaster in all_the_roasters:
-        photos = crud.create_photos(roaster.place_id)
-        title_photo = photos[0]
-        setattr(roaster, 'image', title_photo)
+    # Get title photo w/API call in front-end, no longer using
+    # for roaster in all_the_roasters:
+    #     photos = crud.create_photos(roaster.place_id)
+    #     title_photo = photos[0]
+    #     setattr(roaster, 'image', title_photo)
 
     return render_template('filtered_roasters.html', roasters=all_the_roasters)
 
@@ -68,7 +70,8 @@ def roaster_details_page(roaster_id):
 
     avg_rating = crud.calculate_avg_rating(roaster_id)
 
-    photos = crud.create_photos(roaster.place_id)
+    # photos = crud.create_photos(roaster.place_id)
+    photos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating, photos=photos)
 
