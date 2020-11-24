@@ -3,12 +3,19 @@
 {% block title %}Roaster Directory{% endblock %}
 
 
-{% block head %}Nav Bar{% endblock %}
+{% block head %}
+<style>
+  body {
+    background-image: none;
+    background-color: whitesmoke;
+  }
+</style>
+{% endblock %}
 
 {% block body %}
 <h1>Minnesota Roasters Directory</h1>
 
-<div class="container">
+<div class="container text-center">
 
   <div class="row m-5">
     <button class="btn btn-primary" id="filter-button">Filter</button>
@@ -22,7 +29,7 @@
 
 
 
-</div>
+
 
   <div class="row direct" >
 
@@ -40,7 +47,7 @@
     {% endfor %}
   </div>
 
-
+</div>
 
 
 
