@@ -41,10 +41,10 @@ def get_user_by_id(user_id):
 
     
 
-def create_roaster(name, address, phone_number, hours, place_id, website, avg_user_rating):
+def create_roaster(name, address, phone_number, hours, place_id, website, avg_user_rating, lat, lng):
 
     roaster = Roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-    place_id=place_id, website=website, avg_user_rating=avg_user_rating)
+    place_id=place_id, website=website, avg_user_rating=avg_user_rating, lat=lat, lng=lng)
 
     db.session.add(roaster)
     db.session.commit()
@@ -117,7 +117,7 @@ def create_photos(roaster_place_ID):
         photos = response['result']['photos']
         # photos_dict[roaster] = []
 
-        for photo in photos:
+        for photo in photos[1::]:
             roaster_photos.append(photo['photo_reference'])
     
     return roaster_photos

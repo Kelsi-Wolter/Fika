@@ -30,12 +30,14 @@ for roaster in roaster_data:
     print(roaster)
 
 
-    name, address, phone_number, website, place_id, hours = (roaster_data[roaster]['name'], 
+    name, address, phone_number, website, place_id, hours, lat, lng = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
                                                         roaster_data[roaster]['formatted_phone_number'],
                                                         roaster_data[roaster]['website'],
                                                         roaster,
-                                                        roaster_data[roaster]['opening_hours'])
+                                                        roaster_data[roaster]['opening_hours'],
+                                                        roaster_data[roaster]['geometry']['lat'],
+                                                        roaster_data[roaster]['geometry']['lng'])
                                                         
     # Old code for formatting the opening hours 
     # hours = roaster_data[roaster]['opening_hours']
@@ -61,7 +63,7 @@ for roaster in roaster_data:
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
-                    website=website, place_id=place_id, avg_user_rating=None)
+                    website=website, place_id=place_id, avg_user_rating=None, lat=lat, lng=lng)
 
     list_of_roasters.append(db_roaster)
 

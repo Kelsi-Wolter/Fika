@@ -1,21 +1,40 @@
 {% extends 'base.html' %}
 {% block title %} *FIKA* {% endblock %}
 {% block head %}
-<style>
+<!-- <style>
   body {
     background: url(../static/img/nathan-dumlao-KixfBEdyp64-unsplash.jpg) no-repeat;
     background-size: cover;
+  }
+</style> -->
+
+<style>
+  .navbar {
+    display: none;
+
   }
 </style>
 
 {% endblock %}
 
 {% block body %}
-  <div id="page" class="container text-center">
+<div id="page" class="container text-center">
+  <br>
+  <br>
+<div class="row">
+  <div class="col-12">
+  <video autoplay loop playsinline muted> 
+    <source src="../static/img/Fika Logo.mp4" type="video/mp4">
+    </video>
+</div>
+</div>
+
+
     <div class="row">
       <div class="col-12 m-2">
         <h1>Support Minnesota's Small Batch Coffee Roasters</h1>
         <h3>Great coffee from local Minnesotan coffee roasters? You Betcha!</h3>
+        <br>
       </div>
     </div>
 
@@ -34,7 +53,10 @@
       <div class="col-4">
         <p class="btn btn-light"> <a class="btn" href="/create_account">Create An Account With Us!</a></p>
       </div>
+      <br>
     </div>
+    <br>
+    <br>
 
     
   </div>

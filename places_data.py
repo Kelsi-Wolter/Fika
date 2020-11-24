@@ -13,34 +13,34 @@ gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
 
 # List of coffee roaster place IDs
 place_ids = [
-                # 'ChIJx0Pj78UE9ocR0RGv_kVzK0s',
-                # 'ChIJWcfLCviI9YcR5jiT1hbJK3U', 
-                # 'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
-                # 'ChIJAbkBsJkts1IRNj7L1NnbGUg',
-                # 'ChIJr2WxIeIzs1IRP_yfK1DjOoE',
-                # 'ChIJ0cRRS0kts1IRIPm_KaYaRSM',
-                # 'ChIJIboB_Doo9ocRrDBso-gIF8k',
-                # 'ChIJSbDcfhjV94cRNK4i7Fef_7Y',
-                # 'ChIJtQFIcrwss1IR2d6g5J5goMY',
-                # 'ChIJVctrQLk_s1IRjejI4TuiLGA',
-                # 'ChIJb0hUeqots1IRBdpaXkAoTt8',
-                # 'ChIJAdmh1Jkts1IRsjkOVAe3S3U',
-                # 'ChIJG7xp558ts1IRLe7pAThX3ug',
-                # 'ChIJIbgloXbU94cRux5kDChUAgI',
-                # 'ChIJY8w2QUUm9ocR8ppRfDgUX_0',
-                # 'ChIJ_4onGLgss1IRwrDvJj4dpCg',
-                # 'ChIJ8SdsjT4r9ocRe-oreXwEBEU',
+                'ChIJx0Pj78UE9ocR0RGv_kVzK0s',
+                'ChIJWcfLCviI9YcR5jiT1hbJK3U', 
+                'ChIJV67Si5Mn9ocRX7c1aeh0Fpc',
+                'ChIJAbkBsJkts1IRNj7L1NnbGUg',
+                'ChIJr2WxIeIzs1IRP_yfK1DjOoE',
+                'ChIJ0cRRS0kts1IRIPm_KaYaRSM',
+                'ChIJIboB_Doo9ocRrDBso-gIF8k',
+                'ChIJSbDcfhjV94cRNK4i7Fef_7Y',
+                'ChIJtQFIcrwss1IR2d6g5J5goMY',
+                'ChIJVctrQLk_s1IRjejI4TuiLGA',
+                'ChIJb0hUeqots1IRBdpaXkAoTt8',
+                'ChIJAdmh1Jkts1IRsjkOVAe3S3U',
+                'ChIJG7xp558ts1IRLe7pAThX3ug',
+                'ChIJIbgloXbU94cRux5kDChUAgI',
+                'ChIJY8w2QUUm9ocR8ppRfDgUX_0',
+                'ChIJ_4onGLgss1IRwrDvJj4dpCg',
+                'ChIJ8SdsjT4r9ocRe-oreXwEBEU',
                 
     
-                # 'ChIJAQDAwtZSrlIRBDSDAdzoufI',
-                # 'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
-                # 'ChIJ0bMRkRvCtlIRmD_SooEJq4c',
+                'ChIJAQDAwtZSrlIRBDSDAdzoufI',
+                'ChIJO3rqvldNrlIRdN8X7uCSi8Y',
+                'ChIJ0bMRkRvCtlIRmD_SooEJq4c',
 
-                # 'ChIJoY8dD3Vf94cRMo1AFxzMuhM',
-                # 'ChIJ6yZ38_07sVIR9jB4sdR80B8',
-                # 'ChIJl-9eENstuFIRMEU1LLE6Upc',
+                'ChIJoY8dD3Vf94cRMo1AFxzMuhM',
+                'ChIJ6yZ38_07sVIR9jB4sdR80B8',
+                'ChIJl-9eENstuFIRMEU1LLE6Upc',
                 'ChIJ686CRCktuFIRH87e8Ki0kYo',
-                # 'ChIJV7ZjmE0OuFIRKQognbDKbkI',
+                'ChIJV7ZjmE0OuFIRKQognbDKbkI',
                 'ChIJIedYFk89tlIRZs5lpVFENnM',
                 'ChIJ-_TuMC90yVIRVMUotEblBnw',
                 'ChIJ7WFSiIo9v1IRskGfX8wA7Ms',
@@ -49,10 +49,10 @@ place_ids = [
                 'ChIJa44iG8FT9ocRraV6DN3avYA',
                 'ChIJze6FQkBB94cRIYDIRIp4Yy8',
                 'ChIJ8x5O0gdt-YcR9ghTbtkhVkI',
-                # # 'ChIJVYUOBnPf-4cRFWtVxT1CkqcPf',
+                # 'ChIJVYUOBnPf-4cRFWtVxT1CkqcPf', causes error with google request
                 'ChIJ4cbScHl_9ocRQnga1z8gRr8',
                 'ChIJC19CVHJ_84cRCR05pa3bC1E',
-                # 'ChIJMVt08CBe94cRTfmaGme8sHw',
+                'ChIJMVt08CBe94cRTfmaGme8sHw',
                 'ChIJU5IDRlahtFIRT3e9Y1zWgiQ',
                 'ChIJhxR7xdZSrlIRrqiRSNu1RFc']
 
@@ -70,9 +70,10 @@ def create_details_dict():
         by API'''
         
     for roaster in place_ids:
+
     
         # Sends request to API for specified fields on each roaster ID
-        response = gmaps.place(roaster, fields=['name', 'website', 'formatted_address', 'formatted_phone_number', 'opening_hours'])
+        response = gmaps.place(roaster, fields=['name', 'website', 'formatted_address', 'formatted_phone_number', 'opening_hours', 'geometry'])
 
                                                                 
         # Keys into response "result" key to use as values for each roaster ID key
@@ -105,6 +106,14 @@ def create_details_dict():
             hours = place_details_dict[roaster]['opening_hours']['weekday_text']
 
             place_details_dict[roaster]['opening_hours'] = hours
+
+        # Lat/Long, also keys into lat/long from 'geometry'
+        if place_details_dict[roaster].get('geometry') is None:
+            place_details_dict[roaster]['geometry'] = 'Unavailable'
+        else:
+            location = place_details_dict[roaster]['geometry']['location']
+            place_details_dict[roaster]['geometry'] = location
+
 
     return place_details_dict
 

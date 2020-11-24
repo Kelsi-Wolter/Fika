@@ -29,10 +29,10 @@
   // Initialize and add the map
   function initMap() {
     // The location of Uluru
-    const uluru = { lat: -25.344, lng: 131.036 };
+    const uluru = { lat: {{ roaster.lat }}, lng: {{ roaster.lng }} };
     // The map, centered at Uluru
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
+      zoom: 12,
       center: uluru,
     });
     // The marker, positioned at Uluru
@@ -51,15 +51,16 @@
     <div class="col-6">
   <h1> {{roaster.name }} </h1>
 
-  <p> Average User Rating: {{ avg_rating }} </p>
+  <h4> Average User Rating: {{ avg_rating }} </h4>
+  <br>
   <div id="map"></div>
   <p> {{ roaster.address }} </p>
   <p> Phone: {{ roaster.phone_number }} </p>
-  <p><a href="{{ roaster.website }}">{{ roaster.website }} </a> </p>
-  <p>Daily Hours:</p>
-    {% for day in schedule %}
+  <p><a href="{{ roaster.website }}"> Visit Website </a> </p>
+  <!-- <p>Daily Hours:</p> -->
+    <!-- {% for day in schedule %}
     <p>{{ day }}</p>
-    {% endfor %}
+    {% endfor %} -->
 
     {% if session['user'] %}
 <button class="btn add-fav btn-dark" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
@@ -67,24 +68,14 @@
     {% endif %}
   </div>
 
-    <!-- photos -->
-    <!-- <div>
-      {% for image in photos %}
-      <div class="container">
-
-      <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=600&photoreference={{ image }}" id="roaster-imgs"></img>
-      </div>
-      {% endfor %}
-    </div> -->
-
     <div class="col-6">
         <div id="roaster-photos" class="carousel slide m-5" data-ride="carousel" data-pause="hover">
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="../static/img/Fika-Logo.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-item active" data-interval="3000">
+              <img src="../static/img/Title_photos/{{ roaster.place_id }}_title_photo.jpg" class="d-block w-100" alt="...">
             </div>
             {% for image in photos %}
-            <div class="carousel-item" data-interval="4000">
+            <div class="carousel-item" data-interval="3000">
                 <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
             </div>
             {% endfor %}

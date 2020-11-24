@@ -48,6 +48,8 @@ class Roaster(db.Model):
     website = db.Column(db.String(100))
     place_id = db.Column(db.String(50))
     avg_user_rating = db.Column(db.Float)
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
     
     # ARRAY('String')
 
