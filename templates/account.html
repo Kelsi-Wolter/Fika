@@ -4,19 +4,22 @@
 {% block body %}
   <h1>Welcome Back {{ user.first_name }} {{ user.last_name }}!</h1>
 
+<div class="container">
+  <div class="row">
 
-  <div class="card favs" style="width: 50%;">
-    <div class="card-header">
-      <h3 class="card-title">{{ list1.list_name }}</h3>
-    </div>
+    <div class="col-6">
+      <div class="card favs" style="width: 100%;">
+        <div class="card-header">
+          <h3 class="card-title">{{ list1.list_name }}</h3>
+        </div>
     
       {% if list1_entries != "This list is empty!" %}
         {% for entry in list1_entries %}
           <ul class="list-group list-group-flush favs"> <h5 class="card-title">{{ entry.roaster.name }}</h6></ul>
-          <li class="list-group-item favs">Rating: {{ entry.score }}</li>
-          <li class="list-group-item favs">Review: {{ entry.note }}</li>
-          <button type="button" class="edit-fav-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
-          <button class="edit-fav-buttons delete btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
+            <li class="list-group-item favs">Rating: {{ entry.score }}</li>
+            <li class="list-group-item favs">Review: {{ entry.note }}</li>
+            <button type="button" class="edit-fav-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
+            <button class="edit-fav-buttons delete btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
             {% if entry.score == None %}
               <button class="edit-fav-buttons edit-rating btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
               <form>
@@ -39,74 +42,77 @@
               </form>
               <button class="btn btn-primary {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
             {% endif %}
-      {% endfor %}
-      
-      
-      </ul>
-    <div class="card-body">
-      <button type="button" class="edit-fav btn btn-primary m-3" id="{{ list1.list_id }}" >Edit List</button>
-      
-    </div>
-    {% endif %}
-      {% if list1_entries == "This list is empty!" %}
-      <div class="card-body">
-        <p class="card-text">This list is empty!</p>
-      </div>
-          
-      {% endif %}
-  </div>
-
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2>My Lists</h2>
-      </div>
-    </div>
-
-    <div class="row"> 
-      <div class="col-6 m-2">
-        <h3> {{ list1.list_name }}: </h3>
-
-        {% if list1_entries != "This list is empty!" %}
-        {% for entry in list1_entries %}
-          <li> {{ entry.roaster.name }} - Rating: {{ entry.score }} Review: {{ entry.note }}</li>
-          <button class="edit-fav-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
-          <button class="edit-fav-buttons delete btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
-            {% if entry.score == None %}
-              <button class="edit-fav-buttons edit-rating btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
-              <form>
-              <input type="radio" name="new-rating" value="1" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">1</label>
-              <input type="radio" name="new-rating" value="2" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">2</label>
-              <input type="radio" name="new-rating" value="3" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">3</label>
-              <input type="radio" name="new-rating" value="4" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">4</label>
-              <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
-              <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
-              </form>
-              <button type="button" class="btn btn-primary rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
-            {% endif %}
-            {% if entry.note == None %}
-              <button class="btn btn-primary edit-fav-buttons edit-note m-1" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
-              <form>
-              <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
-              <textarea name="entry-note" class="{{ entry.entry_id }} note text" style="display: none">
-              </textarea>
-              <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
-              </form>
-              <button class="btn btn-primary {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
-            {% endif %}
+          </ul>
         {% endfor %}
-        <button type="button" class="edit-fav btn btn-primary m-3" id="{{ list1.list_id }}" >Edit List</button>
+      
+        <div class="card-body">
+          <button type="button" class="edit-fav btn btn-primary m-3" id="{{ list1.list_id }}" >Edit List</button>
+        </div>
       {% endif %}
-
       {% if list1_entries == "This list is empty!" %}
-          <p>This list is empty!</p>
+        <div class="card-body">
+          <p class="card-text">This list is empty!</p>
+        </div>
       {% endif %}
-      </div> <!-- column --> 
+      </div> <!-- card -->
+    </div> <!-- column -->
+
+    <div class="col-6">
+      <div class="card favs" style="width: 100%;">
+        <div class="card-header">
+          <h3 class="card-title">{{ list2.list_name }}</h3>
+        </div>
+    
+        {% if list2_entries != "This list is empty!" %}
+          {% for entry in list2_entries %}
+            <ul class="list-group list-group-flush favs"> <h5 class="card-title">{{ entry.roaster.name }}</h6></ul>
+              <li class="list-group-item favs">Rating: {{ entry.score }}</li>
+              <li class="list-group-item favs">Review: {{ entry.note }}</li>
+              <button type="button" class="edit-roaster-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Favorites List</button>
+              <button class="edit-roaster-buttons delete btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
+            {% if entry.score == None %}
+              <button class="edit-roaster-buttons edit-rating btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+              <form>
+              <input type="radio" name="new-rating" value="1" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">1</label>
+              <input type="radio" name="new-rating" value="2" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">2</label>
+              <input type="radio" name="new-rating" value="3" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">3</label>
+              <input type="radio" name="new-rating" value="4" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">4</label>
+              <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
+              <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+              </form>
+              <button type="button" class="btn btn-primary rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+            {% endif %}
+            {% if entry.note == None %}
+              <button class="btn btn-primary edit-roaster-buttons edit-note m-1" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+              <form>
+              <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
+              <textarea name="entry-note" class="{{ entry.entry_id }} note text" style="display: none">
+              </textarea>
+              <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+              </form>
+              <button class="btn btn-primary {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+            {% endif %}
+            </ul>
+          {% endfor %}
+          <div class="card-body">
+            <button type="button" class="edit-roasters btn btn-primary m-3" id="{{ list1.list_id }}">Edit List</button> 
+          </div>
+        {% endif %}
+        {% if list2_entries == "This list is empty!" %}
+          <div class="card-body">
+            <p class="card-text">This list is empty!</p>
+          </div> 
+        {% endif %}
+      </div> <!-- card -->
+    </div> <!-- column -->
+
+  </div> <!-- row -->
+</div> <!-- container -->
+
+{% endblock %}
 
 
+<!-- Old lists code, shows as unordered lists without card
       <div class="col-6 m-2">
         <h3> {{ list2.list_name }}: </h3>
 
@@ -151,13 +157,59 @@
       </a></button>
         {% endif %}
 
-      </div> <!-- column -->
-    </div> <!-- row -->
-  </div> <!-- container -->
-  
-
-{% endblock %}
+      </div> 
+    </div> 
+  </div> 
+   -->
 
 
 
 
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>My Lists</h2>
+    </div>
+  </div>
+
+  <div class="row"> 
+    <div class="col-6 m-2">
+      <h3> {{ list1.list_name }}: </h3>
+
+      {% if list1_entries != "This list is empty!" %}
+      {% for entry in list1_entries %}
+        <li> {{ entry.roaster.name }} - Rating: {{ entry.score }} Review: {{ entry.note }}</li>
+        <button class="edit-fav-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
+        <button class="edit-fav-buttons delete btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
+          {% if entry.score == None %}
+            <button class="edit-fav-buttons edit-rating btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+            <form>
+            <input type="radio" name="new-rating" value="1" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">1</label>
+            <input type="radio" name="new-rating" value="2" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">2</label>
+            <input type="radio" name="new-rating" value="3" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">3</label>
+            <input type="radio" name="new-rating" value="4" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">4</label>
+            <input type="radio" name="new-rating" value="5" class="rating {{ entry.entry_id }}" style="display: none"> <label class="rating {{ entry.entry_id }}" style="display: none">5</label>
+            <input type="submit" name="submit-new-rating" class="rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+            </form>
+            <button type="button" class="btn btn-primary rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+          {% endif %}
+          {% if entry.note == None %}
+            <button class="btn btn-primary edit-fav-buttons edit-note m-1" style="display: none" id="{{ entry.entry_id }}">Add Note</button>
+            <form>
+            <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
+            <textarea name="entry-note" class="{{ entry.entry_id }} note text" style="display: none">
+            </textarea>
+            <input type="submit" name="submit-new-note" class="submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+            </form>
+            <button class="btn btn-primary {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+          {% endif %}
+      {% endfor %}
+      <button type="button" class="edit-fav btn btn-primary m-3" id="{{ list1.list_id }}" >Edit List</button>
+    {% endif %}
+
+    {% if list1_entries == "This list is empty!" %}
+        <p>This list is empty!</p>
+    {% endif %}
+    </div>  -->
