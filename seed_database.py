@@ -27,6 +27,7 @@ roaster_data = places_data.create_details_dict()
 
 list_of_roasters = []
 for roaster in roaster_data:
+    print(roaster)
 
 
     name, address, phone_number, website, place_id, hours = (roaster_data[roaster]['name'], 
@@ -122,9 +123,3 @@ for roaster in list_of_roasters:
     
 
 
-
-
-
-
-
-# TODO: fix attributes for roasters (links, image, avg rating) and add additional lists for each user
