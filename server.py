@@ -19,7 +19,16 @@ app.secret_key = "kelsi's_project"
 def homepage():
     '''View Homepage'''
 
-    return render_template('homepage.html')
+    # Form for create account modal
+    new_user_form = NewUserForm()
+
+    fname = new_user_form.fname.data
+    lname = new_user_form.lname.data
+    email = new_user_form.email.data
+    pw = new_user_form.password.data
+
+
+    return render_template('homepage.html', form=new_user_form)
 
 # Roaster Routes
 @app.route('/roaster_directory')
@@ -152,9 +161,9 @@ def new_account_page():
             new_user = crud.create_user(fname, lname, email, pw)
             crud.create_list(list_name='My Favorites', user=new_user)
             crud.create_list(list_name='My Roasters', user=new_user)
+            session['user'] = new_user.user_id
+            return redirect(f'/account/{new_user.user_id}')
 
-            flash('Account created! Please log in.')
-            return redirect ('/login')
     else:
 
         return render_template('create_account.html', form=new_user_form)
@@ -260,23 +269,37 @@ def enter_entry_note():
 
 
 
+
+
+
+@app.route('/test', methods=["POST", "GET"])
+def testing():
+
+    form = LoginForm()
+
+    email = form.email.data
+    pw = form.password.data
+
+    
+    if form.validate_on_submit():
+        user = crud.get_user_by_email(email)
+        if user:
+            user_pw, user_id = crud.get_user_info(email)
+            if pw == user_pw:
+                session['user'] = user_id
+                return redirect(f'/account/{user_id}')
+            else:
+                flash('Incorrect password! Please try again.')
+        else:         
+            flash('Please create an account.')
+            return redirect('/create_account')
+
+
+    return render_template('test.html', form=form)
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
-
-
-# @app.route('/test', methods=["POST", "GET"])
-# def testing():
-
-#     roaster = crud.get_roaster_by_id(1)
-#     photos = crud.create_photos(roaster.place_id)
-#     title_photo = photos[0]
-
-#     img = https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference=
-
-#     setattr(roaster, 'image', title_photo)
-
-#     return render_template('test.html', roaster=roaster)
 
 # @app.route('/edit_score_entry', methods=["POST"])
 # def add_score_to_entry():

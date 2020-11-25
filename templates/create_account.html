@@ -2,30 +2,32 @@
 {% block title %}New Account{% endblock %}
 
 {% block body %}
-  <h1>Join the fun!</h1>
+<div class="container">
+  <div class="row">
+  <h1 class="mr-1">Discover Great Coffee</h1> 
+  <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cup" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8zM13 2H2v10.5A1.5 1.5 0 0 0 3.5 14h8a1.5 1.5 0 0 0 1.5-1.5V2z"/>
+  </svg>
+  </div>
 
-  <h2>Create an account by entering your details below</h2>
+  <div class="row">
+  <h2>Create an account and start exploring Minnesota's Best Coffees</h2>
+  </div>
 
+  <div class="row">
   <form action="/create_account" method="POST">
+    <div class="form-group">
     {{ form.csrf_token }}
     {{ form.fname(placeholder="First name") }}
     {{ form.lname(placeholder="Last name") }}
     {{ form.email(placeholder="Email") }}
     {{ form.password(placeholder="Password") }}
-    <!-- <p>First name:
-        <input type="text" name="fname_create">
-    </p>
-    <p>Last name:
-        <input type="text" name="lname_create">
-    </p>
-    <p> Email:
-      <input type="text" name="email_create">
-    </p>
-    <p>Password:
-      <input type="text" name="pw_create"> 
-    </p> -->
     <p>
         <input type="submit" value="Create Account">
     </p>
+  </div>
   </form>
+  </div>
+
+</div>
 {% endblock %}

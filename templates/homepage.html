@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 {% block title %} *FIKA* {% endblock %}
 {% block head %}
-<!-- <style>
-  body {
-    background: url(../static/img/nathan-dumlao-KixfBEdyp64-unsplash.jpg) no-repeat;
-    background-size: cover;
-  }
-</style> -->
 
 <style>
-  .navbar {
+  /* .navbar {
     display: none;
-
+  } */
+  /* .nav-link {
+    display: none;
+  } */
+  body {
+    background-color: rgb(174, 195, 176, 0.85);
   }
 </style>
 
@@ -29,6 +28,27 @@
 </div>
 
 
+   
+    <div class="row">
+
+      <div class="col-12">
+
+        <div class="d-flex justify-content-center">
+          <div class="btn home-buttons"><a class="btn" href="/roaster_directory">Explore Coffees</a></div>
+          <!-- {% if session['user'] %}
+          <div class="btn home-buttons"><a class="btn" href="/login">Login</a></div>
+          {% endif %} -->
+          <!-- {% if session.get('user') == None %} -->
+          <div class="btn home-buttons"><a class="btn" href="#createModal" data-toggle="modal">Create An Account</a></div>
+          <!-- {% endif %} -->
+          <div class="btn home-buttons"><a class="btn" href="/">Subscribe</a></div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
     <div class="row">
       <div class="col-12 m-2">
         <h1>Support Minnesota's Small Batch Coffee Roasters</h1>
@@ -39,27 +59,80 @@
     </div>
 
     
-    <div class="row m-2">
-      <div class="col-4 text-center">
-        <p class="btn btn-light"><a class="btn" href="/roaster_directory">Coffee Roasters</a></p>
-      </div>
-    <!-- </div>
-    <div class="row m-2 text-center"> -->
-      <div class="col-4">
-        <p class="btn btn-light"><a class="btn" href="/login">Login</a></p>
-      </div>
-    <!-- </div>
-    <div class="row m-2 text-center"> -->
-      <div class="col-4">
-        <p class="btn btn-light"> <a class="btn" href="/create_account">Create An Account</a></p>
-      </div>
-      <br>
-    </div>
-    <br>
-    <br>
-
-    
   </div>
 
+{% block after_body %}
+ <!-- Sign in modal -->
+<!-- <div class="modal" id="loginModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form class="form-signin" action='login' method="POST">
+              <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-cup" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8zM13 2H2v10.5A1.5 1.5 0 0 0 3.5 14h8a1.5 1.5 0 0 0 1.5-1.5V2z"/>
+              </svg>
+            <h1 class="h3 mb-3 font-weight-normal">Login to Account</h1>
+            {{ form.csrf_token }}
+            <label for="email" class="sr-only"></label>
+            {{ form.email(class_="form-control", placeholder="Email Address") }}
+            <label for="pasword" class="sr-only"></label>
+            {{ form.password(class_="form-control", placeholder="Password") }}
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn" type="submit">Login</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- Create an account modal -->
+<div class="modal" id="createModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Discover Great Minnesotan Coffee!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/create_account" method="POST">
+          {{ form.csrf_token }}
+          <div class="form-group">
+            <label for="fname">First Name</label>         
+            {{ form.fname(class="form-control", placeholder="First name") }}
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label> 
+            {{ form.lname(class="form-control", placeholder="Last name") }}
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label> 
+            {{ form.email(class="form-control", placeholder="Email") }}
+          </div>
+          <div class="form-group">
+            <label for="password">Create a Password</label> 
+            {{ form.password(class="form-control", placeholder="Password") }}
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn" type="submit">Create Account</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
 
 {% endblock %}
