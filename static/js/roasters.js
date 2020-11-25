@@ -174,6 +174,7 @@ $('.rating-filter-submit').on('click', (evt) => {
         $('.direct').html(res);
 
     });
+    $('.rating-filter').hide();
 });
 
 

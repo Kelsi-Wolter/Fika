@@ -11,14 +11,17 @@
 
 <div class="container text-center">
 
-  <div class="row m-5">
+  <div class="row">
+
     <button class="btn btn-primary" id="filter-button">Filter</button>
+    <div class="form-check form-check-inline">
     <form action="/roaster_directory">
-      <input type="radio" name="rating-filter" value="3" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">3+</label>
-      <input type="radio" name="rating-filter" value="4" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">4+</label>
-      <input type="radio" name="rating-filter" value="5" class="rating-filter" style="display: none"> <label class="rating-filter" style="display: none">5+</label>
-      <input type="submit" name="submit-rating-filter" class="rating-filter rating-filter-submit" id="" style="display: none" value="Apply">
+      <input type="radio" name="rating-filter" value="3" class="form-check-input rating-filter" style="display: none"> <label class="form-check-label rating-filter" style="display: none">3+</label>
+      <input type="radio" name="rating-filter" value="4" class="form-check-input rating-filter" style="display: none"> <label class="form-check-label rating-filter" style="display: none">4+</label>
+      <input type="radio" name="rating-filter" value="5" class="form-check-input rating-filter" style="display: none"> <label class="form-check-label rating-filter" style="display: none">5+</label>
+      <input type="submit" name="submit-rating-filter" class="btn btn-primary rating-filter rating-filter-submit" id="" style="display: none" value="Apply">
     </form>
+    </div>
   </div>
 
 
