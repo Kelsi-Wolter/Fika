@@ -106,7 +106,9 @@ $('.cancel-rating').on('click', (evt) => {
 // Update entry with rating value
 $('.submit-rating').on('click', (evt) => {
     evt.preventDefault();
-    const radioValue = $("input:checked").val();
+    // const radioValue = $("input:checked").val();
+    const radioValue = $('.rating-select').val();
+    console.log(radioValue)
     const entry = $(evt.target);
     const formData = {entry: entry.attr('id'), input: radioValue};
 

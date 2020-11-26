@@ -16,43 +16,45 @@
           <h3 class="card-title">{{ list1.list_name }}</h3>
         </div>
     
-      {% if list1_entries != "This list is empty!" %}
+        {% if list1_entries != "This list is empty!" %}
         {% for entry in list1_entries %}
-          <ul class="list-group list-group-flush favs"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h6>
-            <div class="d-inline justify-content-between">
-              
-            <li class="list-group-item favs">
-              <div class="flex-fill">Rating: {{ entry.score }}</div>
-              {% if entry.score == None %}
-              <div class="flex-fill">
-              <button class="edit-fav-buttons edit-rating btn m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
-                <div class="form-check form-check-inline">
-                  <input type="radio" name="new-rating" value="1" class="form-check-input rating {{ entry.entry_id }}" style="display: none"> <label class="form-check-label rating {{ entry.entry_id }}" style="display: none">1</label>
-                  <input type="radio" name="new-rating" value="2" class="form-check-input rating {{ entry.entry_id }}" style="display: none"> <label class="form-check-label rating {{ entry.entry_id }}" style="display: none">2</label>
-                  <input type="radio" name="new-rating" value="3" class="form-check-input rating {{ entry.entry_id }}" style="display: none"> <label class="form-check-label rating {{ entry.entry_id }}" style="display: none">3</label>
-                  <input type="radio" name="new-rating" value="4" class="form-check-input rating {{ entry.entry_id }}" style="display: none"> <label class="form-check-label rating {{ entry.entry_id }}" style="display: none">4</label>
-                  <input type="radio" name="new-rating" value="5" class="form-check-input rating {{ entry.entry_id }}" style="display: none"> <label class="form-check-label rating {{ entry.entry_id }}" style="display: none">5</label>
-                  <input type="submit" name="submit-new-rating" class="btn rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
-              
-                </div>
-              </div>  
-              <button type="button" class="btn rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
-            {% endif %}
+        <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h6>
+          <div class="d-inline">
+            <li class="list-group-item favs d-flex pr-1">
+              <div class="mr-auto">Rating: {{ entry.score }}</div>
+                {% if entry.score == None %}
+                <button class="edit-fav-buttons edit-rating btn" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+                  <div class="form-group rating {{ entry.entry_id }}" style="display: none">
+                    <select class="form-control rating rating-select {{ entry.entry_id }} my-2" id="{{ entry.entry_id }}">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    <input type="submit" name="submit-new-rating" class="btn rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+                    <button type="button" class="btn rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+                  </div>
+                {% endif %}
             </li>
           </div>
-            <li class="list-group-item favs">Review: {{ entry.note }}
-              {% if entry.note == None %}
-              <button class="btn edit-fav-buttons edit-note m-1" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
-              <div class="form-group">
-              <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
-              <textarea name="entry-note" class="form-control {{ entry.entry_id }} note text" style="display: none"></textarea>
-              <input type="submit" name="submit-new-note" class="btn btn-primary submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
-            </div>
-              <button class="btn {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+            <li class="list-group-item favs d-flex pr-1">
+              <div class="mr-auto">Review: {{ entry.note }}</div>
+                {% if entry.note == None %}
+                <button class="btn edit-fav-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
+                  <div class="form-group">
+                    <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
+                    <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"></textarea>
+                    <input type="submit" name="submit-new-note" class="btn submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
+                    <button class="btn {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
+              </div>
             {% endif %}
             </li>
-            <button type="button" class="edit-fav-buttons move btn btn-primary m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
-            <button class="edit-fav-buttons delete btn m-1" style="display: none" id="{{ entry.entry_id }}">Delete</button>
+            <div class="d-flex">
+              <button type="button" class="flex-fill edit-fav-buttons move btn m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
+              <button class="flex-fill edit-fav-buttons delete btn m-1" style="display: none" id="{{ entry.entry_id }}" >Delete</button>
+            </div>
+            
             <!-- {% if entry.score == None %}
               <button class="edit-fav-buttons edit-rating btn m-1" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
               
