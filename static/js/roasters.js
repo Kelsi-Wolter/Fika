@@ -168,7 +168,9 @@ $('#filter-button').on('click', (evt) => {
 // On submit of filter for rating, send input to server and adjust roasters in list to be displayed
 $('.rating-filter-submit').on('click', (evt) => {
     evt.preventDefault();
-    const input = $('input:checked').val();
+    // const input = $('input:checked').val();
+    const input = $('.rating-filter-input').val();
+    console.log(input);
 
     const data = {rating: input};
 
