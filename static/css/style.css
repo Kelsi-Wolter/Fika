@@ -1,0 +1,46 @@
+.lnk {
+    color: #EFF6E0;
+}
+
+body {
+    background-color: rgba(239, 246, 224, 0.5);
+}
+
+/* #page {
+    color: #01161E;
+    background-color: rgba(174, 195, 176);
+    height: 50%
+} */
+
+.btn {
+    background-color: #598392;
+    color: #01161E;
+    font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Belleza', sans-serif;
+}
+
+p, li, button {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.home-buttons {
+    width: 12em;
+    margin-left: 2em;
+    margin-right: 2em;
+    color: #01161E;
+    font-family: 'Open Sans', sans-serif;
+    font-size-adjust: inherit;
+}
+
+/* .favs {
+    background-color: rgba(18, 69, 89, 0.5);
+} */
+
+
+
+
+
+/* 
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" */
