@@ -52,15 +52,14 @@
     </nav>
 
 
+    <br>
+    <br>
+    <br>
     {% for msg in get_flashed_messages() %}
-    <p class="flash-msg">
+    <h3 class="flash-msg text-center">
       {{ msg }}
-    </p>
+    </h3>
     {% endfor %}
-
-    <br>
-    <br>
-    <br>
     
     {% block body %}{% endblock %}
     

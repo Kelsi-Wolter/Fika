@@ -7,7 +7,7 @@ $('.add-fav').on('click', (evt) =>{
     evt.preventDefault();
     const roaster = $(evt.target);
     const roaster_id = {roaster: roaster.attr('id')};
-    // console.log(roaster_id);
+    // console.log($('.add-fav').val()); could use to consolidate code and make routes/js for adding-to-list buttons into one
     $.get('/add_to_fav_list', roaster_id, (res) => {
         alert(res);
     });

@@ -34,6 +34,11 @@ p, li, button {
     font-size-adjust: inherit;
 }
 
+.flash-msg {
+    color: red;
+
+}
+
 /* .favs {
     background-color: rgba(18, 69, 89, 0.5);
 } */

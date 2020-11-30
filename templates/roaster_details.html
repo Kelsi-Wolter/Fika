@@ -53,7 +53,7 @@
     {% endfor %} -->
 
     {% if session['user'] %}
-<button class="btn add-fav btn-dark" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
+<button class="btn add-fav btn-dark" value="favorite" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
 <button class="btn btn-dark add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
     {% endif %}
   </div>

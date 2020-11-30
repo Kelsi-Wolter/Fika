@@ -100,25 +100,28 @@ def calculate_avg_rating(roaster_id):
 
         return roaster_avg
 
-
 def get_roasters_by_rating(rating):
+    '''Returns list of roaster objects meeting rating criteria'''
+
     roasters = Roaster.query.filter(Roaster.avg_user_rating>=rating).all()
     return roasters
 
-
 def create_photos(roaster_place_ID):
+    '''Makes request to API for photo references, which can be used to make
+    photo call in front-end'''
+
+    # Sends request to API for place details response for specified roaster place ID
     gmaps = googlemaps.Client('AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI')
     roaster_photos = []
-    # for roaster in place_ids:
-        # Sends request to API for specified fields on each roaster ID
     response = gmaps.place(roaster_place_ID, fields=['photo'])
-    # Keys into response "result" key to use as values for each roaster ID key
+    
+    # Determines if response contains any photo information for roaster
     if response['result'].get('photos') is None:
         roaster_photos = 'Unavailable'
+    # Keys into photo details response and creates list of photo reference ID's 
+    # for roaster, returns list
     else:
         photos = response['result']['photos']
-        # photos_dict[roaster] = []
-
         for photo in photos[1::]:
             roaster_photos.append(photo['photo_reference'])
     

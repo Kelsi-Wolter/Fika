@@ -107,10 +107,16 @@ class LoginForm(FlaskForm):
     email = StringField('email')
     password = PasswordField('password')
 
+class NewUserForm(FlaskForm):
+    fname = StringField('first')
+    lname = StringField('last')
+    email = StringField('email')
+    password = PasswordField('password')
+
 
 '''Copied from model.py in ratings app that connects to the database'''
 
-def connect_to_db(flask_app, db_uri='postgresql:///MNroasters', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///MNroasters', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
