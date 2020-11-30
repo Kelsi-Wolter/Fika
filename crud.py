@@ -12,6 +12,8 @@ if __name__ == '__main__':
 
 #Functions
 
+''' User Functions '''
+
 def create_user(first_name, last_name, email, password):
 
     user = User(first_name=first_name, last_name=last_name, email=email, password=password)
@@ -39,7 +41,7 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-    
+''' Roaster Functions '''    
 
 def create_roaster(name, address, phone_number, hours, place_id, website, avg_user_rating, lat, lng):
 
@@ -123,6 +125,8 @@ def create_photos(roaster_place_ID):
     return roaster_photos
 
 
+''' List Functions '''
+
 def create_list(list_name, user):
 
     new_list = List(list_name=list_name, user=user)
@@ -150,6 +154,8 @@ def get_list_by_name(user_id, name):
 def get_list_by_list_id(list_id):
     return List.query.filter_by(list_id=list_id).one()
 
+
+''' Entry Functions '''
 
 def create_entry(entry_list, roaster, score, note):
 

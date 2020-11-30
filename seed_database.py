@@ -15,20 +15,13 @@ os.system('createdb MNroasters')
 model.connect_to_db(server.app)
 model.db.create_all()
 
-# Uses places_data to create json file and then reads the json file to create roaster_data - inefficient 
-# with open('data/newer_data.txt') as f:
-#     roaster_data = f.read()
 
-    # roaster_data = json.loads(f.read())
-
-
+    '''Create Roasters table'''
 # Uses places_data module to seed database instead of a json file
 roaster_data = places_data.create_details_dict()
 
 list_of_roasters = []
 for roaster in roaster_data:
-    print(roaster)
-
 
     name, address, phone_number, website, place_id, hours, lat, lng = (roaster_data[roaster]['name'], 
                                                         roaster_data[roaster]['formatted_address'],
@@ -39,27 +32,7 @@ for roaster in roaster_data:
                                                         roaster_data[roaster]['geometry']['lat'],
                                                         roaster_data[roaster]['geometry']['lng'])
                                                         
-    # Old code for formatting the opening hours 
-    # hours = roaster_data[roaster]['opening_hours']
-    # Remove '\\u2013 from hours'
-    # if hours != 'Unavailable':
-    #     stripped_hours = []
 
-    #     # Loop through each string in 'hours' and split by space character, returns list of
-    #     # strings with day-name, time, and am/pm values, looks for \\u2013 and removes from list
-    #     for day in hours:
-    #         sections = (day.split(' '))
-    #         if "\\u2013" in sections:
-    #             sections.remove("\\u2013")
-
-    #         # Joins strings with day-name, times and am/pm back into one long string, adds to
-    #         # new list of weekday hours
-    #         stripped_day = ' '.join(sections)
-    #         stripped_hours.append(stripped_day)
-
-    #         hours = stripped_hours
-    
-    # images = crud.create_photos(place_id)
 
                                                       
     db_roaster = crud.create_roaster(name=name, address=address, phone_number=phone_number, hours=hours,
@@ -68,7 +41,7 @@ for roaster in roaster_data:
     list_of_roasters.append(db_roaster)
 
 
-
+    '''Create fake users'''
 list_of_users = []
 
 # Create 10 users; 
@@ -82,7 +55,8 @@ for n in range(10):
 
     list_of_users.append(user)
 
-#Create Favorites and Roasters list for each user
+
+    '''Create "favorite" and "roasters" lists for each user'''
 for user in list_of_users:
    
     db_list1 = crud.create_list(list_name='My Favorites', user=user)
@@ -90,6 +64,8 @@ for user in list_of_users:
     
     rated_roasters = []
     
+
+    '''Create 4 entries for roasters list and 1 entry for favorites list, for each user'''
     # Create 4 entries for 'My Roasters' list
     for n in range(4):
         
@@ -118,6 +94,9 @@ for user in list_of_users:
     for roaster in rated_roasters:
         list_of_roasters.append(roaster)
 
+    # list_of_roasters = list_of_roasters.extend(rated_roasters)
+
+    '''Add average user rating based on fake users and generated ratings'''
 for roaster in list_of_roasters:
     roaster_id = roaster.roaster_id
     avg_rating = crud.calculate_avg_rating(roaster_id)

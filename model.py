@@ -51,8 +51,6 @@ class Roaster(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
     
-    # ARRAY('String')
-
     def __repr__(self):
         return f'<Roaster roaster_ID={self.roaster_id} name={self.name}>'
 
@@ -60,7 +58,9 @@ class Roaster(db.Model):
 
 
 class List(db.Model):
-    '''List built by user to keep track of roasters'''
+    '''List for user to add entries to
+    
+    Consider creating sub-class for each type of list'''
 
     __tablename__ = 'lists'
 
@@ -80,7 +80,7 @@ class List(db.Model):
 
 
 class Entry(db.Model):
-    '''Entry onto list (includes rating for roaster)'''
+    '''Entry onto list (includes rating and review for roaster)'''
 
     __tablename__ = 'entries'
 
@@ -102,22 +102,17 @@ class Entry(db.Model):
 
 
 class LoginForm(FlaskForm):
+    '''Flask-WTForms class for logging in user'''
+
     email = StringField('email')
     password = PasswordField('password')
-
-class NewUserForm(FlaskForm):
-    fname = StringField('first')
-    lname = StringField('last')
-    email = StringField('email')
-    password = PasswordField('password')
-
 
 
 '''Copied from model.py in ratings app that connects to the database'''
 
 def connect_to_db(flask_app, db_uri='postgresql:///MNroasters', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
-    #flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.app = flask_app
