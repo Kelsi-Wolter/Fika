@@ -85,7 +85,7 @@ $('.delete').on('click', (evt) => {
     location.reload(true);
 });
 
-// Show radio buttons with rating options when Add rating button is clicked
+// Show drop-down with rating options when Add/Edit rating button is clicked
 $('.edit-rating').on('click', (evt) => {
     evt.preventDefault();
     const entry = $(evt.target);
@@ -107,10 +107,12 @@ $('.cancel-rating').on('click', (evt) => {
 $('.submit-rating').on('click', (evt) => {
     evt.preventDefault();
     // const radioValue = $("input:checked").val();
-    const radioValue = $('.rating-select').val();
-    console.log(radioValue)
+
     const entry = $(evt.target);
-    const formData = {entry: entry.attr('id'), input: radioValue};
+    const entry_id = entry.attr('id')
+    const radioValue = $('.rating-select' + '.' + entry_id).val();
+    // console.log(radioValue)
+    const formData = {entry: entry_id, input: radioValue};
 
     
     $.post('/add_entry_rating', formData, (res) => {
@@ -129,6 +131,7 @@ $('.edit-note').on('click', (evt) => {
     const entry_id = entry.attr('id');
     $('.' + entry_id + '.note').show();
     $('#' + entry_id + '.edit-note').hide();
+    $('#entry-review' + '.' + entry_id).hide();
 
 });
 
@@ -140,13 +143,14 @@ $('.cancel-note').on('click', (evt) => {
     const entry_id = entry.attr('id');
     $('.' + entry_id + '.note').hide();
     $('#' + entry_id + '.edit-note').show();
+    $('#entry-review' + '.' + entry_id).show();
 });
 
 // Update entry with note value
 $('.submit-note').on('click', (evt) => {
     evt.preventDefault();
     const entry = $(evt.target);
-    const entry_id = entry.attr('id')
+    const entry_id = entry.attr('id');
     const inputText = $('.note' + '.' + entry_id + '.text').val();
     const formData = {entry: entry_id, input: inputText};
 
@@ -154,6 +158,7 @@ $('.submit-note').on('click', (evt) => {
         alert(res);
 
     });
+    $('#entry-review' + '.' + entry_id).hide();
     location.reload(true);
     
 });
@@ -170,8 +175,7 @@ $('.rating-filter-submit').on('click', (evt) => {
     evt.preventDefault();
     // const input = $('input:checked').val();
     const input = $('.rating-filter-input').val();
-    console.log(input);
-
+    // console.log(input);
     const data = {rating: input};
 
     $.get('/filter', data, (res) => {

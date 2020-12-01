@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Account Homepage{% endblock %}
 
+{% block head %}{% endblock %}
+
 {% block body %}
   
 
@@ -18,37 +20,45 @@
     
         {% if list1_entries != "This list is empty!" %}
         {% for entry in list1_entries %}
-        <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h6>
+        <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h5>
           <div class="d-inline">
             <li class="list-group-item favs d-flex pr-1">
-              <div class="mr-auto">Rating: {{ entry.score }}</div>
+              <div class="mr-auto">Rating: {{ entry.score }} 
                 {% if entry.score == None %}
+              </div>
                 <button class="edit-fav-buttons edit-rating btn" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+                {% else %}
+                <i class="fas fa-star"></i></div>
+                <button class="edit-fav-buttons edit-rating btn" style="display: none" id="{{ entry.entry_id }}">Edit Rating</button>
+                {% endif %}
                   <div class="form-group rating {{ entry.entry_id }}" style="display: none">
                     <select class="form-control rating rating-select {{ entry.entry_id }} my-2" id="{{ entry.entry_id }}">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
                     </select>
                     <input type="submit" name="submit-new-rating" class="btn rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
                     <button type="button" class="btn rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
                   </div>
-                {% endif %}
+                
             </li>
           </div>
             <li class="list-group-item favs d-flex pr-1">
-              <div class="mr-auto">Review: {{ entry.note }}</div>
+              <div class="mr-auto"> Review: <div class="{{ entry.entry_id }} my-2" id="entry-review">{{ entry.note }}</div></div>
                 {% if entry.note == None %}
                 <button class="btn edit-fav-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
+                {% else %}
+                <button class="btn edit-fav-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Edit Review</button>
+                {% endif %}
                   <div class="form-group">
-                    <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
-                    <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"></textarea>
+                    <!-- <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label> -->
+                    <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"> {{ entry.note }} </textarea>
                     <input type="submit" name="submit-new-note" class="btn submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
                     <button class="btn {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
               </div>
-            {% endif %}
+                
             </li>
             <div class="d-flex">
               <button type="button" class="flex-fill edit-fav-buttons move btn m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
@@ -83,9 +93,14 @@
         <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h6>
           <div class="d-inline">
             <li class="list-group-item favs d-flex pr-1">
-              <div class="mr-auto">Rating: {{ entry.score }}</div>
+              <div class="mr-auto">Rating: {{ entry.score }}
                 {% if entry.score == None %}
+              </div>
                 <button class="edit-roaster-buttons edit-rating btn" style="display: none" id="{{ entry.entry_id }}">Add Rating</button>
+                {% else %}
+                <i class="fas fa-star"></i></div>
+                <button class="edit-roaster-buttons edit-rating btn" style="display: none" id="{{ entry.entry_id }}">Edit Rating</button>
+                {% endif %}
                   <div class="form-group rating {{ entry.entry_id }}" style="display: none">
                     <select class="form-control rating rating-select {{ entry.entry_id }} my-2" id="{{ entry.entry_id }}">
                       <option>1</option>
@@ -97,20 +112,23 @@
                     <input type="submit" name="submit-new-rating" class="btn rating submit-rating {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
                     <button type="button" class="btn rating {{ entry.entry_id }} cancel-rating" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
                   </div>
-                {% endif %}
+                
             </li>
           </div>
             <li class="list-group-item favs d-flex pr-1">
-              <div class="mr-auto">Review: {{ entry.note }}</div>
+              <div class="mr-auto">Review: <div class="{{ entry.entry_id }} my-2" id="entry-review">{{ entry.note }}</div></div>
                 {% if entry.note == None %}
                 <button class="btn edit-roaster-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
+                {% else %}
+                <button class="btn edit-roaster-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Edit Review</button>
+                {% endif %}
                   <div class="form-group">
-                    <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label>
-                    <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"></textarea>
+                    <!-- <label class="{{ entry.entry_id }} note" style="display: none">Please share your thoughts here:</label> -->
+                    <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"> {{ entry.note }}  </textarea>
                     <input type="submit" name="submit-new-note" class="btn submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
                     <button class="btn {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
               </div>
-            {% endif %}
+            
             </li>
             <div class="d-flex">
               <button type="button" class="flex-fill edit-roaster-buttons move btn m-1" style="display: none" id="{{ entry.entry_id }}">Move to Favorites List</button>

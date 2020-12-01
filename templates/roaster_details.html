@@ -41,7 +41,7 @@
     <div class="col-6">
   <h1> {{roaster.name }} </h1>
 
-  <h4> Average User Rating: {{ avg_rating }} </h4>
+  <h4> Average User Rating: {{ avg_rating }} {% if avg_rating != "No ratings yet!" %}<i class="fas fa-star"></i> {% endif %}</h4>
   <br>
   <div id="map"></div>
   <p> {{ roaster.address }} </p>
