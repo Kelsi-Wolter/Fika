@@ -13,15 +13,17 @@
   <div class="row">
 
     <div class="col-6">
-      <div class="card favs" style="width: 100%;">
+      <div class="card favs ordered" style="width: 100%;">
         <div class="card-header">
           <h3 class="card-title">{{ list1.list_name }}</h3>
         </div>
-    
+        
         {% if list1_entries != "This list is empty!" %}
         {% for entry in list1_entries %}
-        <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h5>
-          <div class="d-inline">
+        <div class="d-inline border border-secondary mb-2" style="order: {{ entry.roaster.roaster_id }}">
+
+          <ul class="list-group favs my-2"> 
+          <h5 class="card-title text-center">{{ entry.roaster.name }}</h5>
             <li class="list-group-item favs d-flex pr-1">
               <div class="mr-auto">Rating: {{ entry.score }} 
                 {% if entry.score == None %}
@@ -44,8 +46,8 @@
                   </div>
                 
             </li>
-          </div>
-            <li class="list-group-item favs d-flex pr-1">
+          
+            <li class="list-group-item favs d-flex pr-1 border-bottom-0">
               <div class="mr-auto"> Review: <div class="{{ entry.entry_id }} my-2" id="entry-review">{{ entry.note }}</div></div>
                 {% if entry.note == None %}
                 <button class="btn edit-fav-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
@@ -60,15 +62,17 @@
               </div>
                 
             </li>
-            <div class="d-flex">
+        
+            <div class="d-flex" style="display: none">
               <button type="button" class="flex-fill edit-fav-buttons move btn m-1" style="display: none" id="{{ entry.entry_id }}">Move to Roasters List</button>
               <button class="flex-fill edit-fav-buttons delete btn m-1" style="display: none" id="{{ entry.entry_id }}" >Delete</button>
             </div>
-
+          
           </ul>
+        </div> <!-- card body list item for each roaster entry -->
         {% endfor %}
       
-        <div class="card-body">
+        <div class="card-footer" style="order: 9999">
           <button type="button" class="edit-fav btn m-3" id="{{ list1.list_id }}" >Edit List</button>
         </div>
       {% endif %}
@@ -76,22 +80,26 @@
         <div class="card-body">
           <p class="card-text">This list is empty!</p>
         </div>
+        <div class="card footer"></div>
       {% endif %}
+
       </div> <!-- card -->
     </div> <!-- column -->
 
 
 
     <div class="col-6">
-      <div class="card favs" style="width: 100%;">
+      <div class="card favs ordered border border-secondary" style="width: 100%;">
         <div class="card-header">
           <h3 class="card-title">{{ list2.list_name }}</h3>
         </div>
-
+        
         {% if list2_entries != "This list is empty!" %}
         {% for entry in list2_entries %}
-        <ul class="list-group list-group-flush favs my-2"> <h5 class="card-title text-center">{{ entry.roaster.name }}</h6>
-          <div class="d-inline">
+
+        <div class="d-inline mb-2" style="order: {{ entry.roaster.roaster_id }}">
+        <ul class="list-group favs my-2"> 
+          <h5 class="card-title text-center">{{ entry.roaster.name }}</h5>
             <li class="list-group-item favs d-flex pr-1">
               <div class="mr-auto">Rating: {{ entry.score }}
                 {% if entry.score == None %}
@@ -114,8 +122,8 @@
                   </div>
                 
             </li>
-          </div>
-            <li class="list-group-item favs d-flex pr-1">
+          
+            <li class="list-group-item favs d-flex pr-1 border-bottom-0">
               <div class="mr-auto">Review: <div class="{{ entry.entry_id }} my-2" id="entry-review">{{ entry.note }}</div></div>
                 {% if entry.note == None %}
                 <button class="btn edit-roaster-buttons edit-note ml-auto" style="display: none" id="{{ entry.entry_id }}">Add Review</button>
@@ -127,7 +135,7 @@
                     <textarea name="entry-note" class="my-2 form-control {{ entry.entry_id }} note text" style="display: none"> {{ entry.note }}  </textarea>
                     <input type="submit" name="submit-new-note" class="btn submit-note note {{ entry.entry_id }}" id="{{ entry.entry_id }}" style="display: none"> 
                     <button class="btn {{ entry.entry_id }} note cancel-note" style="display: none" id="{{ entry.entry_id }}">Cancel</button>
-              </div>
+                  </div>
             
             </li>
             <div class="d-flex">
@@ -135,9 +143,10 @@
               <button class="flex-fill edit-roaster-buttons delete btn m-1" style="display: none" id="{{ entry.entry_id }}" >Delete</button>
             </div>
           </ul>
+        </div> <!-- card body list item for each roaster entry -->
           {% endfor %}
         
-          <div class="card-body">
+          <div class="card-footer" style="order: 9999">
             <button type="button" class="edit-roasters btn m-3" id="{{ list1.list_id }}" >Edit List</button>
           </div>
         {% endif %}
