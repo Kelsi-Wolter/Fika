@@ -16,7 +16,7 @@ model.connect_to_db(server.app)
 model.db.create_all()
 
 
-    '''Create Roasters table'''
+'''Create Roasters table'''
 # Uses places_data module to seed database instead of a json file
 roaster_data = places_data.create_details_dict()
 
@@ -67,7 +67,7 @@ for user in list_of_users:
 
     '''Create 4 entries for roasters list and 1 entry for favorites list, for each user'''
     # Create 4 entries for 'My Roasters' list
-    for n in range(4):
+    for n in range(6):
         
         # For each entry, make random choice from roasters list, remove that choice from the list but add to separate list (so can add
         # those roasters back to master list later), generate score and make random choice for note, instantiate entry and loop through

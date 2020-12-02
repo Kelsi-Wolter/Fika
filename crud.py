@@ -2,6 +2,7 @@
 
 import googlemaps
 from model import db, User, List, Roaster, Entry, connect_to_db
+from random import choice
 
 
 #Connect to DB
@@ -126,6 +127,23 @@ def create_photos(roaster_place_ID):
             roaster_photos.append(photo['photo_reference'])
     
     return roaster_photos
+
+def get_user_review_by_roaster(roaster_id):
+    '''Queries for entries made for roaster, returns random choice of entry's note value and note author(user)'''
+
+    entries = Entry.query.filter_by(roaster_id=roaster_id).all()
+    if entries:
+        review = choice(entries)
+        note = review.note
+        author = review.entry_list.user.first_name + ' ' + review.entry_list.user.last_name
+    else:
+        review = None
+        note = None
+        author = None
+
+
+    return note, author
+
 
 
 ''' List Functions '''

@@ -10,10 +10,14 @@
 <style>
   #map {
         height: 200px;
-        /* The height is 400 pixels */
         width: 100%;
-        /* The width is the width of the web page */
       }
+
+  img {
+    max-height: 600px;
+    width: 100%;
+  }
+
 </style>
 <script>
   // Initialize and add the map
@@ -39,38 +43,52 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-  <h1> {{roaster.name }} </h1>
+      <h1> {{roaster.name }} </h1>
 
-  <h4> Average User Rating: {{ avg_rating }} {% if avg_rating != "No ratings yet!" %}<i class="fas fa-star"></i> {% endif %}</h4>
-  <br>
-  <div id="map"></div>
-  <p> {{ roaster.address }} </p>
-  <p> Phone: {{ roaster.phone_number }} </p>
-  <p><a href="{{ roaster.website }}"> Visit Website </a> </p>
-  <!-- <p>Daily Hours:</p> -->
-    <!-- {% for day in schedule %}
-    <p>{{ day }}</p>
-    {% endfor %} -->
-
-    {% if session['user'] %}
-<button class="btn add-fav btn-dark" value="favorite" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
-<button class="btn btn-dark add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
-    {% endif %}
-  </div>
+      <h4> Average User Rating: {{ avg_rating }} {% if avg_rating != "No ratings yet!" %}<i class="fas fa-star"></i> {% endif %}</h4>
+      <div>
+        {% if note != None %}<h5>User Reviews:</h5>
+        <p> {{ note }} {% endif %}
+          <br>{% if author != None %}
+          -  {{ author }} 
+        </p>{% endif %}
+      </div> <!-- reviews div -->
+      {% if session['user'] %}
+      <button class="btn add-fav btn-dark" value="favorite" id="{{ roaster.roaster_id }}"> Add to My Favorites List </button>
+      <button class="btn btn-dark add-roasters" id="{{roaster.roaster_id }}"> Add to My Roasters List</button>
+      {% endif %}
+      <br>
+      <br>
+      <div>
+        <h5>About Us:</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel tempor lacus. Maecenas nisi nisi, venenatis a luctus quis, 
+          convallis nec elit. Duis arcu enim, sollicitudin eu leo quis, ullamcorper volutpat magna. Pellentesque dignissim posuere leo sit 
+          amet mollis. Pellentesque aliquet nunc in turpis porttitor, in volutpat urna ullamcorper. Proin eget egestas turpis. Aenean et pulvinar nisl. 
+          Sed maximus, risus et bibendum ultrices, ipsum quam pulvinar est, ut feugiat elit augue vel libero. </p>
+      </div>
+      <p><a href="{{ roaster.website }}"> Visit Website - Order Coffee Here! </a> </p>
+      <div id="map"></div>
+      <p> {{ roaster.address }} </p>
+      <p> Phone: {{ roaster.phone_number }} </p>
+      
+      <!-- <p>Daily Hours:</p> -->
+        <!-- {% for day in schedule %}
+        <p>{{ day }}</p>
+        {% endfor %} -->
+    </div> <!-- column -->
 
     <div class="col-6">
-        <div id="roaster-photos" class="carousel slide m-5" data-ride="carousel" data-pause="hover">
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="3000">
-              <img src="../static/img/Title_photos/{{ roaster.place_id }}_title_photo.jpg" class="d-block w-100" alt="...">
-            </div>
-            {% for image in photos %}
-            <div class="carousel-item" data-interval="3000">
-                <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxwidth=800&photoreference={{ image }}" class="d-block w-100" alt="...">
-            </div>
-            {% endfor %}
-
+      <div id="roaster-photos" class="carousel slide m-5" data-ride="carousel" data-pause="hover" >
+        <div class="carousel-inner" style="height: 50%">
+          <div class="carousel-item active" data-interval="3000">
+            <img src="../static/img/Title_photos/{{ roaster.place_id }}_title_photo.jpg" class="d-block w-100" alt="...">
           </div>
+          {% for image in photos %}
+          <div class="carousel-item" data-interval="3000">
+            <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxheight=800&photoreference={{ image }}" class="d-block w-100" alt="...">
+          </div>
+          {% endfor %}
+        </div> <!-- carousel inner-->
           <a class="carousel-control-prev" href="#roaster-photos" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -79,10 +97,11 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
+      </div> <!-- carousel -->  
+    </div> <!-- column -->
+  </div> <!--row-->
+  <br>
 
-        </div>   
-      </div>
-    </div>
-  </div>
+</div> <!--container-->
 
 {% endblock %}

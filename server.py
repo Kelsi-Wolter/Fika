@@ -61,7 +61,9 @@ def roaster_details_page(roaster_id):
 
     photos = crud.create_photos(roaster.place_id)
 
-    return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating, photos=photos)
+    note, author = crud.get_user_review_by_roaster(roaster_id)
+
+    return render_template('roaster_details.html', roaster=roaster, schedule=schedule, avg_rating=avg_rating, photos=photos, note=note, author=author)
 
 
 # User and account routes
@@ -111,6 +113,13 @@ def user_account_page(user_id):
     # list1, list2 = user_lists[0], user_lists[1]
 
     list1_entries, list2_entries = list1.entries, list2.entries
+
+    if list1_entries == []:
+        list1_entries = "This list is empty!"
+    if list2_entries == []:
+        list2_entries = "This list is empty!"
+
+    print('list1=', list1_entries, 'list2=', list2_entries)
 
     # list1_entries = crud.get_entries_by_list_id(list1.list_id)
     # list2_entries = crud.get_entries_by_list_id(list2.list_id)
