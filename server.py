@@ -56,6 +56,7 @@ def roaster_details_page(roaster_id):
     schedule = schedule.strip('{}').replace('"','').split(",")
 
     avg_rating = roaster.avg_user_rating
+    
     if avg_rating == 0 or avg_rating == None:
         avg_rating = 'No ratings yet!'
 
@@ -109,8 +110,6 @@ def user_account_page(user_id):
     user = crud.get_user_by_id(user_id)
 
     list1, list2 = user.lists[0], user.lists[1]
-    # user_lists = crud.get_lists_by_user_id(user_id)
-    # list1, list2 = user_lists[0], user_lists[1]
 
     list1_entries, list2_entries = list1.entries, list2.entries
 
@@ -118,11 +117,6 @@ def user_account_page(user_id):
         list1_entries = "This list is empty!"
     if list2_entries == []:
         list2_entries = "This list is empty!"
-
-    print('list1=', list1_entries, 'list2=', list2_entries)
-
-    # list1_entries = crud.get_entries_by_list_id(list1.list_id)
-    # list2_entries = crud.get_entries_by_list_id(list2.list_id)
 
     return render_template('account.html', user=user, list1=list1, list2=list2, list1_entries=list1_entries, list2_entries=list2_entries)
 
@@ -242,7 +236,7 @@ def enter_rating_for_entry():
     updated_entry = crud.add_rating_to_entry(entry=entry, rating=rating)
 
     crud.calculate_avg_rating(entry.roaster_id)
-
+    
     return f'Your entry for {entry.roaster.name} has been updated!'
 
 @app.route('/add_entry_note', methods=["POST"])

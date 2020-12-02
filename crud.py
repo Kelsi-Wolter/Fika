@@ -97,9 +97,11 @@ def calculate_avg_rating(roaster_id):
         
         roaster_avg = round( (sum / total_reviews), 2)
 
+        roaster.avg_user_rating = roaster_avg
+
         db.session.commit()
 
-        return roaster_avg
+        # return roaster_avg
 
 def get_roasters_by_rating(rating):
     '''Returns list of roaster objects meeting rating criteria'''

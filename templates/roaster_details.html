@@ -83,7 +83,7 @@
           <div class="carousel-item active" data-interval="3000">
             <img src="../static/img/Title_photos/{{ roaster.place_id }}_title_photo.jpg" class="d-block w-100" alt="...">
           </div>
-          {% for image in photos %}
+          {% if photos != 'Unavailable' %} {% for image in photos %}
           <div class="carousel-item" data-interval="3000">
             <img src="https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyA7kGblloOwNaoFbgZlb3DNRaz-SxRG7SI&maxheight=800&photoreference={{ image }}" class="d-block w-100" alt="...">
           </div>
@@ -96,7 +96,7 @@
           <a class="carousel-control-next" href="#roaster-photos" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-          </a>
+          </a> {% endif %}
       </div> <!-- carousel -->  
     </div> <!-- column -->
   </div> <!--row-->

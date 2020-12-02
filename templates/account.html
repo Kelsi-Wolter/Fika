@@ -2,6 +2,11 @@
 {% block title %}Account Homepage{% endblock %}
 
 {% block head %}
+<style>
+  a {
+    color: black;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
@@ -24,7 +29,7 @@
         <div class="d-inline border border-secondary" style="order: {{ entry.roaster.roaster_id }}">
 
           <ul class="list-group favs my-2"> 
-          <h5 class="card-title text-center">{{ entry.roaster.name }}</h5>
+          <h5 class="card-title text-center"><a href='/roaster_directory/{{ entry.roaster.roaster_id}}'> {{ entry.roaster.name }} </a></h5>
             <li class="list-group-item favs d-flex pr-1">
               <div class="mr-auto">Rating: {{ entry.score }} 
                 {% if entry.score == None %}
@@ -100,7 +105,7 @@
 
       <div class="d-inline border border-secondary" style="order: {{ entry.roaster.roaster_id }}">
         <ul class="list-group favs"> 
-          <h5 class="card-title text-center py-3">{{ entry.roaster.name }}</h5>
+          <h5 class="card-title text-center py-3"><a href='/roaster_directory/{{ entry.roaster.roaster_id}}'>{{ entry.roaster.name }}</a></h5>
             <li class="list-group-item favs d-flex pr-1">
               <div class="mr-auto">Rating: {{ entry.score }}
                 {% if entry.score == None %}

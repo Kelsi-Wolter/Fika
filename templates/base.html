@@ -43,7 +43,7 @@
             <a class="nav-link lnk" href="">Shop</a>
             {% if session['user'] %}
               <a class="nav-link lnk" id="account-link" href="/account/{{ session['user'] }}">My Account</a></li>
-              <a class="nav-link ml-auto lnk" href="/log_out"> Log Out </a>
+              <a class="nav-link lnk" href="/log_out"> Log Out </a>
             {% endif %}
             {% if session.get('user') == None %}
               <a class="nav-link lnk" id="account-link" href="/login">Login</a>

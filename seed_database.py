@@ -99,8 +99,8 @@ for user in list_of_users:
     '''Add average user rating based on fake users and generated ratings'''
 for roaster in list_of_roasters:
     roaster_id = roaster.roaster_id
-    avg_rating = crud.calculate_avg_rating(roaster_id)
-    roaster.avg_user_rating = avg_rating
+    crud.calculate_avg_rating(roaster_id)
+    # roaster.avg_user_rating = avg_rating
     
 
 
