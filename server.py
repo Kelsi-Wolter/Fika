@@ -191,11 +191,12 @@ def move_entry():
 
     #use entry ID to call entry
     entry_id = request.form.get("entry")
+    
     entry = crud.get_entry_by_entry_id(entry_id)
 
     #find current list id for entry
     current_list = entry.list_id
-
+    print(current_list)
     # Find list_id to change entry to (new_list)
     lists = crud.get_lists_by_user_id(session['user'])
 
@@ -203,6 +204,7 @@ def move_entry():
         list_id = li.list_id
         if list_id != current_list:
             new_list = list_id
+    print(new_list)
     
     # Update entry in DB
     updated_entry = crud.change_list_id(entry=entry, new_list=new_list)
