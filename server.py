@@ -82,7 +82,7 @@ def login_to_account():
         user = crud.get_user_by_email(email)
         if user:
             user_pw, user_id = user.password, user.user_id
-            # user_pw, user_id = crud.get_user_info(email)
+            
             if pw == user_pw:
                 session['user'] = user_id
                 return redirect(f'/account/{user_id}')
