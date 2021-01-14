@@ -117,8 +117,9 @@ def create_details_dict():
 
     return place_details_dict
 
-def create_json(dict):
-    return json.dumps(dict, sort_keys=True, indent=4)
+# This json translation is no longer necessary as data input for server changed
+# def create_json(dict):
+#     return json.dumps(dict, sort_keys=True, indent=4)
 
 
 # PHOTO DATA CALLS
