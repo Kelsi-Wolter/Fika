@@ -114,6 +114,10 @@ class NewUserForm(FlaskForm):
     password = PasswordField('password')
 
 
+def example_data():
+    '''Create sample data and database for testing'''
+
+
 '''Copied from model.py in ratings app that connects to the database'''
 
 def connect_to_db(flask_app, db_uri='postgresql:///MNroasters', echo=False):

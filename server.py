@@ -91,6 +91,11 @@ def login_to_account():
         else:         
             flash("Sorry, we don't recognize that email! Please create an account.")
             return redirect('/create_account')
+        
+    # else:
+    #     return f'This is correct'
+    # used for testing.py, when trying to test post method the form is not allowing to "validate"
+    # so is just skipping over that if statement and returning login page
 
     return render_template('login.html', form=form)
 
