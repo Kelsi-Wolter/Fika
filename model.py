@@ -8,6 +8,7 @@ from flask_login import LoginManager
 
 
 
+
 # app = Flask(__name__)
 db = SQLAlchemy()
 
@@ -116,6 +117,43 @@ class NewUserForm(FlaskForm):
 
 def example_data():
     '''Create sample data and database for testing'''
+
+    Roaster.query.delete()
+    User.query.delete()
+    List.query.delete()
+    Entry.query.delete()
+
+    # Add sample data
+    fake_roaster = Roaster(name='City Girl Coffee Test', 
+                                    address='1330 E Superior St, Duluth, MN 55805, USA', 
+                                    phone_number='(800) 438-9228',
+                                    hours='Unavailable',
+                                    place_id='ChIJAQDAwtZSrlIRBDSDAdzoufI', 
+                                    website='http://www.citygirlcoffee.com/', 
+                                    avg_user_rating=3.5, 
+                                    lat=46.7998429, 
+                                    lng=-92.0807345)
+                    
+    fake_user = User(first_name='Admin', 
+                                last_name='Admin', 
+                                email='admin@admin.com', 
+                                password='admin')
+    db.session.add(fake_roaster)
+    db.session.add(fake_user)
+    
+    fake_list1 = List(list_name='My Favorites', user=fake_user)
+    db.session.add(fake_list1)
+    fake_list2 = List(list_name='My Roasters', user=fake_user)
+    db.session.add(fake_list2)
+    
+    fake_entry1 = Entry(entry_list=fake_list1,
+                                    roaster=fake_roaster, 
+                                    score=5.0, 
+                                    note='lovely')
+    db.session.add(fake_entry1)
+
+    db.session.commit()
+
 
 
 '''Copied from model.py in ratings app that connects to the database'''
